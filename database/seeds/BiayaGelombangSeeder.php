@@ -15,14 +15,12 @@ class BiayaGelombangSeeder extends Seeder
         BiayaGelombang::create([
             'biaya' => 120000,
             'rincian_biaya_daftar_ulang' => 'Baju 10k, Hasduk 5k',
-            'jurusan_id' => 1,
             'gelombang_id' => 1
         ]);
 
         BiayaGelombang::create([
             'biaya' => 120000,
             'rincian_biaya_daftar_ulang' => 'Baju 5k, Hasduk 5k',
-            'jurusan_id' => 1,
             'gelombang_id' => 2
         ]);
     }

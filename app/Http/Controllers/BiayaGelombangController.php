@@ -19,8 +19,7 @@ class BiayaGelombangController extends Controller
     public function index()
     {
         $biayagelombang = DB::table('biaya_gelombang')
-        ->select('biaya_gelombang.*', 'jurusan.nama_jurusan', 'gelombang.nama_gelombang')
-        ->join('jurusan','jurusan.id_jurusan', 'biaya_gelombang.jurusan_id')
+        ->select('biaya_gelombang.*', 'gelombang.nama_gelombang')
         ->join('gelombang','gelombang.id_gelombang', 'biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->where('tahun_ajaran.status', 1)
@@ -36,13 +35,12 @@ class BiayaGelombangController extends Controller
      */
     public function create()
     {
-        $jurusan = Jurusan::get();
         $gelombang = DB::table('gelombang')
         ->select('gelombang.*')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','gelombang.tahun_ajaran_id')
         ->where('tahun_ajaran.status',1)
         ->get();
-        return view('admin.biayagelombang.create', compact('jurusan', 'gelombang'));
+        return view('admin.biayagelombang.create', compact('gelombang'));
     }
 
     /**
@@ -56,14 +54,12 @@ class BiayaGelombangController extends Controller
         $request->validate([
             'biaya' => 'required',
             'rincian_biaya_daftar_ulang' => 'required',
-            'jurusan_id_jurusan' => 'required',
             'gelombang_id_gelombang' => 'required',
         ]);
 
         BiayaGelombang::create([
             'biaya' => $request->biaya,
             'rincian_biaya_daftar_ulang' => $request->rincian_biaya_daftar_ulang,
-            'jurusan_id' => $request->jurusan_id_jurusan,
             'gelombang_id' => $request->gelombang_id_gelombang,
         ]);
         return redirect(route('admin.biayagelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Biaya Gelombang']);
@@ -88,10 +84,9 @@ class BiayaGelombangController extends Controller
      */
     public function edit($id)
     {
-        $jurusan = Jurusan::get();
         $gelombang = Gelombang::get();
         $biayagelombang = BiayaGelombang::findOrFail($id);
-        return view('admin.biayagelombang.edit', compact('jurusan', 'gelombang','biayagelombang'));
+        return view('admin.biayagelombang.edit', compact('gelombang','biayagelombang'));
     }
 
     /**
@@ -106,14 +101,12 @@ class BiayaGelombangController extends Controller
         $request->validate([
             'biaya' => 'required',
             'rincian_biaya_daftar_ulang' => 'required',
-            'jurusan_id_jurusan' => 'required',
             'gelombang_id_gelombang' => 'required',
         ]);
 
         DB::table('biaya_gelombang')->where('id_biaya_gelombang', $id)->update([
             'biaya' => $request->biaya,
             'rincian_biaya_daftar_ulang' => $request->rincian_biaya_daftar_ulang,
-            'jurusan_id' => $request->jurusan_id_jurusan,
             'gelombang_id' => $request->gelombang_id_gelombang,
         ]);
 
