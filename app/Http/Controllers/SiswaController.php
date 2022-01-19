@@ -76,7 +76,7 @@ class SiswaController extends Controller
             ->update([
                 'nama' => $req->nama,
                 'email' => $req->email,
-                'alamat' => $req->alamat,
+                'alamat_domisili' => $req->alamat,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
@@ -154,7 +154,7 @@ class SiswaController extends Controller
                 'siswa_id' => $siswa->id_siswa,
                 'dokumen_id'=> $req->id_dokumen
             ]);
-            
+
             return redirect()->back()->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Dokumen.']);
         }else{
             $file = $req->file('file');
@@ -170,7 +170,7 @@ class SiswaController extends Controller
 
             return redirect()->back()->with(['jenis' => 'success','pesan' => 'Berhasil Mengubah Dokumen.']);
         }
-        
+
         return redirect()->back();
     }
 
@@ -235,8 +235,7 @@ class SiswaController extends Controller
         }
 
         $gelombang = DB::table('biaya_gelombang')
-                    ->select('jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang', 'gelombang.*','tahun_ajaran.nama_tahun_ajaran')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
+                    ->select('biaya_gelombang.id_biaya_gelombang', 'gelombang.*','tahun_ajaran.nama_tahun_ajaran')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('tahun_ajaran.status' , '1')
@@ -247,7 +246,6 @@ class SiswaController extends Controller
         $riwayat = DB::table('pendaftaran')
                     ->select('biaya_gelombang.id_biaya_gelombang')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('siswa_id', $id)
@@ -264,7 +262,7 @@ class SiswaController extends Controller
             }
         }
 
-        
+
 
         $sudahDaftar = [];
         foreach($riwayat as $r){

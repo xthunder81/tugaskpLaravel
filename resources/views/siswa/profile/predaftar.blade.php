@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
-                                    <textarea class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat" required>{{ $siswa->alamat }}</textarea>
+                                    <textarea class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat" required>{{ $siswa->alamat_domisili }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>

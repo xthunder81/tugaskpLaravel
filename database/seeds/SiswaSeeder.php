@@ -66,7 +66,7 @@ class SiswaSeeder extends Seeder
                 'email'=>$angka.'@'.$angka.'.'.$angka,
                 'password'=> bcrypt($angka),
                 'nama'=> $angka,
-                'alamat'=> $angka,
+                'alamat_domisili'=> $angka,
                 'tempat_lahir'=> $angka,
                 'tanggal_lahir'=>'2020-05-02',
                 'jenis_kelamin'=>'P',
