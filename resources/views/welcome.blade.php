@@ -436,14 +436,14 @@
                             <div class="info-box mt-4">
                                 <i class="bx bx-envelope"></i>
                                 <h3>Email</h3>
-                                <p>ppdn@sekolahkita.sch.id</p>
+                                <p>{{ env('EMAILSEKOLLAH', '')}}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box mt-4">
                                 <i class="bx bx-phone-call"></i>
                                 <h3>Telepon</h3>
-                                <p>031- 1234567</p>
+                                <p>{{ env('NOMORHPSEKOLAH','') }}</p>
                             </div>
                         </div>
                     </div>
@@ -468,7 +468,7 @@
 
         <div class="mr-md-auto text-center text-md-left">
             <p>
-                Copyright &copy;{{ now()->year }} All rights reserved | Informatika ITATS KKN 2020
+                Copyright &copy;{{ now()->year }} All rights reserved | SMPT DAARUL MUTTAQIEN
             </p>
         </div>
     </div>
