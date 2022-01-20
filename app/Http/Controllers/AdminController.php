@@ -35,9 +35,8 @@ class AdminController extends Controller
         $dataDiriLengkap = count($siswa) - $dataDiriLengkap;
 
         $riwayat = DB::table('pendaftaran')
-                ->select('pendaftaran.id_pendaftaran' ,'jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
                 ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                 ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                 ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                 ->where('tahun_ajaran.status', 1)
@@ -51,8 +50,6 @@ class AdminController extends Controller
         $menungguVerifikasiPembayaranDaftarUlang = 0;
         $sudahDiterimadiSekolah = 0;
         $hasilDariDaftarUlang = 0;
-        $namaJurusan = [];
-        $jumlahSiswaDiterimaDijurusan = [];
         foreach($riwayat as $r){
 
             $cekBayarFormulir = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '0')->first();
@@ -68,13 +65,6 @@ class AdminController extends Controller
                     $hasilDariDaftarUlang = $hasilDariDaftarUlang + $r->biaya;
                     $sudahDiterimadiSekolah++;
 
-                    if(!in_array($r->nama_jurusan, $namaJurusan)){
-                        array_push($namaJurusan, $r->nama_jurusan);
-                        array_push($jumlahSiswaDiterimaDijurusan, 1);
-                    }else{
-                        $index = array_search($r->nama_jurusan, array_keys($namaJurusan));
-                        $jumlahSiswaDiterimaDijurusan[$index] = $jumlahSiswaDiterimaDijurusan[$index] + 1;
-                    }
 
                 }else if($cekDiterima->status_pembayaran == null && $cekBayarDaftarulang->bukti_pembayaran != null){
                     //sudah bayar formulilr nunggu verifikasi admin
@@ -102,7 +92,7 @@ class AdminController extends Controller
         if(!is_integer($rupiahDariFormulir)){
             $rupiahDariFormulir = 0;
         }
-        return view('admin.home', compact('jurusan','siswa','dataDiriLengkap','registrasi','menungguVerifikasiPembayaranFormulir','menungguDiterima','diterima','tidakDiterima','menungguVerifikasiPembayaranDaftarUlang','sudahDiterimadiSekolah','rupiahDariFormulir','hasilDariDaftarUlang','jumlahSiswaDiterimaDijurusan','namaJurusan'));
+        return view('admin.home', compact('siswa','dataDiriLengkap','registrasi','menungguVerifikasiPembayaranFormulir','menungguDiterima','diterima','tidakDiterima','menungguVerifikasiPembayaranDaftarUlang','sudahDiterimadiSekolah','rupiahDariFormulir','hasilDariDaftarUlang'));
     }
 
     public function tahunajaranView(){
@@ -176,9 +166,8 @@ class AdminController extends Controller
 
     public function unduhpresensiView(){
         $daftarulang = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*', 'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
