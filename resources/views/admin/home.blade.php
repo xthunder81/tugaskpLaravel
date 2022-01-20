@@ -136,7 +136,7 @@
         </div>
     </div>
 
-    <!-- @php
+    {{-- <!-- @php
         for($i = 0; $i < count($namaJurusan); $i++){
             @endphp
                 <div class="col-3">
@@ -151,7 +151,7 @@
                 </div>
             @php
         }
-    @endphp -->
+    @endphp --> --}}
 
 </div>
 @endsection

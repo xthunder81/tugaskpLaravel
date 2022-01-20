@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Jurusan;
+// use \App\Jurusan;
 use \App\Admin;
 use \App\TahunAjaran;
 use \App\Siswa;
@@ -17,7 +17,7 @@ use PDF;
 class AdminController extends Controller
 {
     public function index(){
-        $jurusan = Jurusan::all();
+        // $jurusan = Jurusan::all();
         $siswa = Siswa::all();
 
         $dataDiriLengkap = 0;
@@ -84,7 +84,7 @@ class AdminController extends Controller
             }else{
                 $registrasi++;
             }
-            
+
         }
 
         $rupiahDariFormulir = ($menungguDiterima + $sudahDiterimadiSekolah + $menungguVerifikasiPembayaranDaftarUlang + $diterima) * env('HARGAFORMULIR','');
@@ -195,7 +195,7 @@ class AdminController extends Controller
     }
 
     public function ubahkatasandi(){
-       return view('admin.ubahkatasandi'); 
+       return view('admin.ubahkatasandi');
     }
 
     public function ubahkatasandiProses(Request $req){
@@ -206,7 +206,7 @@ class AdminController extends Controller
         $admin = Admin::findOrFail(\Auth::guard('admin')->user()->id_admin);
         $admin->password = bcrypt($req->sandi);
         $admin->save();
-        
+
         return redirect()->route('admin.home')->with(['jenis' => 'success','pesan' => 'Berhasil merubah kata sandi']);
     }
 

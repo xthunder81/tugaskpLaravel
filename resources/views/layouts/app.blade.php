@@ -289,7 +289,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="https://if.itats.ac.id">Informatika ITATS KKN 2020</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://smpt.dms.sch.id">PPDB SMPT DAARUL MUTTAQIEN SURABAYA</a>.</strong>
     All rights reserved.
     </footer>
 
