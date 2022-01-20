@@ -125,14 +125,14 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="{{ route('admin.jurusan') }}" class="nav-link {{ Route::current()->getName() == 'admin.jurusan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
                     Jurusan
                     </p>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a href="{{ route('admin.gelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.gelombang' ? 'active' : '' }}">
