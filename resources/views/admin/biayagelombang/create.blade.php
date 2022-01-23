@@ -28,7 +28,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Jurusan</label>
                             <select class="form-control @error('jurusan_id_jurusan') is-invalid @enderror" name="jurusan_id_jurusan">
                                 @foreach($jurusan as $j)
@@ -38,7 +38,7 @@
                             @error('jurusan_id_jurusan')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>Gelombang</label>
                             <select class="form-control @error('gelombang_id_gelombang') is-invalid @enderror" name="gelombang_id_gelombang">

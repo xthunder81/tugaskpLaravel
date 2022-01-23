@@ -25,7 +25,6 @@
                                 <th>No</th>
                                 <th>Biaya</th>
                                 <th>Rincian Biaya Daftar Ulang</th>
-                                <th>Jurusan</th>
                                 <th>Gelombang</th>
                                 <th>Aksi</th>
                             </tr>
@@ -36,7 +35,6 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$data->biaya}}</td>
                                     <td>{{$data->rincian_biaya_daftar_ulang}}</td>
-                                    <td>{{$data->nama_jurusan}}</td>
                                     <td>{{$data->nama_gelombang}}</td>
                                     <td><a href="{{ route('admin.biayagelombang.edit', $data->id_biaya_gelombang)}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Biaya Gelombang">
                                             <i class="fas fa-edit"></i></a>

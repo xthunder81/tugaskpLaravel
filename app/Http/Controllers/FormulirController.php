@@ -19,9 +19,8 @@ class FormulirController extends Controller
 {
     public function index(){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
@@ -34,8 +33,8 @@ class FormulirController extends Controller
     }
 
     public function create(){
-        $jurusan = Jurusan::all();
-        return view('admin.formulir.create', compact('jurusan'));
+        $gelombang = Gelombang::all();
+        return view('admin.formulir.create', compact('gelombang'));
     }
 
     public function store(Request $req){
@@ -44,7 +43,7 @@ class FormulirController extends Controller
         $alamat = $req->get('alamat');
         $nohp = $req->get('nohp');
         $asalsekolah = $req->get('asalsekolah');
-        $programkeahlian = $req->get('programkeahlian');
+        $gelombangtersedia = $req->get('gelombangtersedia');
 
         $siswa = new Siswa();
         $siswa->nama = $nama;
@@ -58,21 +57,20 @@ class FormulirController extends Controller
         $formulir->status = "1";
         $formulir->user_id = $petugas;
         $formulir->siswa_id = $siswa->id;
-        $formulir->jurusan_id = $programkeahlian;
+        $formulir->gelombang_id = $gelombangtersedia;
         $formulir->save();
 
-        $jurusan = Jurusan::where('id_jurusan',$programkeahlian)->firstOrFail();
-        $jurusan->kuota = $jurusan->kuota - 1;
-        $jurusan->save();
+        $gelombang = Gelombang::where('id_gelombang',$gelombangtersedia)->firstOrFail();
+        $gelombang->kuota = $gelombang->kuota - 1;
+        $gelombang->save();
 
         return redirect()->route('formulir');
     }
 
     public function show($id){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
@@ -106,16 +104,16 @@ class FormulirController extends Controller
         }
 
         $statusPendaftaran = StatusPendaftaran::where('pendaftaran_id' , $id)->first();
-        
+
         return view('admin.formulir.show', compact('formulir','dokumen','dok_siswa','nilai','nil_siswa','statusPendaftaran'));
     }
 
     public function print($id){
         $formulir = DB::table('formulirs')
-        ->select('formulirs.*', 'users.*', 'siswas.*', 'jurusans.*')
+        ->select('formulirs.*', 'users.*', 'siswas.*')
         ->join('users', 'users.id','=','formulirs.user_id')
         ->join('siswas', 'siswas.id_siswa','=','formulirs.siswa_id')
-        ->join('jurusans', 'jurusans.id_jurusan','=','formulirs.jurusan_id')
+        ->join('gelombangs', 'gelombangs.id_gelombang','=','formulirs.gelombang_id')
         ->where('id_formulir', $id)
         ->first();
 
