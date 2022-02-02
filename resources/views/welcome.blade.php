@@ -47,6 +47,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
+<br/><br/><br/>
 <section id="hero" class="d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up" style="margin-top: 290px;">
         <img src="{{ url('asset/logo.png') }}" alt="SI-PPDB" class="mx-auto d-block mb-3"
