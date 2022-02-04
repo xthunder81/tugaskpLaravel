@@ -27,6 +27,7 @@ class CreateGelombangTable extends Migration
             $table->timestamp('mulai')->nullable();
             $table->timestamp('selesai')->nullable();
             $table->unsignedInteger('kuota')->nullable();
+            $table->unsignedInteger('kuota_max')->nullable();
             $table->tinyInteger('status')->nullable();
             $table->unsignedInteger('tahun_ajaran_id');
 

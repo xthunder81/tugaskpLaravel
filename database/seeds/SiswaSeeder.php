@@ -14,19 +14,19 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        Siswa::create([
-            'nisn' => 1234567890,
-            'email' => 'siswa@siswa.siswa',
-            'password' => bcrypt('1234567890'),
-            'nama' => 'Nama Siswa',
-            'tempat_lahir' => 'Surabaya',
-            'tanggal_lahir' => Carbon::parse('2001/01/01'),
-            'jenis_kelamin' =>  'L',
-            'nomor_telp' => '',
-            'nomor_hp' => '08637827482',
-            'agama' => 'Islam',
-            'asal_smp' => 'SMP TEKNOLOGI ADHI TAMA SURABAYA',
-        ]);
+        // Siswa::create([
+        //     'nisn' => 1234567890,
+        //     'email' => 'siswa@siswa.siswa',
+        //     'password' => bcrypt('1234567890'),
+        //     'nama' => 'Nama Siswa',
+        //     'tempat_lahir' => 'Surabaya',
+        //     'tanggal_lahir' => Carbon::parse('2001/01/01'),
+        //     'jenis_kelamin' =>  'L',
+        //     'nomor_telp' => '',
+        //     'nomor_hp' => '08637827482',
+        //     'agama' => 'Islam',
+        //     'asal_smp' => 'SMP TEKNOLOGI ADHI TAMA SURABAYA',
+        // ]);
 
         // Siswa::create([
         //     'nisn' => 1111111,
@@ -72,11 +72,10 @@ class SiswaSeeder extends Seeder
                 'jenis_kelamin'=>'P',
                 'nomor_telp'=>$angka,
                 'nomor_hp'=>$angka,
-                'agama'=>'Islam',
-                'asal_smp'=> $angka,
+                'status_tempattinggal'=>$angka,
+                'asal_sd'=> $angka,
                 'foto'=>'3333333333_foto.jpg',
-                'status_keluarga'=>'0',
-                'kebutuhan_khusus'=>'Tuna Netra',
+                'transportasi'=>'0',
                 'nama_ayah'=>$angka,
                 'pendidikan_ayah'=>'1',
                 'pekerjaan_ayah'=>'9',
