@@ -80,12 +80,10 @@ class SiswaSeeder extends Seeder
                 'pendidikan_ayah'=>'1',
                 'pekerjaan_ayah'=>'9',
                 'gaji_ayah'=>'1',
-                'kebutuhan_khusus_ayah'=>'Tidak Ada',
                 'nama_ibu'=> $angka,
                 'pendidikan_ibu'=>'1',
                 'pekerjaan_ibu'=>'10',
                 'gaji_ibu'=>'2',
-                'kebutuhan_khusus_ibu'=>'Tidak Ada'
                 ] );
         }
     }
