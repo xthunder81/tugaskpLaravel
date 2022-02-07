@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 </head>
 
+<style>
+
+    .form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(24, 213, 109, 0.5);
+    }
+</style>
+
 <body class="my-login-page">
 <section class="h-100 mt-5">
     <div class="container h-100">
@@ -39,13 +47,13 @@
                                     <div class="input-group" id="show_hide_password">
                                         <input class="form-control" name="password" id="password" type="password" placeholder="Password Siswa" aria-describedby="basic-addon2" required data-eye>
                                         <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                            <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash text-success" aria-hidden="true"></i></a></span>
                                         </div>
                                     </div>
                                 <div class="invalid-feedback">
                                     Password tidak boleh kosong
                                 </div>
-                                    <a href="#" class="float-right" data-toggle="modal" data-target="#exampleModal">
+                                    <a href="#" class="float-right text-success" data-toggle="modal" data-target="#exampleModal">
                                         Lupa Password?
                                     </a>
                                 </label>
@@ -58,7 +66,7 @@
                                 </button>
                             </div>
                             <div class="mt-4 text-center">
-                                Belum punya Akun? <a href="{{ route('siswa.register') }}">Daftar di Sini!</a>
+                                Belum punya Akun? <a href="{{ route('siswa.register') }}" class="text-success">Daftar di Sini!</a>
                             </div>
                         </form>
                     </div>

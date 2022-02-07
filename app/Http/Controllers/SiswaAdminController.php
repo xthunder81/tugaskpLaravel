@@ -35,8 +35,7 @@ class SiswaAdminController extends Controller
             'jenis_kelamin' => 'required|in:L,P',
             'nomor_telp' => 'required',
             'nomor_hp' => 'required',
-            'agama' => 'required|in:Islam,Kristen Katolik,Kristen Protestan,Hindu, Buddha,Kong Hu Cu',
-            'asal_smp' => 'required',
+            'asal_sd' => 'required',
         ]);
 
         Siswa::create([
@@ -50,8 +49,7 @@ class SiswaAdminController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'nomor_telp' => $request->nomor_telp,
             'nomor_hp' => $request->nomor_hp,
-            'agama' => $request->agama,
-            'asal_smp' => $request->asal_smp,
+            'asal_sd' => $request->asal_sd,
         ]);
 
         return redirect(route('admin.siswa'))->with('success', 'Berhasil Menambah Siswa');
@@ -82,8 +80,7 @@ class SiswaAdminController extends Controller
             'jenis_kelamin' => 'required|in:L,P',
             'nomor_telp' => 'required',
             'nomor_hp' => 'required',
-            'agama' => 'required|in:Islam,Kristen Katolik,Kristen Protestan,Hindu, Buddha,Kong Hu Cu',
-            'asal_smp' => 'required',
+            'asal_sd' => 'required',
         ]);
 
         Siswa::find($id)->update([
@@ -97,8 +94,7 @@ class SiswaAdminController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'nomor_telp' => $request->nomor_telp,
             'nomor_hp' => $request->nomor_hp,
-            'agama' => $request->agama,
-            'asal_smp' => $request->asal_smp,
+            'asal_sd' => $request->asal_sd,
         ]);
 
         return redirect(route('admin.siswa'))->with('success', 'Berhasil Mengedit Siswa');
