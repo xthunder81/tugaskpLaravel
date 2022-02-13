@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 </head>
 
+<style>
+    .form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(24, 213, 109, 0.5);
+    }
+</style>
 <body class="my-login-page">
 <section class="h-100 mt-5">
     <div class="container h-100">
@@ -35,7 +41,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="password">NISN
-                                    <a href="#" target="_blank" class="float-right" data-toggle="modal" data-target="#exampleModal">
+                                    <a href="#" target="_blank" class="float-right text-success" data-toggle="modal" data-target="#exampleModal">
                                         Tidak ingat NISN Kamu?
                                     </a>
                                 </label>
@@ -63,7 +69,7 @@
                                 <div class="input-group" id="show_hide_password">
                                 <input class="form-control" name="password" id="password" type="password" placeholder="Masukkan Password" aria-describedby="basic-addon2" required data-eye>
                                 <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                    <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash text-success" aria-hidden="true"></i></a></span>
                                 </div>
                             </div>
                                 <div class="invalid-feedback">
@@ -71,12 +77,12 @@
                                 </div>
                             </div>
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-success btn-block">
                                     Daftar
                                 </button>
                             </div>
                             <div class="mt-4 text-center">
-                                Sudah punya Akun? <a href="{{ route('siswa.login') }}">Login di Sini!</a>
+                                Sudah punya Akun? <a href="{{ route('siswa.login') }}" class="text-success">Login di Sini!</a>
                             </div>
                         </form>
                     </div>
@@ -111,7 +117,7 @@
                 <b>Lupa atau tidak tahu NISN?</b><br>
                 Jika Kamu lupa atau tidak tahu nomor NISN Kamu, silahkan buka halaman di bawah. Isi data diri yang diperlukan untuk melakukan proses pencarian:
                 <br><br>
-                <a href="https://referensi.data.kemdikbud.go.id/nisn/index.php/Cindex/formcaribynama" target="_blank">referensi.data.kemdikbud.go.id/nisn</a>
+                <a href="https://nisn.data.kemdikbud.go.id/index.php/Cindex/formcaribynama" target="_blank">nisn.data.kemdikbud.go.id</a>
             </div>
 
         </div>
