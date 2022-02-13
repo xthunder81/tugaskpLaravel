@@ -135,9 +135,9 @@ Data Diri
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="nomor_telp">Nomor HP Orang Tua</label>
+                            <label for="nomor_telp">Nomor Telpon</label>
                             <input type="text" class="form-control" id="nomor_telp"
-                                placeholder="Masukkan Nomor HP Orang Tua" name="nomor_telp"
+                                placeholder="Masukkan Nomor Telpon" name="nomor_telp"
                                 value="{{ $siswa->nomor_telp }}" required>
                         </div>
                         <div class="form-group col-md-4">
@@ -148,24 +148,14 @@ Data Diri
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="agama">Agama</label>
-                            <select name="agama" class="form-control select2" value="{{ $siswa->agama }}" required>
-                                <option value="none" selected disabled hidden>Pilih Agama</option>
-                                <option value="Islam" @if ($siswa->agama == 'Islam') selected @endif>Islam</option>
-                                <option value="Kristen Katolik" @if ($siswa->agama == 'Kristen Katolik') selected
-                                    @endif>Kristen Katolik</option>
-                                <option value="Kristen Protestan" @if ($siswa->agama == 'Kristen Protestan') selected
-                                    @endif>Kristen Protestan</option>
-                                <option value="Hindu" @if ($siswa->agama == 'Hindu') selected @endif>Hindu</option>
-                                <option value="Buddha" @if ($siswa->agama == 'Buddha') selected @endif>Buddha</option>
-                                <option value="Kong Hu Cu" @if ($siswa->agama == 'Kong Hu Cu') selected @endif>Kong Hu
-                                    Cu</option>
-                            </select>
+                            <label for="asal_sd">Asal SD</label>
+                            <input type="text" class="form-control" id="asal_sd" placeholder="Masukkan Asal SD"
+                                name="asal_sd" value="{{ $siswa->asal_sd }}" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="asal_smp">Asal SMP</label>
-                            <input type="text" class="form-control" id="asal_smp" placeholder="Masukkan Asal SMP"
-                                name="asal_smp" value="{{ $siswa->asal_smp }}" required>
+                            <label for="alamat_sekolah">Alamat Asal SD</label>
+                            <input type="text" class="form-control" id="alamat_sekolah" placeholder="Masukkan Alamat Asal SD"
+                                name="alamat_sekolah" value="{{ $siswa->alamat_sekolah }}" required>
                         </div>
                     </div>
                     <div class="form-row">
