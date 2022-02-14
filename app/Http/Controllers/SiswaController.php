@@ -98,7 +98,7 @@ class SiswaController extends Controller
                 'agama' => $req->agama,
                 'asal_sd' => $req->asal_smp,
                 'status_keluarga' => $req->status_keluarga,
-                'kebutuhan_khusus' => implode('|',$req->kebutuhan_khusus),
+                'transportasi' => implode('|',$req->transportasi),
                 'nama_ayah' => $req->nama_ayah,
                 'nama_ibu' => $req->nama_ibu,
                 'pendidikan_ayah' => $req->pendidikan_ayah,
