@@ -11,7 +11,6 @@ Data Diri
         border-color: #5cb85c;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(24, 213, 109, 0.5);
     }
-
 </style>
 
 <div class="row">
@@ -31,6 +30,7 @@ Data Diri
                     </ul>
                 </div><br />
             @endif
+
             <form method="post" action="{{ route('siswa.predaftarProses') }}"
                 enctype="multipart/form-data">
                 @csrf
@@ -42,7 +42,8 @@ Data Diri
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="nik">NIK</label>
-                                <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik" value="{{ $siswa->nik }}" required>
+                                <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK" name="nik"
+                                    value="{{ $siswa->nik }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
@@ -55,27 +56,15 @@ Data Diri
                                     name="email" value="{{ $siswa->email }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="alamat">Alamat Sesuai KTP / KK</label>
-                                <textarea class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat"
+                                <label for="alamat_ktp">Alamat Sesuai KTP / KK</label>
+                                <textarea class="form-control" id="alamat_ktp"
+                                    placeholder="Masukkan Alamat Sesuai KTP / KK" name="alamat"
                                     required>{{ $siswa->alamat_ktp }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat Domisili</label>
                                 <textarea class="form-control" id="alamat" placeholder="Masukkan Alamat" name="alamat"
                                     required>{{ $siswa->alamat_domisili }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="tempat_lahir">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="tempat_lahir"
-                                    placeholder="Masukkan Tempat Lahir" name="tempat_lahir"
-                                    value="{{ $siswa->tempat_lahir }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggal_lahir">Tanggal Lahir</label>
-                                <input type="date" class="form-control cdp" id="tanggal_lahir"
-                                    placeholder="Masukkan Tanggal Lahir" name="tanggal_lahir"
-                                    value="{{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->format('Y-m-d') }}"
-                                    required>
                             </div>
 
                         </div>
@@ -118,9 +107,24 @@ Data Diri
                                             document.getElementById("namafile").innerHTML = geekss;
                                         });
                                     });
-
                                 </script>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="tempat_lahir">Tempat Lahir</label>
+                            <input type="text" class="form-control" id="tempat_lahir"
+                                placeholder="Masukkan Tempat Lahir" name="tempat_lahir"
+                                value="{{ $siswa->tempat_lahir }}" required>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control cdp" id="tanggal_lahir"
+                                placeholder="Masukkan Tanggal Lahir" name="tanggal_lahir"
+                                value="{{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->format('Y-m-d') }}"
+                                required>
                         </div>
                     </div>
 
@@ -136,9 +140,8 @@ Data Diri
                         </div>
                         <div class="form-group col-md-4">
                             <label for="nomor_telp">Nomor Telpon</label>
-                            <input type="text" class="form-control" id="nomor_telp"
-                                placeholder="Masukkan Nomor Telpon" name="nomor_telp"
-                                value="{{ $siswa->nomor_telp }}" required>
+                            <input type="text" class="form-control" id="nomor_telp" placeholder="Masukkan Nomor Telpon"
+                                name="nomor_telp" value="{{ $siswa->nomor_telp }}" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="nomor_hp">Nomor HP/WA</label>
@@ -154,62 +157,61 @@ Data Diri
                         </div>
                         <div class="form-group col-md-6">
                             <label for="alamat_sekolah">Alamat Asal SD</label>
-                            <input type="text" class="form-control" id="alamat_sekolah" placeholder="Masukkan Alamat Asal SD"
-                                name="alamat_sekolah" value="{{ $siswa->alamat_sekolah }}" required>
+                            <input type="text" class="form-control" id="alamat_sekolah"
+                                placeholder="Masukkan Alamat Asal SD" name="alamat_sekolah"
+                                value="{{ $siswa->alamat_sekolah }}" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="status_keluarga">Status Keluarga</label>
-                            <select name="status_keluarga" class="form-control" value="{{ $siswa->status_keluarga }}"
-                                required>
-                                <option value="" selected disabled hidden>Pilih Status Keluarga...</option>
-                                <option value="0" @if ($siswa->status_keluarga == 0) selected @endif>Anak Kandung
+                            <label for="status_tempattinggal">Status Tempat Tinggal</label>
+                            <select name="status_tempattinggal" class="selectize"
+                                value="{{ $siswa->status_keluarga }}" required>
+                                <option value="" selected disabled hidden>Pilih Status Tempat TInggal...</option>
+                                <option value="0" @if ($siswa->status_tempattinggal == 0) selected @endif>Orang Tua
                                 </option>
-                                <option value="1" @if ($siswa->status_keluarga == 1) selected @endif>Anak Angkat
+                                <option value="1" @if ($siswa->status_tempattinggal == 1) selected @endif>Kos
                                 </option>
-                                <option value="2" @if ($siswa->status_keluarga == 2) selected @endif>Anak Yatim</option>
-                                <option value="3" @if ($siswa->status_keluarga == 3) selected @endif>Anak Piatu</option>
-                                <option value="4" @if ($siswa->status_keluarga == 4) selected @endif>Anak Yatim Piatu
+                                <option value="2" @if ($siswa->status_tempattinggal == 2) selected @endif>Lain-lain
                                 </option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="kebutuhan_khusus">Kebutuhan Khusus</label>
-                            <select name="kebutuhan_khusus[]" class="multi-selectize" required multiple>
+                            <label for="transportasi">Transportasi</label>
+                            <select name="transportasi[]" class="multi-selectize" required multiple>
                                 <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
-                                <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tidak Ada</option>
-                                <option value="Tuna Netra" @php echo in_array('Tuna Netra', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Netra</option>
-                                <option value="Tuna Rungu" @php echo in_array('Tuna Rungu', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Rungu</option>
-                                <option value="Tuna Grahita" @php echo in_array('Tuna Grahita', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Grahita</option>
-                                <option value="Tuna Daksa" @php echo in_array('Tuna Daksa', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Daksa</option>
-                                <option value="Tuna Laras" @php echo in_array('Tuna Laras', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Laras</option>
-                                <option value="Tuna Wicara" @php echo in_array('Tuna Wicara', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Wicara</option>
-                                <option value="Tuna Ganda" @php echo in_array('Tuna Ganda', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Tuna Ganda</option>
-                                <option value="Hiper Aktif" @php echo in_array('Hiper Aktif', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Hiper Aktif</option>
+                                <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tidak Ada</option>
+                                <option value="Tuna Netra" @php echo in_array('Tuna Netra', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Netra</option>
+                                <option value="Tuna Rungu" @php echo in_array('Tuna Rungu', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Rungu</option>
+                                <option value="Tuna Grahita" @php echo in_array('Tuna Grahita', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Grahita</option>
+                                <option value="Tuna Daksa" @php echo in_array('Tuna Daksa', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Daksa</option>
+                                <option value="Tuna Laras" @php echo in_array('Tuna Laras', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Laras</option>
+                                <option value="Tuna Wicara" @php echo in_array('Tuna Wicara', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Wicara</option>
+                                <option value="Tuna Ganda" @php echo in_array('Tuna Ganda', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Tuna Ganda</option>
+                                <option value="Hiper Aktif" @php echo in_array('Hiper Aktif', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Hiper Aktif</option>
                                 <option value="Cerdas Istimewa" @php echo in_array('Cerdas Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus))? 'selected' : '' @endphp>Cerdas Istimewa</option>
+                                    $siswa->transportasi))? 'selected' : '' @endphp>Cerdas Istimewa</option>
                                 <option value="Bakat Istimewa" @php echo in_array('Bakat Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus))? 'selected' : '' @endphp>Bakat Istimewa</option>
+                                    $siswa->transportasi))? 'selected' : '' @endphp>Bakat Istimewa</option>
                                 <option value="Kesulitan belajar" @php echo in_array('Kesulitan belajar', explode('|',
-                                    $siswa->kebutuhan_khusus))? 'selected' : '' @endphp>Kesulitan belajar</option>
-                                <option value="Narkoba" @php echo in_array('Narkoba', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Narkoba</option>
-                                <option value="Indigo" @php echo in_array('Indigo', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Indigo</option>
-                                <option value="Down Syndrome" @php echo in_array('Down Syndrome', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Down Syndrome</option>
-                                <option value="Autis" @php echo in_array('Autis', explode('|', $siswa->
-                                    kebutuhan_khusus))? 'selected' : '' @endphp>Autis</option>
+                                    $siswa->transportasi))? 'selected' : '' @endphp>Kesulitan belajar</option>
+                                <option value="Narkoba" @php echo in_array('Narkoba', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Narkoba</option>
+                                <option value="Indigo" @php echo in_array('Indigo', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Indigo</option>
+                                <option value="Down Syndrome" @php echo in_array('Down Syndrome', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Down Syndrome</option>
+                                <option value="Autis" @php echo in_array('Autis', explode('|', $siswa->transportasi))?
+                                    'selected' : '' @endphp>Autis</option>
                             </select>
                         </div>
                     </div>
@@ -374,80 +376,80 @@ Data Diri
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="kebutuhan_khusus_ayah">Kebutuhan Khusus Ayah</label>
-                            <select name="kebutuhan_khusus_ayah[]" class="multi-selectize" required multiple>
+                            <label for="transportasi_ayah">Kebutuhan Khusus Ayah</label>
+                            <select name="transportasi_ayah[]" class="multi-selectize" required multiple>
                                 <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tidak Ada</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tidak Ada</option>
                                 <option value="Tuna Netra" @php echo in_array('Tuna Netra', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Netra</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Netra</option>
                                 <option value="Tuna Rungu" @php echo in_array('Tuna Rungu', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Rungu</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Rungu</option>
                                 <option value="Tuna Grahita" @php echo in_array('Tuna Grahita', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Grahita</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Grahita</option>
                                 <option value="Tuna Daksa" @php echo in_array('Tuna Daksa', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Daksa</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Daksa</option>
                                 <option value="Tuna Laras" @php echo in_array('Tuna Laras', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Laras</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Laras</option>
                                 <option value="Tuna Wicara" @php echo in_array('Tuna Wicara', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Wicara</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Wicara</option>
                                 <option value="Tuna Ganda" @php echo in_array('Tuna Ganda', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Tuna Ganda</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Tuna Ganda</option>
                                 <option value="Hiper Aktif" @php echo in_array('Hiper Aktif', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Hiper Aktif</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Hiper Aktif</option>
                                 <option value="Cerdas Istimewa" @php echo in_array('Cerdas Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Cerdas Istimewa</option>
+                                    $siswa->transportasi_ayah))? 'selected' : '' @endphp>Cerdas Istimewa</option>
                                 <option value="Bakat Istimewa" @php echo in_array('Bakat Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Bakat Istimewa</option>
+                                    $siswa->transportasi_ayah))? 'selected' : '' @endphp>Bakat Istimewa</option>
                                 <option value="Kesulitan belajar" @php echo in_array('Kesulitan belajar', explode('|',
-                                    $siswa->kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Kesulitan belajar</option>
+                                    $siswa->transportasi_ayah))? 'selected' : '' @endphp>Kesulitan belajar</option>
                                 <option value="Narkoba" @php echo in_array('Narkoba', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Narkoba</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Narkoba</option>
                                 <option value="Indigo" @php echo in_array('Indigo', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Indigo</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Indigo</option>
                                 <option value="Down Syndrome" @php echo in_array('Down Syndrome', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Down Syndrome</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Down Syndrome</option>
                                 <option value="Autis" @php echo in_array('Autis', explode('|', $siswa->
-                                    kebutuhan_khusus_ayah))? 'selected' : '' @endphp>Autis</option>
+                                    transportasi_ayah))? 'selected' : '' @endphp>Autis</option>
 
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="kebutuhan_khusus_ibu">Kebutuhan Khusus Ibu</label>
-                            <select name="kebutuhan_khusus_ibu[]" class="multi-selectize" required multiple>
+                            <label for="transportasi_ibu">Kebutuhan Khusus Ibu</label>
+                            <select name="transportasi_ibu[]" class="multi-selectize" required multiple>
                                 <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tidak Ada</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tidak Ada</option>
                                 <option value="Tuna Netra" @php echo in_array('Tuna Netra', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Netra</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Netra</option>
                                 <option value="Tuna Rungu" @php echo in_array('Tuna Rungu', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Rungu</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Rungu</option>
                                 <option value="Tuna Grahita" @php echo in_array('Tuna Grahita', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Grahita</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Grahita</option>
                                 <option value="Tuna Daksa" @php echo in_array('Tuna Daksa', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Daksa</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Daksa</option>
                                 <option value="Tuna Laras" @php echo in_array('Tuna Laras', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Laras</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Laras</option>
                                 <option value="Tuna Wicara" @php echo in_array('Tuna Wicara', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Wicara</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Wicara</option>
                                 <option value="Tuna Ganda" @php echo in_array('Tuna Ganda', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Tuna Ganda</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Tuna Ganda</option>
                                 <option value="Hiper Aktif" @php echo in_array('Hiper Aktif', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Hiper Aktif</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Hiper Aktif</option>
                                 <option value="Cerdas Istimewa" @php echo in_array('Cerdas Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Cerdas Istimewa</option>
+                                    $siswa->transportasi_ibu))? 'selected' : '' @endphp>Cerdas Istimewa</option>
                                 <option value="Bakat Istimewa" @php echo in_array('Bakat Istimewa', explode('|',
-                                    $siswa->kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Bakat Istimewa</option>
+                                    $siswa->transportasi_ibu))? 'selected' : '' @endphp>Bakat Istimewa</option>
                                 <option value="Kesulitan belajar" @php echo in_array('Kesulitan belajar', explode('|',
-                                    $siswa->kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Kesulitan belajar</option>
+                                    $siswa->transportasi_ibu))? 'selected' : '' @endphp>Kesulitan belajar</option>
                                 <option value="Narkoba" @php echo in_array('Narkoba', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Narkoba</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Narkoba</option>
                                 <option value="Indigo" @php echo in_array('Indigo', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Indigo</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Indigo</option>
                                 <option value="Down Syndrome" @php echo in_array('Down Syndrome', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Down Syndrome</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Down Syndrome</option>
                                 <option value="Autis" @php echo in_array('Autis', explode('|', $siswa->
-                                    kebutuhan_khusus_ibu))? 'selected' : '' @endphp>Autis</option>
+                                    transportasi_ibu))? 'selected' : '' @endphp>Autis</option>
 
                             </select>
                         </div>

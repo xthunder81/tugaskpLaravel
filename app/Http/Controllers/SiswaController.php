@@ -40,7 +40,7 @@ class SiswaController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'nomor_telp' => 'required',
+            'nomor_telp',
             'nomor_hp' => 'required',
             'status_tempattinggal' => 'required',
             'asal_sd' => 'required',
