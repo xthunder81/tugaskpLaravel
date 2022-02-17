@@ -293,10 +293,10 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     {{-- Selectize JS --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
 
     {{-- Select2 JS --}}
-    <script src="{{ asset('plugins/select2/js/select2.full.js') }}"></script>
+    <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $("#datatables").DataTable();
@@ -329,17 +329,10 @@
             //     maxItems: 17
             // });
 
-            //Initialize Select2 Elements
+            // Initialize Select2 Elements
             $('.select2').select2()
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-
-            $('.select2').select2()
-
-            //Initialize Select2 Elements
+            // Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             })

@@ -57,7 +57,7 @@
                                             if(!in_array($g->id_biaya_gelombang,$sudahDaftar)){
                                                 if($g->kuota > 0){
                                             @endphp
-                                            <option value="{{ $g->id_biaya_gelombang }}">{{ $g->nama_gelombang }} {{ $g->nama_jurusan }}</option>
+                                            <option value="{{ $g->id_biaya_gelombang }}">{{ $g->nama_gelombang }}</option>
                                             @php
                                                 }
                                             }

@@ -22,7 +22,7 @@
             @endphp
             @foreach($riwayat as $g)
                 <tr>
-                    <td>{{ $g->nama_gelombang }} {{ $g->nama_jurusan }} - {{ $g->nama_tahun_ajaran }}</td>
+                    <td>{{ $g->nama_gelombang }} - {{ $g->nama_tahun_ajaran }}</td>
                     <td>{{ $g->id_pendaftaran }}</td>
                     <td>
 

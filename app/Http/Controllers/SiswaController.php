@@ -351,9 +351,8 @@ class SiswaController extends Controller
 
         $id = \Auth()->guard('siswa')->user()->id_siswa;
         $riwayat = DB::table('pendaftaran')
-                    ->select('pendaftaran.id_pendaftaran' ,'jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                    ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('siswa_id', $id)
@@ -401,9 +400,8 @@ class SiswaController extends Controller
 
     public function printFormulir($id){
         $formulir = DB::table('pendaftaran')
-                    ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*')
+                    ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
