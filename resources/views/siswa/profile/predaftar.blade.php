@@ -11,6 +11,7 @@ Data Diri
         border-color: #5cb85c;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(24, 213, 109, 0.5);
     }
+
 </style>
 
 <div class="row">
@@ -107,6 +108,7 @@ Data Diri
                                             document.getElementById("namafile").innerHTML = geekss;
                                         });
                                     });
+
                                 </script>
                             </div>
                         </div>
@@ -165,26 +167,31 @@ Data Diri
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="status_tempattinggal">Status Tempat Tinggal</label>
-                            <select name="status_tempattinggal" class="form-control select2 select2-danger"
-                                value="{{ $siswa->status_keluarga }}" required>
-                                <option value="" selected disabled hidden>Pilih Status Tempat TInggal...</option>
+                            <select name="status_tempattinggal" class="form-control"
+                                data-placeholder="Pilih Transportasi..." value="{{ $siswa->status_keluarga }}"
+                                required>
+                                {{-- <option value="" selected disabled hidden>Status Tempat TInggal...</option> --}}
                                 <option value="0" @if ($siswa->status_tempattinggal == 0) selected @endif>Orang Tua
                                 </option>
                                 <option value="1" @if ($siswa->status_tempattinggal == 1) selected @endif>Kos
                                 </option>
-                                <option value="2" @if ($siswa->status_tempattinggal == 2) selected @endif>Lain-lain
+                                <option value="2" @if ($siswa->status_tempattinggal == 2) selected @endif>Kerabat
                                 </option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="transportasi">Transportasi</label>
-                            <select name="transportasi[]" class="multi-selectize" id="transportasi" multiple>
-                                <option value="" selected disabled hidden>Pilih Transportasi...</option>
+                            <select name="transportasi[]" class="select2 select2-purple"
+                                multiple="multiple" data-dropdown-css-class="select2-success"
+                                data-placeholder="Pilih Transportasi..." style="width: 100%;" tags="true">
+                                {{-- <option value="" selected disabled hidden>Pilih Transportasi...</option> --}}
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Tidak Ada / Jalan Kaki</option>
-                                <option value="Diantarkan Orang Tua (Motor)" @php echo in_array('Diantarkan Orang Tua (Motor)', explode('|', $siswa->transportasi))?
+                                <option value="Diantarkan Orang Tua (Motor)" @php echo in_array('Diantarkan Orang Tua
+                                    (Motor)', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Diantarkan Orang Tua (Motor)</option>
-                                <option value="Diantarkan Orang Tua (Mobil)" @php echo in_array('Diantarkan Orang Tua (Mobil)', explode('|', $siswa->transportasi))?
+                                <option value="Diantarkan Orang Tua (Mobil)" @php echo in_array('Diantarkan Orang Tua
+                                    (Mobil)', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Diantarkan Orang Tua (Mobil)</option>
                                 <option value="Bersepeda" @php echo in_array('Bersepeda', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Bersepeda</option>
@@ -356,7 +363,8 @@ Data Diri
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="transportasi_ayah">Kebutuhan Khusus Ayah</label>
-                            <select name="transportasi_ayah[]" class="multi-selectize" required multiple>
+                            <select name="transportasi_ayah[]" class="select2 select2-success" required
+                                multiple="multiple" style="width: 100%">
                                 <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
                                     transportasi_ayah))? 'selected' : '' @endphp>Tidak Ada</option>
@@ -395,7 +403,8 @@ Data Diri
                         </div>
                         <div class="form-group col-md-6">
                             <label for="transportasi_ibu">Kebutuhan Khusus Ibu</label>
-                            <select name="transportasi_ibu[]" class="multi-selectize" required multiple>
+                            <select name="transportasi_ibu[]" class="select2 select2-success" required multiple
+                                style="width: 100%">
                                 <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
                                     transportasi_ibu))? 'selected' : '' @endphp>Tidak Ada</option>
