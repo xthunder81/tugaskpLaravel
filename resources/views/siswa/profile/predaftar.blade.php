@@ -165,7 +165,7 @@ Data Diri
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="status_tempattinggal">Status Tempat Tinggal</label>
-                            <select name="status_tempattinggal" class="selectize"
+                            <select name="status_tempattinggal" class="form-control select2 select2-danger"
                                 value="{{ $siswa->status_keluarga }}" required>
                                 <option value="" selected disabled hidden>Pilih Status Tempat TInggal...</option>
                                 <option value="0" @if ($siswa->status_tempattinggal == 0) selected @endif>Orang Tua
@@ -178,7 +178,7 @@ Data Diri
                         </div>
                         <div class="form-group col-md-6">
                             <label for="transportasi">Transportasi</label>
-                            <select name="transportasi[]" class="multi-selectize" required multiple>
+                            <select name="transportasi[]" class="multi-selectize" id="transportasi" multiple>
                                 <option value="" selected disabled hidden>Pilih Transportasi...</option>
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Tidak Ada / Jalan Kaki</option>
@@ -190,6 +190,7 @@ Data Diri
                                     'selected' : '' @endphp>Bersepeda</option>
                                 <option value="Ojek Online" @php echo in_array('Ojek Online', explode('|', $siswa->transportasi))?
                                     'selected' : '' @endphp>Ojek Online</option>
+
                             </select>
                         </div>
                     </div>
