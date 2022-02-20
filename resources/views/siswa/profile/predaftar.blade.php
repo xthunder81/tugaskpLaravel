@@ -180,9 +180,11 @@ Data Diri
                                 {{-- <option value="" selected disabled hidden>Status Tempat TInggal...</option> --}}
                                 <option value="0" @if ($siswa->status_tempattinggal == 0) selected @endif>Orang Tua
                                 </option>
-                                <option value="1" @if ($siswa->status_tempattinggal == 1) selected @endif>Kos
+                                <option value="1" @if ($siswa->status_tempattinggal == 1) selected @endif>Kos / Kontrakan
                                 </option>
                                 <option value="2" @if ($siswa->status_tempattinggal == 2) selected @endif>Kerabat
+                                </option>
+                                <option value="3" @if ($siswa->status_tempattinggal == 2) selected @endif>Lain-lain
                                 </option>
                             </select>
                         </div>

@@ -33,8 +33,8 @@
                     <div class="form-group">
                         <label>Program Keahlian</label>
                         <select class="form-control" name="programkeahlian">
-                            @foreach($jurusan as $j)
-                                <option value="{{ $j->id_jurusan }}">{{ $j->nama_jurusan }}</option>
+                            @foreach($gelombang as $j)
+                                <option value="{{ $j->id_gelombang }}">{{ $j->nama_gelombang }}</option>
                             @endforeach
                         </select>
                     </div>
