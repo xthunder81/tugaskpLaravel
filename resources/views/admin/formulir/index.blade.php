@@ -53,7 +53,7 @@
                                             </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.show', $f->id_pendaftaran ) }}"><i class="fas fa-eye"></i> View</a>
-                                            <!-- <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.print', $f->id_pendaftaran ) }}">Print</a> -->
+                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.print', $f->id_pendaftaran ) }}">Print</a>
                                         </td>
                                     </tr>
                                 @endforeach

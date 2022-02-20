@@ -10,6 +10,7 @@ use App\Pembayaran;
 use App\KomponenDokumen;
 use App\StatusPendaftaran;
 use App\Dokumen;
+use App\Gelombang;
 use App\Nilai;
 use App\KomponenNilai;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class FormulirController extends Controller
     }
 
     public function store(Request $req){
-        $petugas = \Auth::user()->id;
+        $petugas = \Auth::user()->id_admin;
         $nama = $req->get('nama');
         $alamat = $req->get('alamat');
         $nohp = $req->get('nohp');
@@ -109,12 +110,16 @@ class FormulirController extends Controller
     }
 
     public function print($id){
-        $formulir = DB::table('formulirs')
-        ->select('formulirs.*', 'users.*', 'siswas.*')
-        ->join('users', 'users.id','=','formulirs.user_id')
-        ->join('siswas', 'siswas.id_siswa','=','formulirs.siswa_id')
-        ->join('gelombangs', 'gelombangs.id_gelombang','=','formulirs.gelombang_id')
-        ->where('id_formulir', $id)
+        $formulir = DB::table('pendaftaran')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'admin.*')
+        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+        ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
+        ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
+        ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
+        ->join('admin', 'admin.id_admin', '=', 'pendaftaran.admin_id')
+        ->where('pembayaran.jenis_pembayaran', 0)
+        ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
 
         $pdf = PDF::loadView('admin.formulir.print', compact('formulir'));
@@ -149,7 +154,7 @@ class FormulirController extends Controller
             'jenis_pembayaran' => '1',
             'metode_pembayaran' => null,
             'status_pembayaran' => null,
-            'admin_id' => null,
+            'admin_id' => \Auth::guard('admin')->user()->id_admin,
         ]);
 
         StatusPendaftaran::create([
@@ -169,6 +174,17 @@ class FormulirController extends Controller
             'pendaftaran_id' => $id
         ]);
 
+        $increasekuota = DB::table('pendaftaran')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','siswa.*','pembayaran.*')
+        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+        ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
+        ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
+        ->where('pembayaran.jenis_pembayaran', 0)
+        ->where('pendaftaran.id_pendaftaran', $id)
+        ->first();
+
+        Gelombang::where('id_gelombang', $increasekuota->id_gelombang)->increment('kuota');
         return redirect()->route('admin.formulir')->with(['jenis' => 'success','pesan' => 'Berhasil Menolak Siswa']);
     }
 
