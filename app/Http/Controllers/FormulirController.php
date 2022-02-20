@@ -111,13 +111,12 @@ class FormulirController extends Controller
 
     public function print($id){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'admin.*')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
-        ->join('admin', 'admin.id_admin', '=', 'pendaftaran.admin_id')
         ->where('pembayaran.jenis_pembayaran', 0)
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
