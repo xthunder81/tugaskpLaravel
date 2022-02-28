@@ -50,7 +50,7 @@
                     <td align="center" style="width: 70%" class="headerinfo">
                             <span style="font-weight: bold;">{{ env('NAMASEKOLAH')}}</span> <br>
                             <span style="font-size: 100%;">{{ env('ALAMATSEKOLAH')}},</span> <br>
-                            <span style="font-size: 96%;">Telp. 031-99445639, 082229020803 Email : smkikipsby@gmail.com</span>
+                            <span style="font-size: 96%;">Telp. {{env('NOMORHPSEKOLAH')}} Email : {{ env('EMAILSEKOLLAH')}}</span>
                     </td>
                     <td align="right" style="width: 15%;">
                         <img src="{{ public_path('') . '/asset/logosmpbisa.png'}}" alt="Logo SMP Hebat" style="width: 170px;height:auto;">
@@ -77,6 +77,11 @@
                 <td>{{ $formulir->alamat_domisili }}</td>
             </tr>
             <tr>
+                <td>No Telepon</td>
+                <td>:</td>
+                <td>{{ $formulir->nomor_hp_ibu }}</td>
+            </tr>
+            <tr>
                 <td>Banyaknya uang</td>
                 <td>:</td>
                 <td>{{$formulir->biaya}}</td>
@@ -87,7 +92,7 @@
                 <td>{{$formulir->rincian_biaya_daftar_ulang}}</td>
             </tr>
             <tr>
-                <td>Program keahilian</td>
+                <td>Gelombang Terdaftar</td>
                 <td>:</td>
                 <td>{{ $formulir->nama_gelombang }}</td>
             </tr>
@@ -107,7 +112,7 @@
                 <i><b>Note: Segera lakukan pendaftaran karena kuota terbatas</b></i>
             </div>
             <div style="width: 30%; height: 100%; float: right;">
-                <p style="text-align:center; margin: 0; padding: 0;">{{ Auth::user()->nama }}</p>
+                <p style="text-align:center; margin: 0; padding: 0;">{{ $formulir->nama_admin }}</p>
             </div>
         </div>
 

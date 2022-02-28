@@ -175,7 +175,7 @@ Data Diri
                         <div class="form-group col-md-6">
                             <label for="status_tempattinggal">Status Tempat Tinggal</label>
                             <select name="status_tempattinggal" class="form-control select2bs4"
-                                data-placeholder="Pilih Transportasi..." value="{{ $siswa->status_keluarga }}"
+                                data-placeholder="Pilih Transportasi..." value="{{ $siswa->status_tempattinggal }}"
                                 required>
                                 {{-- <option value="" selected disabled hidden>Status Tempat TInggal...</option> --}}
                                 <option value="0" @if ($siswa->status_tempattinggal == 0) selected @endif>Orang Tua
@@ -191,7 +191,7 @@ Data Diri
                         <div class="form-group col-md-6">
                             <label for="transportasi">Transportasi</label>
                             <select name="transportasi[]" id="transportasi"class="form-control select2 select2-blue" multiple required>
-                                <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option>
+                                {{-- <option value="" selected disabled hidden>Pilih Kebutuhan Khusus...</option> --}}
                                 <option value="Tidak Ada" @php echo in_array('Tidak Ada', explode('|', $siswa->
                                     transportasi))?
                                     'selected' : '' @endphp>Tidak Ada</option>
@@ -245,13 +245,13 @@ Data Diri
                         <div class="form-group col-md-6">
                             <label for="anak_ke">Anak Ke</label>
                             <input type="number" class="form-control" id="anak_ke" placeholder="Anak Ke" name="anak_ke"
-                                value="{{ $siswa->anak_ke }}" required>
+                                value="{{ $siswa->anak_ke }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="jumlah_saudara">Jumlah Saudara</label>
                             <input type="number" class="form-control" id="jumlah_saudara"
                                 placeholder="Masukkan Jumlah Saudara" name="jumlah_saudara"
-                                value="{{ $siswa->jumlah_saudara }}" required>
+                                value="{{ $siswa->jumlah_saudara }}">
                         </div>
                     </div>
 

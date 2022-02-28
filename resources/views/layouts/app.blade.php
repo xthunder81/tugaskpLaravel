@@ -119,6 +119,17 @@
                 </a>
             </li> -->
 
+            @if (Auth::user()->level == 1)
+            <li class="nav-item">
+                <a href="{{ route('admin.personel') }}" class="nav-link {{ Route::current()->getName() == 'admin.personel' ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                    Personel
+                    </p>
+                </a>
+            </li>
+            @endif
+
             <li class="nav-item">
                 <a href="{{ route('admin.tahunajaran') }}" class="nav-link {{ Route::current()->getName() == 'admin.tahunajaran' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-calendar"></i>

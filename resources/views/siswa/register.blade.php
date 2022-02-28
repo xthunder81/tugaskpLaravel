@@ -82,7 +82,7 @@
                                 </button>
                             </div>
                             <div class="mt-4 text-center">
-                                Sudah punya Akun? <a href="{{ route('siswa.login') }}" class="text-success">Login di Sini!</a>
+                                Sudah punya Akun? <a href="{{ route('siswa.login') }}" class="text-success">Sign In di Sini!</a>
                             </div>
                         </form>
                     </div>
