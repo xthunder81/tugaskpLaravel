@@ -13,12 +13,7 @@ class DokumenSeeder extends Seeder
     public function run()
     {
         Dokumen::create([
-            'nama_dokumen' => 'Ijazah',
-            'status' => 1
-        ]);
-
-        Dokumen::create([
-            'nama_dokumen' => 'SKHUN',
+            'nama_dokumen' => 'Akte Kelahiran',
             'status' => 1
         ]);
 
@@ -28,7 +23,17 @@ class DokumenSeeder extends Seeder
         ]);
 
         Dokumen::create([
-            'nama_dokumen' => 'Sertifikat',
+            'nama_dokumen' => 'Ijasah',
+            'status' => 1
+        ]);
+
+        Dokumen::create([
+            'nama_dokumen' => 'Raport Nilai',
+            'status' => 1
+        ]);
+
+        Dokumen::create([
+            'nama_dokumen' => 'Sertifikat / Prestasi',
             'status' => 1
         ]);
     }
