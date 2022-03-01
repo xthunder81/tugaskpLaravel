@@ -30,7 +30,7 @@
                 <tr>
                     <td>Alamat</td>
                     <td>:</td>
-                    <td>{{ $formulir->alamat }}</td>
+                    <td>{{ $formulir->alamat_domisili }}</td>
                 </tr>
                 <tr>
                     <td>TTL </td>
