@@ -210,5 +210,98 @@ class AdminController extends Controller
         return redirect()->route('admin.home')->with(['jenis' => 'success','pesan' => 'Berhasil merubah kata sandi']);
     }
 
+    public function personelView () {
+        $personel = Admin::all();
+        return view('admin.personel.index', compact('personel'));
+    }
+
+    public function personelCreate()
+    {
+        return view('admin.personel.create', compact('personel'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function personelStore(Request $request)
+    {
+        $request->validate([
+            'nip' => 'required',
+            'nama_admin' => 'required',
+            'password' => 'required',
+            'level' => 'required',
+            'status_admin' => 'required',
+        ]);
+
+        Admin::create([
+            'nip' => $request->nip,
+            'nama_admin' => $request->nama_admin,
+            'password' => bcrypt($request->password),
+            'level' => $request->level,
+            'status_admin' => $request->status_admin,
+        ]);
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Personel']);
+    }
+
+    public function personelEdit($id)
+    {
+        $personel = Admin::findOrFail($id);
+        return view('admin.personel.edit', compact('personel'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function personelUpdate(Request $request, $id)
+    {
+
+        $request->validate([
+            'nip' => 'required',
+            'nama_admin' => 'required',
+            'level' => 'required',
+            'status_admin' => 'required',
+        ]);
+
+        Admin::find($id)->update([
+            'nip' => $request->nip,
+            'nama_admin' => $request->nama_admin,
+            'level' => $request->level,
+            'status_admin' => $request->status_admin,
+        ]);
+
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Gelombang']);
+    }
+
+    public function personelDestroy($id)
+    {
+        $personel = Admin::findOrFail($id);
+        $personel->delete();
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus Personel']);
+    }
+
+    public function personelAktif($id){
+        $personel = Admin::findOrFail($id);
+
+        if($personel->status_admin  == 1){
+            $personel->status_admin  = 0;
+        }else{
+            $personel->status_admin  = 1;
+        }
+
+        $personel->save();
+
+        return redirect()->back()->with('success','Berhasil Diaktifkan');
+    }
+
 
 }

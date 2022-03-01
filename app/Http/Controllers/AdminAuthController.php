@@ -16,14 +16,14 @@ class AdminAuthController extends Controller
             'nip' => 'required',
             'password' => 'required'
         ]);
-        
-        if(\Auth()->guard('admin')->attempt(['nip' => $request->nip, 'password' => $request->password])){
+
+        if(\Auth()->guard('admin')->attempt(['nip' => $request->nip, 'password' => $request->password, 'status_admin' => 1])){
             return redirect()->route('admin.home');
         }
 
         return redirect()->back()->with(['jenis' => 'danger','pesan' => 'Gagal login. NIP atau Password salah']);
     }
-    
+
     public function logout()
     {
         \Auth::logout();
