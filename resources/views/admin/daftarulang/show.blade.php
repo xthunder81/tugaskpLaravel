@@ -18,6 +18,11 @@
                     <td>{{ $formulir->id_pendaftaran }}</td>
                 </tr>
                 <tr>
+                    <td>No Kartu Keluarga</td>
+                    <td>:</td>
+                    <td>{{ $formulir->kartu_keluarga }}</td>
+                </tr>
+                <tr>
                     <td>NISN</td>
                     <td>:</td>
                     <td>{{ $formulir->nisn }}</td>
@@ -28,12 +33,17 @@
                     <td>{{ $formulir->nama }}</td>
                 </tr>
                 <tr>
-                    <td>Alamat</td>
+                    <td>Alamat Sesuai KTP / KK</td>
+                    <td>:</td>
+                    <td>{{ $formulir->alamat_ktp }}</td>
+                </tr>
+                <tr>
+                    <td>Alamat Domisili</td>
                     <td>:</td>
                     <td>{{ $formulir->alamat_domisili }}</td>
                 </tr>
                 <tr>
-                    <td>TTL </td>
+                    <td>Tempat, Tanggal Lahir </td>
                     <td>:</td>
                     <td>{{ $formulir->tempat_lahir }}, {{ \Carbon\Carbon::createFromFormat('Y-m-d', $formulir->tanggal_lahir)->format('d-m-Y') }}</td>
                 </tr>
@@ -53,45 +63,73 @@
                     <td>{{ $formulir->nomor_hp }}</td>
                 </tr>
                 <tr>
-                    <td>Agama </td>
-                    <td>:</td>
-                    <td>{{ $formulir->agama }}</td>
-                </tr>
-                <tr>
                     <td>Asal Sekolah </td>
                     <td>:</td>
-                    <td>{{ $formulir->asal_smp }}</td>
+                    <td>{{ $formulir->asal_sd }}</td>
                 </tr>
                 <tr>
-                    <td>Status Keluarga</td>
+                    <td>Alamat Asal Sekolah </td>
+                    <td>:</td>
+                    <td>{{ $formulir->alamat_sekolah }}</td>
+                </tr>
+                <tr>
+                    <td>Status Tempat Tinggal</td>
                     <td>:</td>
                     <td>
                         <?php
-                            switch($formulir->status_keluarga){
+                            switch($formulir->status_tempattinggal){
                                 case 0:
-                                    echo "Anak Kandung";
+                                    echo "Orang Tua";
                                     break;
                                 case 1:
-                                    echo "Anak Angkat";
+                                    echo "Kos / Kontrakan";
                                     break;
                                 case 2:
-                                    echo "Anak Yatim";
+                                    echo "Kerabat";
                                     break;
                                 case 3:
-                                    echo "Anak Piatu";
-                                    break;
-                                case 4:
-                                    echo "Anak Yatim Piatu";
+                                    echo "Lain-lain";
                                     break;
                             }
                         ?>
                     </td>
                 </tr>
                 <tr>
-                    <td>Kebutuhan Khusus</td>
+                    <td>Transportasi</td>
                     <td>:</td>
-                    <td>{{ $formulir->kebutuhan_khusus }}</td>
+                    <td>{{ $formulir->transportasi }}</td>
                 </tr>
+                <tr>
+                    <td>Berat Badan</td>
+                    <td>:</td>
+                    <td>{{ $formulir->berat_badan }}</td>
+                </tr>
+                <tr>
+                    <td>Tinggi Badan</td>
+                    <td>:</td>
+                    <td>{{ $formulir->tinggi_badan }}</td>
+                </tr>
+                <tr>
+                    <td>Jarak Tempuh Ke Sekolah</td>
+                    <td>:</td>
+                    <td>{{ $formulir->jarak_kesekolah }}</td>
+                </tr>
+                <tr>
+                    <td>Waktu Tempuh Ke Sekolah</td>
+                    <td>:</td>
+                    <td>{{ $formulir->waktu_tempuh }}</td>
+                </tr>
+                <tr>
+                    <td>Anak Ke</td>
+                    <td>:</td>
+                    <td>{{ $formulir->anak_ke }}</td>
+                </tr>
+                <tr>
+                    <td>Jumlah Saudara</td>
+                    <td>:</td>
+                    <td>{{ $formulir->jumlah_saudara }}</td>
+                </tr>
+                <tr>
                 <tr>
                     <td>foto </td>
                     <td>:</td>
@@ -99,9 +137,24 @@
                 </tr>
 
                 <tr>
+                    <td>NIK Ayah</td>
+                    <td>:</td>
+                    <td>{{ $formulir->nik_ayah }}</td>
+                </tr>
+                <tr>
                     <td>Nama Ayah</td>
                     <td>:</td>
                     <td>{{ $formulir->nama_ayah }}</td>
+                </tr>
+                <tr>
+                    <td>Alamat Ayah</td>
+                    <td>:</td>
+                    <td>{{ $formulir->alamat_ayah }}</td>
+                </tr>
+                <tr>
+                    <td>Nomor HP Ayah</td>
+                    <td>:</td>
+                    <td>{{ $formulir->nomor_hp_ayah }}</td>
                 </tr>
                 <tr>
                     <td>Pendidikan Ayah</td>
@@ -234,9 +287,24 @@
                 </tr>
 
                 <tr>
+                    <td>NIK Ibu</td>
+                    <td>:</td>
+                    <td>{{ $formulir->nik_ibu }}</td>
+                </tr>
+                <tr>
                     <td>Nama Ibu</td>
                     <td>:</td>
                     <td>{{ $formulir->nama_ibu }}</td>
+                </tr>
+                <tr>
+                    <td>Alamat Ibu</td>
+                    <td>:</td>
+                    <td>{{ $formulir->alamat_ibu }}</td>
+                </tr>
+                <tr>
+                    <td>No HP Ibu</td>
+                    <td>:</td>
+                    <td>{{ $formulir->nomor_hp_ibu }}</td>
                 </tr>
                 <tr>
                     <td>Pendidikan Ibu</td>
@@ -370,7 +438,7 @@
                 <tr>
                     <td>Mendaftar  </td>
                     <td>:</td>
-                    <td>{{ $formulir->nama_gelombang }} {{ $formulir->nama_jurusan }}</td>
+                    <td>{{ $formulir->nama_gelombang }}</td>
                 </tr>
                 <tr>
                     <td>Dokumen  </td>

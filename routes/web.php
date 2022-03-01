@@ -40,7 +40,7 @@ Route::group(['middleware' => 'guest:siswa'], function () {
     Route::get('login', 'SiswaAuthController@login')->name('siswa.login');
     Route::post('prosesLogin', 'SiswaAuthController@postlogin')->name('siswa.prosesLogin');
     Route::get('daftar','SiswaAuthController@signup')->name('siswa.register');
-    Route::post('daftar', 'SiswaAuthController@store')->name('siswa.registerProses');    
+    Route::post('daftar', 'SiswaAuthController@store')->name('siswa.registerProses');
     Route::get('blog', 'SiswaBlogController@index')->name('siswa.blog');
     Route::get('blog/{id}', 'SiswaBlogController@show')->name('siswa.blog.show');
 });
@@ -63,24 +63,32 @@ Route::group([ 'prefix' => 'siswa', 'middleware' => 'auth:siswa'], function () {
 
     Route::get('registrasi', 'SiswaController@registrasiView')->name('siswa.registrasi');
     Route::post('registrasi', 'SiswaController@registrasiProses')->name('siswa.registrasiProses');
-    
+
     Route::get('riwayat', 'SiswaController@riwayatView')->name('siswa.riwayat');
     Route::get('riwayat/print/formulir/{id}', 'SiswaController@printFormulir')->name('siswa.printFormulir');
     Route::post('riwayat/bayar/formulir', 'SiswaController@bayarFormulir')->name('siswa.bayar.formulir');
     Route::post('riwayat/bayar/daftarUlang', 'SiswaController@bayarDaftarUlang')->name('siswa.bayar.daftarUlang');
 
     Route::get('angsuran', 'SiswaController@angsuran')->name('siswa.angsuran');
-    
+
     Route::get('ubahkatasandi', 'SiswaController@ubahkatasandi')->name('siswa.ubahkatasandi');
     Route::post('ubahkatasandi', 'SiswaController@ubahkatasandiProses')->name('siswa.ubahkatasandi.store');
-    
+
     Route::post('logout', 'SiswaAuthController@logout')->name('siswa.logout');
 });
 
 
 Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('home', 'AdminController@index')->name('admin.home');
-    
+
+    Route::get('personel', 'AdminController@personelView')->name('admin.personel');
+    Route::get('personel/create', 'AdminController@personelCreate')->name('admin.personel.create');
+    Route::post('personel/create', 'AdminController@personelStore')->name('admin.personel.store');
+    Route::get('personel/edit/{id}', 'AdminController@personelEdit')->name('admin.personel.edit');
+    Route::post('personel/edit', 'AdminController@personelUpdate')->name('admin.personel.update');
+    Route::get('personel/aktif/{id}', 'AdminController@personelAktif')->name('admin.personel.aktif');
+    Route::get('personel/destroy/{id}', 'AdminController@personelDestroy')->name('admin.personel.destroy');
+
     Route::get('tahunajaran', 'AdminController@tahunajaranView')->name('admin.tahunajaran');
     Route::get('tahunajaran/create', 'AdminController@tahunajaranCreate')->name('admin.tahunajaran.create');
     Route::post('tahunajaran/create', 'AdminController@tahunajaranStore')->name('admin.tahunajaran.store');
@@ -118,7 +126,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('siswa/store', 'SiswaAdminController@store')->name('admin.siswa.store');
     Route::delete('siswa/destroy/{id}', 'SiswaAdminController@destroy')->name('admin.siswa.destroy');
     Route::get('siswa/resetPassword/{id}', 'SiswaAdminController@resetPassword')->name('admin.siswa.resetPassword');
-    
+
     Route::get('dokumen', 'DokumenController@index')->name('admin.dokumen');
     Route::get('dokumen/create', 'DokumenController@create')->name('admin.dokumen.create');
     Route::get('dokumen/aktif/{id}', 'DokumenController@aktif')->name('admin.dokumen.aktif');
@@ -150,7 +158,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('formulir/terima/{id}', 'FormulirController@terima')->name('admin.formulir.terima');
     Route::get('formulir/tolak/{id}', 'FormulirController@tolak')->name('admin.formulir.tolak');
 
-    
+
     Route::get('daftarulang', 'DaftarulangController@index')->name('admin.daftarulang');
     Route::get('daftarulang/show/{id}', 'DaftarulangController@show')->name('admin.daftarulang.show');
     Route::get('daftarulang/verifikasi/{id}', 'DaftarulangController@verifikasi')->name('admin.daftarulang.verifikasi');
@@ -161,7 +169,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('informasi', 'AdminController@informasiView')->name('admin.informasi');
 
 
-    
+
     Route::get('kategoriangsuran', 'KategoriAngsuranController@kategoriangsuranView')->name('admin.kategoriangsuran');
     Route::get('kategoriangsuran/create', 'KategoriAngsuranController@kategoriangsuranCreate')->name('admin.kategoriangsuran.create');
     Route::post('kategoriangsuran/create', 'KategoriAngsuranController@kategoriangsuranStore')->name('admin.kategoriangsuran.store');
@@ -187,7 +195,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('blog/aktif/{id}', 'BlogController@blogAktif')->name('admin.blog.aktif');
     Route::get('blog/destroy/{id}', 'BlogController@blogDestroy')->name('admin.blog.destroy');
 
-    
+
     Route::get('unduhpresensi', 'AdminController@unduhpresensiView')->name('admin.unduhpresensi');
     Route::get('ubahkatasandi', 'AdminController@ubahkatasandi')->name('admin.ubahkatasandi');
     Route::post('ubahkatasandi', 'AdminController@ubahkatasandiProses')->name('admin.ubahkatasandi.store');
