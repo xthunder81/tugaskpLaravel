@@ -317,5 +317,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success','Berhasil Diaktifkan');
     }
 
+    public function personelResetPassword($id){
+        $personel = Admin::findOrFail($id);
+        $personel->password = bcrypt("Smpt12345");
+        $personel->save();
+
+        return redirect(route('admin.personel'))->with('success','Berhasil mereset password menjadi Smpt12345');
+    }
+
 
 }

@@ -167,7 +167,7 @@
                     <p>Siswa gratis biaya ujian:</p>
                     <ul>
                         <li><i class="icofont-check"></i>USBN.</li>
-                        <li><i class="icofont-check"></i>UNAS.</li>
+                        {{-- <li><i class="icofont-check"></i>UNAS.</li> --}}
                         <li><i class="icofont-check"></i>PAS.</li>
                         <li><i class="icofont-check"></i>PAT & PTS.</li>
                     </ul>
@@ -179,23 +179,37 @@
                     <img src="{{asset('landingpage/img/bus.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
-                    <h3>Wisata</h3>
+                    <h3>Wisata Outdoor</h3>
                     <ul>
-                        <li><i class="icofont-check"></i>Gratis Transportasi.</li>
-                        <li><i class="icofont-check"></i>Ziarah Wali Songo.</li>
-                        <li><i class="icofont-check"></i>Sampai Jakarta.</li>
+                        <li><i class="icofont-check"></i>Field Trip.</li>
+                        {{-- <li><i class="icofont-check"></i>Ziarah Wali Songo</li> --}}
+                        <li><i class="icofont-check"></i>LDKS</li>
                     </ul>
                 </div>
             </div>
 
             <div class="row content">
                 <div class="col-md-5" data-aos="fade-right">
-                    <img src="{{asset('landingpage/img/beasiswa.png')}}" class="img-fluid" alt="">
+                    <img src="{{asset('landingpage/img/chess.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5" data-aos="fade-left">
+                    <h3>Wisata Outdoor</h3>
+                    <ul>
+                        <li><i class="icofont-check"></i>Virtual Field Trip</li>
+                        <li><i class="icofont-check"></i>Prakarya</li>
+                        <li><i class="icofont-check"></i>Science Day</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row content">
+                <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+                    <img src="{{asset('landingpage/img/beasiswa.png')}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
                     <h3>Beasiswa</h3>
                     <p style="margin:0">Setiap siswa yang berprestasi mendapat beasiswa</p>
-                    <span style="font-size: 80%; margin: 0;">Gratis 1 Bulan SPP bila mendaftar di gelombang 1</span>
+                    <span style="font-size: 80%; margin: 0;">Dapatkan Potongan 50% SPP bila mendaftar di gelombang Inden</span>
                 </div>
             </div>
 
