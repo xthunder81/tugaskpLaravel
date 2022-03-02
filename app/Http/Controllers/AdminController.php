@@ -217,7 +217,7 @@ class AdminController extends Controller
 
     public function personelCreate()
     {
-        return view('admin.personel.create', compact('personel'));
+        return view('admin.personel.create');
     }
 
     /**
@@ -244,7 +244,7 @@ class AdminController extends Controller
             'status_admin' => $request->status_admin,
         ]);
 
-        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Personel']);
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
     }
 
     public function personelEdit($id)
@@ -260,22 +260,36 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function personelUpdate(Request $request, $id)
+    public function personelUpdate(Request $request)
     {
 
-        $request->validate([
+        // $request->validate([
+        //     'nip' => 'required',
+        //     'nama_admin' => 'required',
+        //     'level' => 'required',
+        //     'status_admin' => 'required',
+        // ]);
+
+        // Admin::find($id)->update([
+        //     'nip' => $request->nip,
+        //     'nama_admin' => $request->nama_admin,
+        //     'level' => $request->level,
+        //     'status_admin' => $request->status_admin,
+        // ]);
+
+        $this->validate($request, [
             'nip' => 'required',
             'nama_admin' => 'required',
             'level' => 'required',
-            'status_admin' => 'required',
+            'status_admin' => 'required'
         ]);
 
-        Admin::find($id)->update([
-            'nip' => $request->nip,
-            'nama_admin' => $request->nama_admin,
-            'level' => $request->level,
-            'status_admin' => $request->status_admin,
-        ]);
+        $personel = Admin::findOrFail($request->id);
+        $personel->nip = $request->nip;
+        $personel->nama_admin = $request->nama_admin;
+        $personel->level = $request->level;
+        $personel->status_admin = $request->status_admin;
+        $personel->save();
 
 
         return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Gelombang']);
