@@ -88,6 +88,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('personel/edit', 'AdminController@personelUpdate')->name('admin.personel.update');
     Route::get('personel/aktif/{id}', 'AdminController@personelAktif')->name('admin.personel.aktif');
     Route::get('personel/destroy/{id}', 'AdminController@personelDestroy')->name('admin.personel.destroy');
+    Route::get('personel/resetPassword/{id}', 'AdminController@personelResetPassword')->name('admin.personel.resetPassword');
 
     Route::get('tahunajaran', 'AdminController@tahunajaranView')->name('admin.tahunajaran');
     Route::get('tahunajaran/create', 'AdminController@tahunajaranCreate')->name('admin.tahunajaran.create');

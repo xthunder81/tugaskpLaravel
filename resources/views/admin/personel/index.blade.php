@@ -41,6 +41,7 @@
                                     <td>
                                         <a class="btn {{ $a->status_admin == 0 ? "btn-success" : "btn-warning" }} btn-xs" href="{{ route('admin.personel.aktif', $a->id_admin) }}" @if($a->status_admin == 0) onclick="return confirm('Yakin ingin MENGAKTIFKAN Personel ini?')" @else onclick="return confirm('Yakin ingin MENONAKTIFKAN Personel ini?')" @endif>@if($a->status_admin == 0)<i class="nav-icon fas fa-check"></i> Aktifkan @else <i class="nav-icon fas fa-times"></i> Nonaktifkan @endif</a>
                                         <a class="btn btn-primary btn-xs" href="{{ route('admin.personel.edit', $a->id_admin) }}"  data-toggle="tooltip" data-placement="top" title="Edit Personel"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-primary btn-xs" href="{{ route('admin.personel.resetPassword', $a->id_admin) }}" onclick="return confirm('Yakin ingin RESET PASSWORD Personel ini?')" data-toggle="tooltip" data-placement="top" title="Reset Password Personel"><i class="fas fa-sync-alt"></i></a>
                                         <a class="btn btn-danger btn-xs" href="{{ route('admin.personel.destroy', $a->id_admin) }}" onclick="return confirm('Yakin ingin HAPUS Personel ini?')" data-toggle="tooltip" data-placement="top" title="Hapus Personel"><i class="nav-icon fas fa-trash"></i></a>
                                     </td>
                                 </tr>

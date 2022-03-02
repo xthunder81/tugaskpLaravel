@@ -34,7 +34,7 @@
                         <label for="nama_admin">Nama Personel</label>
                         <input type="text" name="nama_admin" class="form-control" id="nama_admin" placeholder="Masukkan Nama Personel" required autofocus>
                         <div class="invalid-feedback">
-                            Password tidak boleh kosong
+                            Nama tidak boleh kosong
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,13 +52,31 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="level">Level Akses</label>
-
+                            <select name="level" class="form-control"
+                                data-placeholder="Pilih Level Akses" required>
+                                {{-- <option value="" selected disabled hidden>Status Tempat TInggal...</option> --}}
+                                <option selected value="2">User
+                                </option>
+                                <option value="1" >Administrator
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="status_admin">Status Personel</label>
+                            <select name="status_admin" class="form-control"
+                                data-placeholder="Pilih Status Personel" required>
+                                {{-- <option value="" selected disabled hidden>Status Tempat TInggal...</option> --}}
+                                <option value="1" selected >Aktif
+                                </option>
+                                <option value="0" >Tidak Aktif
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
