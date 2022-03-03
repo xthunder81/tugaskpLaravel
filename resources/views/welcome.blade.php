@@ -182,7 +182,7 @@
                     <h3>Wisata Outdoor</h3>
                     <ul>
                         <li><i class="icofont-check"></i>Field Trip.</li>
-                        {{-- <li><i class="icofont-check"></i>Ziarah Wali Songo</li> --}}
+                        <li><i class="icofont-check"></i>Tahsil</li>
                         <li><i class="icofont-check"></i>LDKS</li>
                     </ul>
                 </div>
