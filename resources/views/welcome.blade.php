@@ -184,7 +184,7 @@
                     <img src="{{asset('landingpage/img/bus.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
-                    <h3>Wisata Outdoor</h3>
+                    <h3>Outdoor Activity</h3>
                     <ul>
                         <li><i class="icofont-check"></i>Field Trip.</li>
                         <li><i class="icofont-check"></i>Tahsil</li>
@@ -198,7 +198,7 @@
                     <img src="{{asset('landingpage/img/chess.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5" data-aos="fade-left">
-                    <h3>Wisata Outdoor</h3>
+                    <h3>Indoor Activity</h3>
                     <ul>
                         <li><i class="icofont-check"></i>Virtual Field Trip</li>
                         <li><i class="icofont-check"></i>Prakarya</li>
