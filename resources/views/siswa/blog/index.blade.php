@@ -83,7 +83,7 @@
                         </li>
                     </ul>
                 @endif
-            
+
 
             </div>
         </div>
@@ -97,7 +97,7 @@
 
         <div class="mr-md-auto text-center text-md-left">
             <p>
-                Copyright &copy;{{ now()->year }} All rights reserved | Informatika ITATS KKN 2020
+                Copyright &copy;{{ now()->year }} All rights reserved | {{ env('NAMASEKOLAH')}}
             </p>
         </div>
     </div>
