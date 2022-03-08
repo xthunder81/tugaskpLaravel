@@ -14,6 +14,7 @@ use App\Gelombang;
 use App\Nilai;
 use App\KomponenNilai;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use PDF;
 
 class FormulirController extends Controller
@@ -56,7 +57,7 @@ class FormulirController extends Controller
         $formulir = new Formulir();
         $formulir->nomor_formulir = "ininomornyaberapa";
         $formulir->status = "1";
-        $formulir->user_id = $petugas;
+        $formulir->admin_id = $petugas;
         $formulir->siswa_id = $siswa->id;
         $formulir->gelombang_id = $gelombangtersedia;
         $formulir->save();
@@ -122,7 +123,9 @@ class FormulirController extends Controller
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
 
-        $pdf = PDF::loadView('admin.formulir.print', compact('formulir'));
+        $waktu = Carbon::now()->format('d M Y');
+
+        $pdf = PDF::loadView('admin.formulir.print', compact('formulir','waktu'));
         $pdf->setOption('margin-top',4);
         $pdf->setOption('margin-bottom',2);
         // $pdf->setOption('margin-left',3);
