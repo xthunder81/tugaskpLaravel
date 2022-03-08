@@ -90,8 +90,8 @@
                         @elseif($status[$no] == 3)
                         <!-- 2 -->
                             <p>Pembayaran Sudah Di Verifikasi, Silahkan tunggu proses seleksi...</p>
-                        <!-- <a href="{{ route('siswa.printFormulir', $g->id_pendaftaran) }}" class="btn btn-primary btn-sm">Download Formulir</a>
-                        <a href="#" class="btn btn-primary btn-sm">Download Nomor Ujian</a> -->
+                        <a href="{{ route('siswa.printFormulir', $g->id_pendaftaran) }}" class="btn btn-primary btn-sm">Download Formulir</a>
+                        {{-- <a href="#" class="btn btn-primary btn-sm">Download Nomor Ujian</a> --}}
                         @elseif($status[$no] == 4)
                         <!-- 3 -->
                         <p>Pembayaran Anda Tidak Valid Silahkan Upload Bukti Pembayaran Dengan Benar</p>
