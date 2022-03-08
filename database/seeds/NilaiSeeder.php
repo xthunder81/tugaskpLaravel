@@ -25,8 +25,8 @@ class NilaiSeeder extends Seeder
             'status' => 1
         ]);
         Nilai::create([
-            'nama_nilai' => 'Bahasa Jerman',
-            'status' => 0
+            'nama_nilai' => 'IPA',
+            'status' => 1
         ]);
     }
 }

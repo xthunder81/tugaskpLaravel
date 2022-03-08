@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Jurusan;
+// use \App\Jurusan;
 use \App\Admin;
 use \App\TahunAjaran;
 use \App\Siswa;
@@ -17,7 +17,7 @@ use PDF;
 class AdminController extends Controller
 {
     public function index(){
-        $jurusan = Jurusan::all();
+        // $jurusan = Jurusan::all();
         $siswa = Siswa::all();
 
         $dataDiriLengkap = 0;
@@ -35,9 +35,8 @@ class AdminController extends Controller
         $dataDiriLengkap = count($siswa) - $dataDiriLengkap;
 
         $riwayat = DB::table('pendaftaran')
-                ->select('pendaftaran.id_pendaftaran' ,'jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
                 ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                 ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                 ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                 ->where('tahun_ajaran.status', 1)
@@ -51,8 +50,6 @@ class AdminController extends Controller
         $menungguVerifikasiPembayaranDaftarUlang = 0;
         $sudahDiterimadiSekolah = 0;
         $hasilDariDaftarUlang = 0;
-        $namaJurusan = [];
-        $jumlahSiswaDiterimaDijurusan = [];
         foreach($riwayat as $r){
 
             $cekBayarFormulir = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '0')->first();
@@ -68,13 +65,6 @@ class AdminController extends Controller
                     $hasilDariDaftarUlang = $hasilDariDaftarUlang + $r->biaya;
                     $sudahDiterimadiSekolah++;
 
-                    if(!in_array($r->nama_jurusan, $namaJurusan)){
-                        array_push($namaJurusan, $r->nama_jurusan);
-                        array_push($jumlahSiswaDiterimaDijurusan, 1);
-                    }else{
-                        $index = array_search($r->nama_jurusan, array_keys($namaJurusan));
-                        $jumlahSiswaDiterimaDijurusan[$index] = $jumlahSiswaDiterimaDijurusan[$index] + 1;
-                    }
 
                 }else if($cekDiterima->status_pembayaran == null && $cekBayarDaftarulang->bukti_pembayaran != null){
                     //sudah bayar formulilr nunggu verifikasi admin
@@ -94,7 +84,7 @@ class AdminController extends Controller
             }else{
                 $registrasi++;
             }
-            
+
         }
 
         $rupiahDariFormulir = ($menungguDiterima + $sudahDiterimadiSekolah + $menungguVerifikasiPembayaranDaftarUlang + $diterima) * env('HARGAFORMULIR','');
@@ -102,7 +92,7 @@ class AdminController extends Controller
         if(!is_integer($rupiahDariFormulir)){
             $rupiahDariFormulir = 0;
         }
-        return view('admin.home', compact('jurusan','siswa','dataDiriLengkap','registrasi','menungguVerifikasiPembayaranFormulir','menungguDiterima','diterima','tidakDiterima','menungguVerifikasiPembayaranDaftarUlang','sudahDiterimadiSekolah','rupiahDariFormulir','hasilDariDaftarUlang','jumlahSiswaDiterimaDijurusan','namaJurusan'));
+        return view('admin.home', compact('siswa','dataDiriLengkap','registrasi','menungguVerifikasiPembayaranFormulir','menungguDiterima','diterima','tidakDiterima','menungguVerifikasiPembayaranDaftarUlang','sudahDiterimadiSekolah','rupiahDariFormulir','hasilDariDaftarUlang'));
     }
 
     public function tahunajaranView(){
@@ -176,9 +166,8 @@ class AdminController extends Controller
 
     public function unduhpresensiView(){
         $daftarulang = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*', 'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
@@ -206,7 +195,7 @@ class AdminController extends Controller
     }
 
     public function ubahkatasandi(){
-       return view('admin.ubahkatasandi'); 
+       return view('admin.ubahkatasandi');
     }
 
     public function ubahkatasandiProses(Request $req){
@@ -217,8 +206,123 @@ class AdminController extends Controller
         $admin = Admin::findOrFail(\Auth::guard('admin')->user()->id_admin);
         $admin->password = bcrypt($req->sandi);
         $admin->save();
-        
+
         return redirect()->route('admin.home')->with(['jenis' => 'success','pesan' => 'Berhasil merubah kata sandi']);
+    }
+
+    public function personelView () {
+        $personel = Admin::all();
+        return view('admin.personel.index', compact('personel'));
+    }
+
+    public function personelCreate()
+    {
+        return view('admin.personel.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function personelStore(Request $request)
+    {
+        $request->validate([
+            'nip' => 'required',
+            'nama_admin' => 'required',
+            'password' => 'required',
+            'level' => 'required',
+            'status_admin' => 'required',
+        ]);
+
+        Admin::create([
+            'nip' => $request->nip,
+            'nama_admin' => $request->nama_admin,
+            'password' => bcrypt($request->password),
+            'level' => $request->level,
+            'status_admin' => $request->status_admin,
+        ]);
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
+    }
+
+    public function personelEdit($id)
+    {
+        $personel = Admin::findOrFail($id);
+        return view('admin.personel.edit', compact('personel'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function personelUpdate(Request $request)
+    {
+
+        // $request->validate([
+        //     'nip' => 'required',
+        //     'nama_admin' => 'required',
+        //     'level' => 'required',
+        //     'status_admin' => 'required',
+        // ]);
+
+        // Admin::find($id)->update([
+        //     'nip' => $request->nip,
+        //     'nama_admin' => $request->nama_admin,
+        //     'level' => $request->level,
+        //     'status_admin' => $request->status_admin,
+        // ]);
+
+        $this->validate($request, [
+            'nip' => 'required',
+            'nama_admin' => 'required',
+            'level' => 'required',
+            'status_admin' => 'required'
+        ]);
+
+        $personel = Admin::findOrFail($request->id);
+        $personel->nip = $request->nip;
+        $personel->nama_admin = $request->nama_admin;
+        $personel->level = $request->level;
+        $personel->status_admin = $request->status_admin;
+        $personel->save();
+
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Gelombang']);
+    }
+
+    public function personelDestroy($id)
+    {
+        $personel = Admin::findOrFail($id);
+        $personel->delete();
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus Personel']);
+    }
+
+    public function personelAktif($id){
+        $personel = Admin::findOrFail($id);
+
+        if($personel->status_admin  == 1){
+            $personel->status_admin  = 0;
+        }else{
+            $personel->status_admin  = 1;
+        }
+
+        $personel->save();
+
+        return redirect()->back()->with('success','Berhasil Diaktifkan');
+    }
+
+    public function personelResetPassword($id){
+        $personel = Admin::findOrFail($id);
+        $personel->password = bcrypt("Smpt12345");
+        $personel->save();
+
+        return redirect(route('admin.personel'))->with('success','Berhasil mereset password menjadi Smpt12345');
     }
 
 

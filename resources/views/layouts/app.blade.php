@@ -22,7 +22,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
-{{--    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
+   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- DataTables -->
@@ -116,6 +119,17 @@
                 </a>
             </li> -->
 
+            @if (Auth::user()->level == 1)
+            <li class="nav-item">
+                <a href="{{ route('admin.personel') }}" class="nav-link {{ Route::current()->getName() == 'admin.personel' ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                    Personel
+                    </p>
+                </a>
+            </li>
+            @endif
+
             <li class="nav-item">
                 <a href="{{ route('admin.tahunajaran') }}" class="nav-link {{ Route::current()->getName() == 'admin.tahunajaran' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-calendar"></i>
@@ -125,14 +139,14 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="{{ route('admin.jurusan') }}" class="nav-link {{ Route::current()->getName() == 'admin.jurusan' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
                     Jurusan
                     </p>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a href="{{ route('admin.gelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.gelombang' ? 'active' : '' }}">
@@ -289,7 +303,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="https://if.itats.ac.id">Informatika ITATS KKN 2020</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://smpt.dms.sch.id">PPDB SMPT DAARUL MUTTAQIEN SURABAYA</a>.</strong>
     All rights reserved.
     </footer>
 
@@ -345,6 +359,7 @@
     <!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
+    <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $("#datatables").DataTable();

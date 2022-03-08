@@ -18,7 +18,7 @@ class GelombangController extends Controller
         $tahunajaran = TahunAjaran::where('status', '1')->first();
 
         $gelombang = [];
-        if($tahunajaran){         
+        if($tahunajaran){
             $gelombang = Gelombang::where('tahun_ajaran_id', $tahunajaran->id_tahun_ajaran)->get();
         }
         return view('admin.gelombang.index', compact('gelombang'));
@@ -56,6 +56,7 @@ class GelombangController extends Controller
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'kuota' => $request->kuota,
+            'kuota_max' => $request->kuota,
             'status' => '1',
             'tahun_ajaran_id' => $request->tahunajaran,
         ]);
@@ -110,6 +111,7 @@ class GelombangController extends Controller
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
             'kuota' => $request->kuota,
+            'kuota_max' => $request->kuota,
             'status' => $gelombang->status,
             'tahun_ajaran_id' => $request->tahunajaran,
         ]);

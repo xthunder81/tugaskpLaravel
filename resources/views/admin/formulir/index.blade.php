@@ -21,7 +21,6 @@
                                     <th>No Formulir</th>
                                     <th>Nama</th>
                                     <th>TTL</th>
-                                    <th>Jurusan</th>
                                     <th>Gelombang</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
@@ -34,7 +33,6 @@
                                         <td>{{ $f->id_pendaftaran }}</td>
                                         <td>{{ $f->nama }}</td>
                                         <td>{{ $f->tempat_lahir }}, {{ \Carbon\Carbon::createFromFormat('Y-m-d', $f->tanggal_lahir)->format('d-m-Y') }}</td>
-                                        <td>{{ $f->nama_jurusan }}</td>
                                         <td>{{ $f->nama_gelombang }}</td>
                                         <td>
                                             @if(\App\StatusPendaftaran::where('pendaftaran_id' , $f->id_pendaftaran)->first() != null)
@@ -55,7 +53,7 @@
                                             </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.show', $f->id_pendaftaran ) }}"><i class="fas fa-eye"></i> View</a>
-                                            <!-- <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.print', $f->id_pendaftaran ) }}">Print</a> -->
+                                            <a class="btn btn-primary btn-sm" href="{{ route('admin.formulir.print', $f->id_pendaftaran ) }}">Print</a>
                                         </td>
                                     </tr>
                                 @endforeach

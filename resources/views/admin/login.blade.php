@@ -18,6 +18,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
+<style>
+
+    .form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(24, 213, 109, 0.5);
+    }
+</style>
+
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -52,7 +61,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-success btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>

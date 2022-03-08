@@ -15,8 +15,18 @@ class AdminSeeder extends Seeder
     {
         Admin::create([
             'nip' => 12345678,
-            'nama' => 'admin',
-            'password' => bcrypt('admin')
+            'nama_admin' => 'admin',
+            'password' => bcrypt('admin'),
+            'level' => 1,
+            'status_admin' => 1
+        ]);
+
+        Admin::create([
+            'nip' => 11112222,
+            'nama_admin' => 'penerima',
+            'password' => bcrypt('admin'),
+            'level' => 2,
+            'status_admin' => 1
         ]);
     }
 }

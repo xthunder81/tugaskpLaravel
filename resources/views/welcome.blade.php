@@ -47,6 +47,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
+<br/><br/><br/>
 <section id="hero" class="d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up" style="margin-top: 290px;">
         <img src="{{ url('asset/logo.png') }}" alt="SI-PPDB" class="mx-auto d-block mb-3"
@@ -57,7 +58,7 @@
             <a href="{{ route('siswa.predaftar') }}" class="btn-get-started scrollto">Buka Dashboard PPDB</a>
         @else
             <a href="{{ route('siswa.register') }}" class="btn-get-started">Daftar Sekarang</a> atau
-            <a href="{{ route('siswa.login') }}" class="btn-get-started">Log In</a>
+            <a href="{{ route('siswa.login') }}" class="btn-get-started">Sign In</a>
         @endif
 
 
@@ -103,6 +104,11 @@
                                 <i class="bx bx-home"></i>
                                 <h4>Fasilitas Tempat Sholat</h4>
                                 <p>Terdapat tempat untuk beribadah yang dapat digunakan oleh seluruh pihak sekolah.</p>
+                            </div>
+                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+                                <i class="bx bx-building"></i>
+                                <h4>Fasilitas Boarding / Pondok</h4>
+                                <p>Terdapat Boarding/Pondok bagi Orang Tua yang ingin Memondokkan Putra Putri nya.</p>
                             </div>
                         </div>
                     </div><!-- End .content-->
@@ -166,7 +172,7 @@
                     <p>Siswa gratis biaya ujian:</p>
                     <ul>
                         <li><i class="icofont-check"></i>USBN.</li>
-                        <li><i class="icofont-check"></i>UNAS.</li>
+                        {{-- <li><i class="icofont-check"></i>UNAS.</li> --}}
                         <li><i class="icofont-check"></i>PAS.</li>
                         <li><i class="icofont-check"></i>PAT & PTS.</li>
                     </ul>
@@ -178,23 +184,37 @@
                     <img src="{{asset('landingpage/img/bus.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
-                    <h3>Wisata</h3>
+                    <h3>Outdoor Activity</h3>
                     <ul>
-                        <li><i class="icofont-check"></i>Gratis Transportasi.</li>
-                        <li><i class="icofont-check"></i>Ziarah Wali Songo.</li>
-                        <li><i class="icofont-check"></i>Sampai Jakarta.</li>
+                        <li><i class="icofont-check"></i>Field Trip.</li>
+                        <li><i class="icofont-check"></i>Tahsil</li>
+                        <li><i class="icofont-check"></i>LDKS</li>
                     </ul>
                 </div>
             </div>
 
             <div class="row content">
                 <div class="col-md-5" data-aos="fade-right">
-                    <img src="{{asset('landingpage/img/beasiswa.png')}}" class="img-fluid" alt="">
+                    <img src="{{asset('landingpage/img/chess.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5" data-aos="fade-left">
+                    <h3>Indoor Activity</h3>
+                    <ul>
+                        <li><i class="icofont-check"></i>Virtual Field Trip</li>
+                        <li><i class="icofont-check"></i>Prakarya</li>
+                        <li><i class="icofont-check"></i>Science Day</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row content">
+                <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+                    <img src="{{asset('landingpage/img/beasiswa.png')}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
                     <h3>Beasiswa</h3>
                     <p style="margin:0">Setiap siswa yang berprestasi mendapat beasiswa</p>
-                    <span style="font-size: 80%; margin: 0;">Gratis 1 Bulan SPP bila mendaftar di gelombang 1</span>
+                    <span style="font-size: 80%; margin: 0;">Dapatkan Potongan 50% SPP bila mendaftar di gelombang Inden</span>
                 </div>
             </div>
 
@@ -281,127 +301,194 @@
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">Semua</li>
-                        <li data-filter=".filter-app">LDKS dan Pramuka</li>
-                        <li data-filter=".filter-card">Lomba Pencak Silat</li>
-                        <li data-filter=".filter-web">Upacara dan Wisuda</li>
+                        <li data-filter=".filter-vft">Virtual Field Trip</li>
+                        <li data-filter=".filter-prakarya">Prakarya</li>
+                        <li data-filter=".filter-cd">Science Day</li>
+                        <li data-filter=".filter-tahsil">Tahsil</li>
+                        <li data-filter=".filter-ft">Field Trip</li>
                     </ul>
                 </div>
             </div>
 
             <div class="row portfolio-container">
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-vft">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan LDKS Maarif.jpg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Virtual Field Trip/WhatsApp Image 2022-03-02 at 12.15.42.jpeg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Kegiatan LDKS Ma'arif</h4>
-                            <p>LDKS dan Pramuka</p>
+                            <h4>Kegiatan Virtual Field Trip</h4>
+                            <p>VFT Turki</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan LDKS Maarif.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan LDKS Ma'arif"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Virtual Field Trip/WhatsApp Image 2022-03-02 at 12.15.42.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Virtual Field Trip SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-vft">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/Upacara dan Wisuda SMK/Upacara 17 Agustus 2019.jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Virtual Field Trip/WhatsApp Image 2022-03-02 at 12.18.04.jpeg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Upacara 17 Agustus 2019</h4>
-                            <p>Upacara dan Wisuda</p>
+                            <h4>Kegiatan Virtual Field Trip</h4>
+                            <p>VFT China</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/Upacara dan Wisuda SMK/Upacara 17 Agustus 2019.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Upacara 17 Agustus 2019"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Virtual Field Trip/WhatsApp Image 2022-03-02 at 12.18.04.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Virtual Field Trip SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-prakarya">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan Pramuka 1.jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.45.jpeg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Kegiatan Pramuka</h4>
-                            <p>LDKS dan Pramuka</p>
+                            <h4>Kegiatan Prakarya</h4>
+                            <p>Proses Pembuatan Nasi Goreng</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan Pramuka 1.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.45.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Prakarya SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-prakarya">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/Lomba Pencak silat/pencak silat (2).jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.47.jpeg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Pencak Silat</h4>
-                            <p>Lomba Pencak silat</p>
+                            <h4>Kegiatan Prakarya</h4>
+                            <p>Presentasi Hasil Prakarya 1</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/Lomba Pencak silat/pencak silat (2).jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.47.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Prakarya SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-prakarya">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/Upacara dan Wisuda SMK/Wisuda SMK 2019.jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.48.jpeg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Wisuda SMK 2019</h4>
-                            <p>Upacara dan Wisuda</p>
+                            <h4>Kegiatan Prakarya</h4>
+                            <p>Presentasi Hasil Prakarya 2</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/Upacara dan Wisuda SMK/Wisuda SMK 2019.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Wisuda SMK 2019"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Prakarya/WhatsApp Image 2022-03-02 at 11.23.48.jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Prakarya SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-cd">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan Pramuka 2.jpg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Science Day/P_20170426_135434.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Kegiatan Pramuka</h4>
-                            <p>LDKS dan Pramuka</p>
+                            <h4>Kegiatan Science Day</h4>
+                            <p>Presentasi Percobaan 1</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/LDKS dan Pramuka/Kegiatan Pramuka 2.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Pramuka"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Science Day/P_20170426_135434.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Science Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-cd">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/Lomba Pencak silat/pencak silat (1).jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Science Day/P_20170426_134352.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Pencak Silat</h4>
-                            <p>Lomba Pencak Silat</p>
+                            <h4>Kegiatan Science Day</h4>
+                            <p>Presentasi Percobaan 2</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/Lomba Pencak silat/pencak silat (1).jpeg')}}" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Science Day/P_20170426_134352.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Science Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-cd">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/LDKS dan Pramuka/LDKS 2019 (2).jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Science Day/IMG-20170603-WA0017.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>LDKS 2019</h4>
-                            <p>LDKS dan Pramuka</p>
+                            <h4>Kegiatan Science Day</h4>
+                            <p>Proses Percobaan</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/LDKS dan Pramuka/LDKS 2019 (2).jpeg')}}" data-gall="portfolioGallery" class="venobox" title="LDKS 2019"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Science Day/IMG-20170603-WA0017.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Science Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-tahsil">
                     <div class="portfolio-wrap">
-                        <img src="{{asset('landingpage/img/LDKS dan Pramuka/LDKS 2019 (1).jpeg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('landingpage/img/Tahsil/IMG_20150307_110654.jpg')}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>LDKS 2019</h4>
-                            <p>LDKS dan Pramuka</p>
+                            <h4>Kegiatan Tahsil</h4>
+                            <p>Tahsil 1</p>
                             <div class="portfolio-links">
-                                <a href="{{asset('landingpage/img/LDKS dan Pramuka/LDKS 2019 (1).jpeg')}}" data-gall="portfolioGallery" class="venobox" title="LDKS 2019"><i class="bx bx-plus"></i></a>
+                                <a href="{{asset('landingpage/img/Tahsil/IMG_20150307_110654.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Tahsil Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-tahsil">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('landingpage/img/Tahsil/IMG_20150307_111955.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Kegiatan Tahsil</h4>
+                            <p>Tahsil 2</p>
+                            <div class="portfolio-links">
+                                <a href="{{asset('landingpage/img/Tahsil/IMG_20150307_111955.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Tahsil Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-tahsil">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('landingpage/img/Tahsil/P_20151010_100135.jpg')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Kegiatan Tahsil</h4>
+                            <p>Tahsil 3</p>
+                            <div class="portfolio-links">
+                                <a href="{{asset('landingpage/img/Tahsil/P_20151010_100135.jpg')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Tahsil Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-ft">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('landingpage/img/Field Trip/DSC09999.JPG')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Kegiatan Field Trip</h4>
+                            <p>Sampai Di Wisata Kota Batu</p>
+                            <div class="portfolio-links">
+                                <a href="{{asset('landingpage/img/Field Trip/DSC09999.JPG')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Field Trip Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-ft">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('landingpage/img/Field Trip/DSC09998.JPG')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Kegiatan Field Trip</h4>
+                            <p>Perjalanan Menuju Air Terjun</p>
+                            <div class="portfolio-links">
+                                <a href="{{asset('landingpage/img/Field Trip/DSC09998.JPG')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Field Trip Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-ft">
+                    <div class="portfolio-wrap">
+                        <img src="{{asset('landingpage/img/Field Trip/IMG_9596.JPG')}}" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Kegiatan Field Trip</h4>
+                            <p>Air Terjun Wisata Batu</p>
+                            <div class="portfolio-links">
+                                <a href="{{asset('landingpage/img/Field Trip/IMG_9596.JPG')}}" data-gall="portfolioGallery" class="venobox" title="Kegiatan Field Trip Day SMP TERPADU DAARUL MUTTAQIEN"><i class="bx bx-plus"></i></a>
                             </div>
                         </div>
                     </div>
@@ -436,14 +523,14 @@
                             <div class="info-box mt-4">
                                 <i class="bx bx-envelope"></i>
                                 <h3>Email</h3>
-                                <p>ppdn@sekolahkita.sch.id</p>
+                                <p>{{ env('EMAILSEKOLLAH', '')}}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box mt-4">
                                 <i class="bx bx-phone-call"></i>
                                 <h3>Telepon</h3>
-                                <p>031- 1234567</p>
+                                <p>{{ env('NOMORHPSEKOLAH','') }}</p>
                             </div>
                         </div>
                     </div>
@@ -468,7 +555,7 @@
 
         <div class="mr-md-auto text-center text-md-left">
             <p>
-                Copyright &copy;{{ now()->year }} All rights reserved | Informatika ITATS KKN 2020
+                Copyright &copy;{{ now()->year }} All rights reserved | SMPT DAARUL MUTTAQIEN
             </p>
         </div>
     </div>

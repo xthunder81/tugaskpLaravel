@@ -31,10 +31,10 @@
                         <input type="text" name="asalsekolah" class="form-control" id="asalsekolah" placeholder="Masukkan asal sekolah">
                     </div>
                     <div class="form-group">
-                        <label>Program Keahlian</label>
+                        <label>Gelombang</label>
                         <select class="form-control" name="programkeahlian">
-                            @foreach($jurusan as $j)
-                                <option value="{{ $j->id_jurusan }}">{{ $j->nama_jurusan }}</option>
+                            @foreach($gelombang as $g)
+                                <option value="{{ $g->id_gelombang }}">{{ $g->nama_gelombang }}</option>
                             @endforeach
                         </select>
                     </div>

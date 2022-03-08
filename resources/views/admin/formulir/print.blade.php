@@ -45,15 +45,15 @@
             <table width="100%" style="border-bottom:2px solid #808080;">
                 <tr>
                     <td align="left" style="width: 15%;">
-                        <img src="{{ public_path('') . '/asset/logoikip.png'}}" alt="Logo IKIP" style="width: 120px;height:auto;">
+                        <img src="{{ public_path('') . '/asset/logo.png'}}" alt="Logo IKIP" style="width: 120px;height:auto;">
                     </td>
                     <td align="center" style="width: 70%" class="headerinfo">
-                            <span style="font-weight: bold;">SMK IKIP Surabaya</span> <br>
-                            <span style="font-size: 100%;">Kompetensi Keahlian Pemasaran dan Multimedia <br> Jl. Teratai 4, Tambak Sari 60136 Surabaya,</span> <br>
-                            <span style="font-size: 96%;">Telp. 031-99445639, 082229020803 Email : smkikipsby@gmail.com</span>
+                            <span style="font-weight: bold;">{{ env('NAMASEKOLAH')}}</span> <br>
+                            <span style="font-size: 100%;">{{ env('ALAMATSEKOLAH')}},</span> <br>
+                            <span style="font-size: 96%;">Telp. {{env('NOMORHPSEKOLAH')}} Email : {{ env('EMAILSEKOLLAH')}}</span>
                     </td>
                     <td align="right" style="width: 15%;">
-                        <img src="{{ public_path('') . '/asset/logosmkbisa.png'}}" alt="Logo SMK Hebat" style="width: 170px;height:auto;">
+                        <img src="{{ public_path('') . '/asset/logosmpbisa.png'}}" alt="Logo SMP Hebat" style="width: 170px;height:auto;">
                     </td>
                 </tr>
             </table>
@@ -62,8 +62,8 @@
         <br/>
 
         <p style="text-align:center;font-size: 130%; margin: 0; padding: 0;"><b>KWITANSI FORMULIR</b></p>
-        
-        <p style="font-size: 110%;"><b>Nomor Formulir :</b>  {{ $formulir->nomor_formulir }}</p>
+
+        <p style="font-size: 110%;"><b>Nomor Formulir :</b>  {{ $formulir->id_pendaftaran }}</p>
 
         <table class="tbl-data" style="font-size: 100%; border: 1px solid black;padding: 20px;width: 100%;">
             <tr>
@@ -74,31 +74,36 @@
             <tr>
                 <td>Alamat</td>
                 <td>:</td>
-                <td>{{ $formulir->alamat }}</td>
+                <td>{{ $formulir->alamat_domisili }}</td>
+            </tr>
+            <tr>
+                <td>No Telepon</td>
+                <td>:</td>
+                <td>{{ $formulir->nomor_hp_ibu }}</td>
             </tr>
             <tr>
                 <td>Banyaknya uang</td>
                 <td>:</td>
-                <td>Seratus Ribu Rupiah</td>
+                <td>{{$formulir->biaya}}</td>
             </tr>
             <tr>
                 <td>Untuk pembayaran</td>
                 <td>:</td>
-                <td>Pembelian Formulir Penerimaan Peserta Didik Baru 2019</td>
+                <td>{{$formulir->rincian_biaya_daftar_ulang}}</td>
             </tr>
             <tr>
-                <td>Program keahilian</td>
+                <td>Gelombang Terdaftar</td>
                 <td>:</td>
-                <td>{{ $formulir->nama_jurusan }}</td>
+                <td>{{ $formulir->nama_gelombang }}</td>
             </tr>
         </table>
 
         <div style="width: 100%; height: 135px; margin-top: 20px;">
             <div style="width: 70%; height: 100%; float: left;">
-                <div style="background: #EFEFEF; border: 2px solid black; font-size: 200%; display: inline-block;padding: 10px;"><b>Rp. 100.000,-</b></div>
+                <div style="background: #EFEFEF; border: 2px solid black; font-size: 200%; display: inline-block;padding: 10px;"><b><?php echo "Rp. " . number_format($formulir->biaya, 2, ",", ".");?></b></div>
             </div>
             <div style="width: 30%; height: 100%; float: right;">
-                <p style="text-align:center; margin: 0; padding: 0;">Surabaya, 12 March 2019 <br>
+                <p style="text-align:center; margin: 0; padding: 0;">Surabaya, <br>
                 Petugas Pendaftaran</p>
             </div>
         </div>
@@ -107,7 +112,7 @@
                 <i><b>Note: Segera lakukan pendaftaran karena kuota terbatas</b></i>
             </div>
             <div style="width: 30%; height: 100%; float: right;">
-                <p style="text-align:center; margin: 0; padding: 0;">{{ $formulir->name }}</p>
+                <p style="text-align:center; margin: 0; padding: 0;">{{ $formulir->nama_admin }}</p>
             </div>
         </div>
 

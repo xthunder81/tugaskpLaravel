@@ -48,9 +48,9 @@
                         <img src="{{ public_path('') . '/asset/logoikip.png'}}" alt="Logo IKIP" style="width: 120px;height:auto;">
                     </td>
                     <td align="center" style="width: 70%" class="headerinfo">
-                            <span style="font-weight: bold;">SMK IKIP Surabaya</span> <br>
-                            <span style="font-size: 100%;">Kompetensi Keahlian Pemasaran dan Multimedia <br> Jl. Teratai 4, Tambak Sari 60136 Surabaya,</span> <br>
-                            <span style="font-size: 96%;">Telp. 031-99445639, 082229020803 Email : smkikipsby@gmail.com</span>
+                            <span style="font-weight: bold;">{{ env('NAMASEKOLAH')}}</span> <br>
+                            <span style="font-size: 100%;">Kompetensi Keahlian Pemasaran dan Multimedia <br> {{ env('ALAMATSEKOLAH')}} </span> <br>
+                            <span style="font-size: 96%;">Telp. {{ env('NOMORHPSEKOLAH ')}} Email : {{ env('EMAILSEKOLLAH ')}}</span>
                     </td>
                     <td align="right" style="width: 15%;">
                         <img src="{{ public_path('') . '/asset/logosmkbisa.png'}}" alt="Logo SMK Hebat" style="width: 170px;height:auto;">
@@ -62,7 +62,7 @@
         <br/>
 
         <p style="text-align:center;font-size: 130%; margin: 0; padding: 0;"><b>KWITANSI FORMULIR</b></p>
-        
+
         <p style="font-size: 110%;"><b>Nomor Formulir :</b>  {{ $formulir->nomor_formulir }}</p>
 
         <table class="tbl-data" style="font-size: 100%; border: 1px solid black;padding: 20px;width: 100%;">

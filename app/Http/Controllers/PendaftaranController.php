@@ -30,7 +30,7 @@ class PendaftaranController extends Controller
         ->join('siswas', 'siswas.id_siswa','=','formulirs.siswa_id')
         ->join('jurusans', 'jurusans.id_jurusan','=','formulirs.jurusan_id')
         ->get();
-        
+
         return view('admin.pendaftaran.create', compact('formulir'));
     }
 
@@ -70,11 +70,11 @@ class PendaftaranController extends Controller
 
     public function print($id){
         $pendaftaran = DB::table('pendaftarans')
-        ->select('pendaftarans.*','formulirs.*', 'users.*', 'siswas.*', 'jurusans.*')
+        ->select('pendaftarans.*','formulirs.*', 'users.*', 'siswas.*', 'gelombangs.*')
         ->join('formulirs', 'formulirs.id_formulir','=','pendaftarans.formulir_id')
         ->join('users', 'users.id','=','pendaftarans.user_id')
         ->join('siswas', 'siswas.id_siswa','=','formulirs.siswa_id')
-        ->join('jurusans', 'jurusans.id_jurusan','=','formulirs.jurusan_id')
+        ->join('gelombangs', 'gelombangs.id_jurusan','=','formulirs.gelombang_id')
         ->where('id_pendaftaran', $id)
         ->first();
 

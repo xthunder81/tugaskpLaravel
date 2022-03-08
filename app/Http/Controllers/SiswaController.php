@@ -32,28 +32,41 @@ class SiswaController extends Controller
     public function predaftarProses(Request $req){
         $siswa = \Auth::guard('siswa')->user();
         $req->validate([
+			'kartu_keluarga' => 'required',
+            'nik' => 'required',
             'nama' => 'required',
             'email' => 'required',
-            'alamat' => 'required',
+            'alamat_ktp' => 'required',
+            'alamat_domisili' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'nomor_telp' => 'required',
+            'nomor_telp',
             'nomor_hp' => 'required',
-            'agama' => 'required',
-            'asal_smp' => 'required',
-            'status_keluarga' => 'required',
-            'kebutuhan_khusus' => 'required',
+            'status_tempattinggal' => 'required',
+            'asal_sd' => 'required',
+            'alamat_sekolah' => 'required',
+            'transportasi' => 'required',
+            'tinggi_badan',
+            'berat_badan',
+            'jarak_kesekolah',
+            'waktu_tempuh',
+            'anak_ke',
+            'jumlah_saudara',
             'nama_ayah' => 'required',
             'nama_ibu' => 'required',
+            'nik_ayah' => 'required',
+            'nik_ibu' => 'required',
+            'nomor_hp_ayah' => 'required',
+            'nomor_hp_ibu' => 'required',
+            'alamat_ayah' => 'required',
+            'alamat_ibu' => 'required',
             'pendidikan_ayah' => 'required',
             'pendidikan_ibu' => 'required',
             'pekerjaan_ayah' => 'required',
             'pekerjaan_ibu' => 'required',
             'gaji_ayah' => 'required',
             'gaji_ibu' => 'required',
-            'kebutuhan_khusus_ayah' => 'required',
-            'kebutuhan_khusus_ibu' => 'required',
         ]);
 
         if($req->hasFile('foto')){
@@ -74,28 +87,41 @@ class SiswaController extends Controller
 
         Siswa::where('id_siswa',$siswa->id_siswa)
             ->update([
+				'kartu_keluarga' => $req->kartu_keluarga,
+				'nik' => $req->nik,
                 'nama' => $req->nama,
                 'email' => $req->email,
-                'alamat' => $req->alamat,
+                'alamat_ktp' => $req->alamat_ktp,
+                'alamat_domisili' => $req->alamat_domisili,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir' => $req->tanggal_lahir,
                 'jenis_kelamin' => $req->jenis_kelamin,
                 'nomor_telp' => $req->nomor_telp,
                 'nomor_hp' => $req->nomor_hp,
-                'agama' => $req->agama,
-                'asal_smp' => $req->asal_smp,
-                'status_keluarga' => $req->status_keluarga,
-                'kebutuhan_khusus' => implode('|',$req->kebutuhan_khusus),
+                'status_tempattinggal' => $req->status_tempattinggal,
+                'asal_sd' => $req->asal_sd,
+                'alamat_sekolah' => $req->alamat_sekolah,
+                'transportasi' => implode('|',$req->transportasi),
+                'tinggi_badan' => $req->tinggi_badan,
+                'berat_badan' => $req->berat_badan,
+                'jarak_kesekolah' => $req->jarak_kesekolah,
+                'waktu_tempuh' => $req->waktu_tempuh,
+                'anak_ke' => $req->anak_ke,
+                'jumlah_saudara' => $req->jumlah_saudara,
                 'nama_ayah' => $req->nama_ayah,
                 'nama_ibu' => $req->nama_ibu,
+                'nik_ayah' => $req->nik_ayah,
+                'nik_ibu' => $req->nik_ibu,
+                'nomor_hp_ayah' => $req->nomor_hp_ayah,
+                'nomor_hp_ibu' => $req->nomor_hp_ibu,
+                'alamat_ayah' => $req->alamat_ayah,
+                'alamat_ibu' => $req->alamat_ibu,
                 'pendidikan_ayah' => $req->pendidikan_ayah,
                 'pendidikan_ibu' => $req->pendidikan_ibu,
                 'pekerjaan_ayah' => $req->pekerjaan_ayah,
                 'pekerjaan_ibu' => $req->pekerjaan_ibu,
                 'gaji_ayah' => $req->gaji_ayah,
                 'gaji_ibu' => $req->gaji_ibu,
-                'kebutuhan_khusus_ayah' => implode('|',$req->kebutuhan_khusus_ayah),
-                'kebutuhan_khusus_ibu' => implode('|',$req->kebutuhan_khusus_ibu)
             ]);
 
         return redirect()->route('siswa.predaftar')->with(['jenis' => 'success','pesan' => 'Berhasil mengubah data diri']);
@@ -154,7 +180,7 @@ class SiswaController extends Controller
                 'siswa_id' => $siswa->id_siswa,
                 'dokumen_id'=> $req->id_dokumen
             ]);
-            
+
             return redirect()->back()->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Dokumen.']);
         }else{
             $file = $req->file('file');
@@ -170,7 +196,7 @@ class SiswaController extends Controller
 
             return redirect()->back()->with(['jenis' => 'success','pesan' => 'Berhasil Mengubah Dokumen.']);
         }
-        
+
         return redirect()->back();
     }
 
@@ -235,8 +261,7 @@ class SiswaController extends Controller
         }
 
         $gelombang = DB::table('biaya_gelombang')
-                    ->select('jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang', 'gelombang.*','tahun_ajaran.nama_tahun_ajaran')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
+                    ->select('biaya_gelombang.id_biaya_gelombang', 'gelombang.*','tahun_ajaran.nama_tahun_ajaran')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('tahun_ajaran.status' , '1')
@@ -247,7 +272,6 @@ class SiswaController extends Controller
         $riwayat = DB::table('pendaftaran')
                     ->select('biaya_gelombang.id_biaya_gelombang')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('siswa_id', $id)
@@ -264,7 +288,7 @@ class SiswaController extends Controller
             }
         }
 
-        
+
 
         $sudahDaftar = [];
         foreach($riwayat as $r){
@@ -327,9 +351,8 @@ class SiswaController extends Controller
 
         $id = \Auth()->guard('siswa')->user()->id_siswa;
         $riwayat = DB::table('pendaftaran')
-                    ->select('pendaftaran.id_pendaftaran' ,'jurusan.nama_jurusan','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                    ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('siswa_id', $id)
@@ -377,9 +400,8 @@ class SiswaController extends Controller
 
     public function printFormulir($id){
         $formulir = DB::table('pendaftaran')
-                    ->select('pendaftaran.*' ,'jurusan.*','biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*')
+                    ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*')
                     ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                    ->join('jurusan', 'jurusan.id_jurusan','=','biaya_gelombang.jurusan_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
