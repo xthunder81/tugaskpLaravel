@@ -48,18 +48,18 @@
                         <img src="{{ public_path('') . '/asset/logoikip.png'}}" alt="Logo IKIP" style="width: 120px;height:auto;">
                     </td>
                     <td align="center" style="width: 70%" class="headerinfo">
-                            <span style="font-weight: bold;">SMK IKIP Surabaya</span> <br>
-                            <span style="font-size: 100%;">Kompetensi Keahlian Pemasaran dan Multimedia <br> Jl. Teratai 4, Tambak Sari 60136 Surabaya,</span> <br>
-                            <span style="font-size: 96%;">Telp. 031-99445639, 082229020803 Email : smkikipsby@gmail.com</span>
+                            <span style="font-weight: bold;">{{ env('NAMASEKOLAH')}}</span> <br>
+                            <span style="font-size: 100%;">Kompetensi Keahlian Pemasaran dan Multimedia <br> {{ env('ALAMATSEKOLAH')}},</span> <br>
+                            <span style="font-size: 96%;">Telp. {{ env('NOMORHPSEKOLAH')}} Email : {{ env('EMAILSEKOLLAH')}}</span>
                     </td>
                     <td align="right" style="width: 15%;">
-                        <img src="{{ public_path('') . '/asset/logosmkbisa.png'}}" alt="Logo SMK Hebat" style="width: 170px;height:auto;">
+                        <img src="{{ public_path('') . '/asset/logosmpbisa.png'}}" alt="Logo SMK Hebat" style="width: 170px;height:auto;">
                     </td>
                 </tr>
             </table>
         </div>
 
-        <br/><br/>  
+        <br/><br/>
 
         <p style="text-align:center;font-size: 130%; margin: 0; padding: 0;"><b>FORMULIR PENDAFTARAN</b></p>
         <br/>
@@ -107,22 +107,22 @@
                     <td>:</td>
                     <td>{{ $formulir->nomor_hp }}</td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <td>Agamar</td>
                     <td>:</td>
                     <td>{{ $formulir->agama }}</td>
-                </tr>
+                </tr> --}}
                 <tr>
-                    <td>Asal SMP</td>
+                    <td>Asal SD</td>
                     <td>:</td>
-                    <td>{{ $formulir->asal_smp }}</td>
+                    <td>{{ $formulir->asal_sd }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                
+
                 <tr>
                     <td></td>
                     <td></td>
@@ -132,11 +132,6 @@
                     <td><b>Data Pendaftaran</b></td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td>Jurusan</td>
-                    <td>:</td>
-                    <td>{{ $formulir->nama_jurusan }}</td>
                 </tr>
                 <tr>
                     <td>Gelombang</td>
@@ -152,10 +147,10 @@
         </table>
 
         <div style="width: 100%; height: 135px; margin-top: 20px;">
-            
+
             <div style="width: 70%; height: 100%; float: left;">
-                <p>Pembayaran Formulir Sebesar :</p> 
-                <div style="background: #EFEFEF; border: 2px solid black; font-size: 200%; display: inline-block;padding: 10px;"><b>Rp. 100.000,-</b></div>
+                <p>Pembayaran Formulir Sebesar :</p>
+                <div style="background: #EFEFEF; border: 2px solid black; font-size: 200%; display: inline-block;padding: 10px;"><b><?php echo "Rp. " . number_format($formulir->biaya, 2, ",", ".").",-";?></b></div>
                 <p style="margin: 5px 0 20px 0">Dilakukan melalui transfer atau pembayaran diloket sekolah</p>
             </div>
             <div style="width: 30%; height: 100%; float: right;">

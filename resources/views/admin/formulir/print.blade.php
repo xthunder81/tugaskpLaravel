@@ -103,7 +103,7 @@
                 <div style="background: #EFEFEF; border: 2px solid black; font-size: 200%; display: inline-block;padding: 10px;"><b><?php echo "Rp. " . number_format($formulir->biaya, 2, ",", ".");?></b></div>
             </div>
             <div style="width: 30%; height: 100%; float: right;">
-                <p style="text-align:center; margin: 0; padding: 0;">Surabaya, <br>
+                <p style="text-align:center; margin: 0; padding: 0;">Surabaya, {{ $waktu }}<br>
                 Petugas Pendaftaran</p>
             </div>
         </div>
