@@ -44,6 +44,12 @@ class DaftarulangController extends Controller
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
 
+        // $formulir2 = DB::table('pendaftaran')
+        // ->select('pendaftaran.*', 'admin.*')
+        // ->join('admin', 'admin.id_admin','=', 'pendaftaran.admin_id')
+        // ->where('pendaftaran.id_pendaftaran', $id)
+        // ->first();
+
         $dokumen = Dokumen::where('status',1)->get();
         $dok_siswa = [];
         for($i=0;$i<count($dokumen);$i++){
