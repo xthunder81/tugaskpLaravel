@@ -23,11 +23,11 @@ class CreateSiswaTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id_siswa');
-            $table->string('nisn')->unique();
-            $table->string('email')->nullable();
+            $table->string('nisn')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('nama')->nullable();
-            $table->string('nik')->nullable();
+            $table->string('nik')->unique()->nullable();
             $table->string('alamat_ktp')->nullable();
             $table->string('alamat_domisili')->nullable();
             $table->string('tempat_lahir')->nullable();
