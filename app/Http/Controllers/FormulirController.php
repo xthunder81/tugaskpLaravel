@@ -70,6 +70,18 @@ class FormulirController extends Controller
     }
 
     public function show($id){
+        // $formulir = DB::table('pendaftaran')
+        // ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'admin.*')
+        // ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+        // ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        // ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
+        // ->join('admin', 'admin.id_admin','=', 'pendaftaran.admin_id')
+        // ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
+        // ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
+        // ->where('pembayaran.jenis_pembayaran', 0)
+        // ->where('pendaftaran.id_pendaftaran', $id)
+        // ->first();
+
         $formulir = DB::table('pendaftaran')
         ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
@@ -78,6 +90,12 @@ class FormulirController extends Controller
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
         ->where('pembayaran.jenis_pembayaran', 0)
+        ->where('pendaftaran.id_pendaftaran', $id)
+        ->first();
+
+        $formulir2 = DB::table('pendaftaran')
+        ->select('pendaftaran.*', 'admin.*')
+        ->join('admin', 'admin.id_admin','=', 'pendaftaran.admin_id')
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
 
@@ -107,18 +125,18 @@ class FormulirController extends Controller
 
         $statusPendaftaran = StatusPendaftaran::where('pendaftaran_id' , $id)->first();
 
-        return view('admin.formulir.show', compact('formulir','dokumen','dok_siswa','nilai','nil_siswa','statusPendaftaran'));
+        return view('admin.formulir.show', compact('formulir', 'formulir2','dokumen','dok_siswa','nilai','nil_siswa','statusPendaftaran'));
     }
 
     public function print($id){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*','admin.*')
+        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'admin.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
-        ->join('admin', 'admin.id_admin', '=', 'pendaftaran.admin_id')
+        ->join('admin', 'pembayaran.admin_id', '=', 'admin.id_admin')
         ->where('pembayaran.jenis_pembayaran', 0)
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
@@ -136,9 +154,15 @@ class FormulirController extends Controller
 
     public function verifikasi($id){
         $pembayaran = Pembayaran::where('pendaftaran_id', $id)->where('jenis_pembayaran', 0)->first();
+        $formulir = DB::table('pendaftaran')
+            ->select('pendaftaran.*')->where('pendaftaran.id_pendaftaran', '=', $id)->first();
 
         if($pembayaran->metode_pembayaran == null){
             $pembayaran->metode_pembayaran = 0;
+        }
+
+        if($formulir->admin_id == null) {
+            DB::table('pendaftaran')->where('id_pendaftaran', $id)->update(['admin_id' => \Auth::user()->id_admin]);
         }
 
         $pembayaran->status_pembayaran = 1;

@@ -490,6 +490,20 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Admin Yang Memverifikasi Data </td>
+                    <td>:</td>
+                    <td>
+                        <ul>
+                            @if($formulir->status_pembayaran == 1 && $formulir2->admin_id != null)
+                                {{$formulir2->nama_admin}}
+                            @else
+                                Siswa Masih Belum DiVerifikasi
+                            @endif
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
                     <td> </td>
                     <td></td>
                     <td>

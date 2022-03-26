@@ -112,7 +112,7 @@
                 <i><b>Note: Segera lakukan pendaftaran karena kuota terbatas</b></i>
             </div>
             <div style="width: 30%; height: 100%; float: right;">
-                <p style="text-align:center; margin: 0; padding: 0;">{{ $formulir->nama_admin }}</p>
+                <p style="text-align:center; margin: 0; padding: 0;">{{$formulir->nama_admin}}</p>
             </div>
         </div>
 
