@@ -23,7 +23,7 @@ class CreateSiswaTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id_siswa');
-            $table->string('nisn')->unique()->nullable();
+            $table->string('nisn')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('nama')->nullable();
@@ -50,6 +50,7 @@ class CreateSiswaTable extends Migration
             $table->string('nama_ayah', 255)->nullable();
             $table->string('nik_ayah')->nullable();
             $table->string('alamat_ayah')->nullable();
+            $table->string('email_ayah')->nullable();
             $table->string('nomor_hp_ayah', 255)->nullable();
             $table->string('pendidikan_ayah', 255)->nullable()->comment('0 - Tidak Sekolah | 1 - Putus SD | 2 - SD Sederajat | 3 - SMP Sederajat | 4 - SMA Sederajat | 5 - D1 | 6 - D2 | 7 -D3 | 8 - D4/S1 | 9 - S2 | 10 - S3');
             $table->string('pekerjaan_ayah', 255)->nullable()->comment('0 - Tidak Bekerja | 1 - Nelayan | 2 - Petani | 3 - Peternak | 4 - PNS/TNI/Polri | 5 - Karyawan Swasta | 6 - Pedagang Kecil | 7 -Pedagang Besar | 8 - Wiraswasta | 9 - Wirausaha | 10 - Buruh | 11 - Pensiunan | 12 - Meninggal Dunia | 13 - Lain Lain');
@@ -57,6 +58,7 @@ class CreateSiswaTable extends Migration
             $table->string('nama_ibu', 255)->nullable();
             $table->string('nik_ibu')->nullable();
             $table->string('alamat_ibu')->nullable();
+            $table->string('email_ibu')->nullable();
             $table->string('nomor_hp_ibu', 255)->nullable();
             $table->string('pendidikan_ibu', 255)->nullable()->comment('0 - Tidak Sekolah | 1 - Putus SD | 2 - SD Sederajat | 3 - SMP Sederajat | 4 - SMA Sederajat | 5 - D1 | 6 - D2 | 7 -D3 | 8 - D4/S1 | 9 - S2 | 10 - S3');
             $table->string('pekerjaan_ibu', 255)->nullable()->comment('0 - Tidak Bekerja | 1 - Nelayan | 2 - Petani | 3 - Peternak | 4 - PNS/TNI/Polri | 5 - Karyawan Swasta | 6 - Pedagang Kecil | 7 -Pedagang Besar | 8 - Wiraswasta | 9 - Wirausaha | 10 - Buruh | 11 - Pensiunan | 12 - Meninggal Dunia | 13 - Lain Lain');
