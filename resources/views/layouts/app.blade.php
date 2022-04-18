@@ -176,6 +176,24 @@
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class=""></i>
+                            <p>
+                            Biaya Formulir
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class=""></i>
+                            <p>
+                            Biaya Daftar Ulang
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('admin.biayagelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayagelombang' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-bill"></i>
                             <p>
