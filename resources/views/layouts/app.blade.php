@@ -130,13 +130,61 @@
             </li>
             @endif
 
-            <li class="nav-item">
-                <a href="{{ route('admin.tahunajaran') }}" class="nav-link {{ Route::current()->getName() == 'admin.tahunajaran' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-calendar"></i>
+            <li @if(\Request::route()->getName() == 'admin.tahunajaran'||\Request::route()->getName() == 'admin.gelombang')
+                class="nav-item menu-open"
+                @else class="nav-item"
+                @endif
+            >
+                <a href="#" class="nav-link">
+                    {{-- <i class="nav-icon fas fa-calendar"></i> --}}
                     <p>
-                    Tahun Ajaran
+                    PPDB
+                    <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
+
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.tahunajaran') }}" class="nav-link {{ Route::current()->getName() == 'admin.tahunajaran' ? 'active active-sub' : '' }}">
+                            <i class="nav-icon fas fa-calendar"></i>
+                            <p>
+                            Tahun Ajaran
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.gelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.gelombang' ? 'active active-sub' : '' }}">
+                            <i class="nav-icon fas fa-chart-bar"></i>
+                            <p>
+                            Gelombang
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    {{-- <i class="nav-icon fas fa-calendar"></i> --}}
+                    <p>
+                    Pembayaran
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.biayagelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayagelombang' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-money-bill"></i>
+                            <p>
+                            Biaya Gelombang
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+
             </li>
 
             <!-- <li class="nav-item">
@@ -147,24 +195,6 @@
                     </p>
                 </a>
             </li> -->
-
-            <li class="nav-item">
-                <a href="{{ route('admin.gelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.gelombang' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-chart-bar"></i>
-                    <p>
-                    Gelombang
-                    </p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('admin.biayagelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayagelombang' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-money-bill"></i>
-                    <p>
-                    Biaya Gelombang
-                    </p>
-                </a>
-            </li>
 
             <li class="nav-item">
                 <a href="{{ route('admin.dokumen') }}" class="nav-link {{ Route::current()->getName() == 'admin.dokumen' ? 'active' : '' }}">

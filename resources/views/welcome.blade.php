@@ -108,7 +108,7 @@
                             <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
                                 <i class="bx bx-building"></i>
                                 <h4>Fasilitas Boarding / Pondok</h4>
-                                <p>Terdapat Boarding/Pondok bagi Orang Tua yang ingin Memondokkan Putra Putri nya.</p>
+                                <p>Terdapat Fasilitas Pondok bagi Siswa yang memilih Paket Boarding School.</p>
                             </div>
                         </div>
                     </div><!-- End .content-->
@@ -168,13 +168,20 @@
                     <img src="{{asset('landingpage/img/rogu-c-3.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-7 pt-5" data-aos="fade-left">
-                    <h3>Ujian</h3>
-                    <p>Siswa gratis biaya ujian:</p>
+                    <h3>Ujian Akademik</h3>
+                    {{-- <p>Siswa gratis biaya ujian:</p> --}}
                     <ul>
-                        <li><i class="icofont-check"></i>USBN.</li>
-                        {{-- <li><i class="icofont-check"></i>UNAS.</li> --}}
+                        <li><i class="icofont-check"></i>USEK.</li>
+                        <li><i class="icofont-check"></i>UPRAK.</li>
                         <li><i class="icofont-check"></i>PAS.</li>
                         <li><i class="icofont-check"></i>PAT & PTS.</li>
+                    </ul>
+
+                    <h3>Ujian Al Quran</h3>
+                    {{-- <p>Siswa gratis biaya ujian:</p> --}}
+                    <ul>
+                        <li><i class="icofont-check"></i>PTS & PAS.</li>
+                        <li><i class="icofont-check"></i>Munaqosyah Tertutup & Terbuka.</li>
                     </ul>
                 </div>
             </div>
@@ -189,6 +196,7 @@
                         <li><i class="icofont-check"></i>Field Trip.</li>
                         <li><i class="icofont-check"></i>Tahsil</li>
                         <li><i class="icofont-check"></i>LDKS</li>
+                        <li><i class="icofont-check"></i>Back To Village</li>
                     </ul>
                 </div>
             </div>
@@ -201,8 +209,9 @@
                     <h3>Indoor Activity</h3>
                     <ul>
                         <li><i class="icofont-check"></i>Virtual Field Trip</li>
-                        <li><i class="icofont-check"></i>Prakarya</li>
+                        <li><i class="icofont-check"></i>Petualangan Ramadhan</li>
                         <li><i class="icofont-check"></i>Science Day</li>
+                        <li><i class="icofont-check"></i>DMIF</li>
                     </ul>
                 </div>
             </div>
@@ -214,7 +223,7 @@
                 <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
                     <h3>Beasiswa</h3>
                     <p style="margin:0">Setiap siswa yang berprestasi mendapat beasiswa</p>
-                    <span style="font-size: 80%; margin: 0;">Dapatkan Potongan 50% SPP bila mendaftar di gelombang Inden</span>
+                    <span style="font-size: 80%; margin: 0;">Dapatkan Potongan 50% Biaya Pendaftaran bila mendaftar di gelombang Inden</span>
                 </div>
             </div>
 
