@@ -138,7 +138,7 @@
                 <a href="#" class="nav-link">
                     {{-- <i class="nav-icon fas fa-calendar"></i> --}}
                     <p>
-                    PPDB
+                    Pengaturan Gelombang
                     <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -169,7 +169,7 @@
                 <a href="#" class="nav-link">
                     {{-- <i class="nav-icon fas fa-calendar"></i> --}}
                     <p>
-                    Pembayaran
+                    Pengaturan Pembayaran
                     <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -268,7 +268,7 @@
                 </a>
             </li>
 
-            <li class="nav-header">Angsuran</li>
+            {{-- <li class="nav-header">Angsuran</li>
             <li class="nav-item">
                 <a href="{{ route('admin.kategoriangsuran') }}" class="nav-link {{ Route::current()->getName() == 'admin.kategoriangsuran' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-list-alt "></i>
@@ -285,7 +285,7 @@
                     Angsuran
                     </p>
                 </a>
-            </li>
+            </li> --}}
 
 
 
