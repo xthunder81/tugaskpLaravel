@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gelombang;
 use App\TahunAjaran;
+use App\daftarGelombang;
 use Illuminate\Http\Request;
 
 class GelombangController extends Controller
@@ -146,5 +147,9 @@ class GelombangController extends Controller
         $gelombang->save();
 
         return redirect()->back()->with('success','Berhasil Diaktifkan');
+    }
+
+    public function daftarGelombangIndex (){
+
     }
 }
