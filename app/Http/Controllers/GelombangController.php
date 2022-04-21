@@ -150,6 +150,7 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangIndex (){
-
+        $daftargelombang = daftarGelombang::get();
+        return view ('admin.daftarGelombang.index', compact('daftargelombang'));
     }
 }
