@@ -15,6 +15,17 @@ class DaftarBiaya extends Migration
     public function up()
     {
         //
+        Schema::create($this->tablename, function (Blueprint $table) {
+            $table->engine='InnoDB';
+            $table->increments('id_daftar_biaya');
+            $table->string('nama_daftar_biaya')->nullable();
+            $table->tinyInteger('jenis_daftar_biaya')->nullable()->comment('BOOLEAN
+            0 = formulir
+            1 = daftar ulang');
+            $table->tinyInteger('status_daftar_biaya')->nullable()->comment('BOOLEAN
+            1 = on
+            0 = off');
+        });
     }
 
     /**

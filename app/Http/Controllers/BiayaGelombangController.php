@@ -6,6 +6,7 @@ use App\BiayaGelombang;
 use App\Gelombang;
 use App\Jurusan;
 use App\TahunAjaran;
+use App\BiayaGelombang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

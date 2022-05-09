@@ -8,7 +8,7 @@ class List_Biaya extends Model
 {
     //
     public $timestamps = false;
-    protected $table = 'list_biaya';
-    protected $primaryKey = 'id_list_biaya';
+    protected $table = 'daftar_biaya';
+    protected $primaryKey = 'id_daftar_biaya';
     protected $guarded = [];
 }
