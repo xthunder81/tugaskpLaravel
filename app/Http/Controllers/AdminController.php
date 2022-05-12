@@ -244,7 +244,7 @@ class AdminController extends Controller
             'status_admin' => $request->status_admin,
         ]);
 
-        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Personel']);
     }
 
     public function personelEdit($id)
@@ -292,7 +292,7 @@ class AdminController extends Controller
         $personel->save();
 
 
-        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Gelombang']);
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
     }
 
     public function personelDestroy($id)

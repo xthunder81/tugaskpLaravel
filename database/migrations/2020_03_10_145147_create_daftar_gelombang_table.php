@@ -19,7 +19,7 @@ class CreateDaftarGelombangTable extends Migration
             $table->engine='InnoDB';
             $table->increments('id_daftar_gelombang');
             $table->string('nama_daftar_gelombang')->nullable();
-            $table->tinyInteger('status')->nullable()->comment('BOOLEAN
+            $table->tinyInteger('status_daftar_gelombang')->nullable()->comment('BOOLEAN
             1 = on
             0 = off');
         });

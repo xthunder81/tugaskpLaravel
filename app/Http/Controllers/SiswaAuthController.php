@@ -21,9 +21,9 @@ class SiswaAuthController extends Controller
         $this->validate($request, [
             // 'nisn' => 'required|digits_between:10,10|unique:siswa,nisn',
             'nama' => 'required|min:3',
-            'email' => 'required|min:6|unique:siswa,nisn',
+            'email' => 'required|min:6|unique:siswa',
             'password' => 'required|min:6'
-        ], ['nisn.digits_between' => 'Panjang karakter NISN harus 10 Karakter']);
+        ]);
 
         DB::table('siswa')->insert([
 			// 'nisn' => $request->nisn,

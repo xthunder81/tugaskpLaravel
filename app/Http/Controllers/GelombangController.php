@@ -6,6 +6,7 @@ use App\Gelombang;
 use App\TahunAjaran;
 use App\daftarGelombang;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class GelombangController extends Controller
 {
@@ -152,5 +153,30 @@ class GelombangController extends Controller
     public function daftarGelombangIndex (){
         $daftargelombang = daftarGelombang::get();
         return view ('admin.daftarGelombang.index', compact('daftargelombang'));
+    }
+
+    public function daftarGelombangCreate () {
+        return view ('admin.daftarGelombang.create');
+    }
+
+    public function daftarGelombangStore (Request $request) {
+
+        $request->validate([
+            'nama_daftar_gelombang' => 'required',
+            'nama_admin' => 'required',
+            'password' => 'required',
+            'level' => 'required',
+            'status_admin' => 'required',
+        ]);
+
+        Admin::create([
+            'nip' => $request->nip,
+            'nama_admin' => $request->nama_admin,
+            'password' => bcrypt($request->password),
+            'level' => $request->level,
+            'status_admin' => $request->status_admin,
+        ]);
+
+        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
     }
 }
