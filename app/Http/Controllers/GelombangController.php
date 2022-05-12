@@ -163,18 +163,12 @@ class GelombangController extends Controller
 
         $request->validate([
             'nama_daftar_gelombang' => 'required',
-            'nama_admin' => 'required',
-            'password' => 'required',
-            'level' => 'required',
-            'status_admin' => 'required',
+            'status_daftar_gelombang' => 'required',
         ]);
 
-        Admin::create([
-            'nip' => $request->nip,
-            'nama_admin' => $request->nama_admin,
-            'password' => bcrypt($request->password),
-            'level' => $request->level,
-            'status_admin' => $request->status_admin,
+        daftarGelombang::create([
+            'nama_daftar_gelombang' => $request->nama_daftar_gelombang,
+            'status_daftar_gelombang' => 1,
         ]);
 
         return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
