@@ -152,11 +152,11 @@ class GelombangController extends Controller
 
     public function daftarGelombangIndex (){
         $daftargelombang = daftarGelombang::get();
-        return view ('admin.daftarGelombang.index', compact('daftargelombang'));
+        return view ('admin.daftargelombang.index', compact('daftargelombang'));
     }
 
     public function daftarGelombangCreate () {
-        return view ('admin.daftarGelombang.create');
+        return view ('admin.daftargelombang.create');
     }
 
     public function daftarGelombangStore (Request $request) {
@@ -171,6 +171,11 @@ class GelombangController extends Controller
             'status_daftar_gelombang' => 1,
         ]);
 
-        return redirect(route('admin.personel'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Personel']);
+        return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Daftar Gelombang']);
+    }
+
+    public function daftarGelombangEdit ($id) {
+        $dfGelombang = daftarGelombang::findOrFail($id);
+        return view ('admin.daftargelombang.edit', compact('dfGelombang'));
     }
 }
