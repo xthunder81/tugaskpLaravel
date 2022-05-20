@@ -178,4 +178,23 @@ class GelombangController extends Controller
         $dfGelombang = daftarGelombang::findOrFail($id);
         return view ('admin.daftargelombang.edit', compact('dfGelombang'));
     }
+
+    public function daftarGelombangUpdate (Request $request, $id) {
+        $request->validate([
+            'nama_daftar_gelombang' => 'required',
+        ]);
+
+        Jurusan::find($id)->update([
+            'nama_daftar_gelombang' => $request->nama_daftar_gelombang,
+
+        ]);
+        return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengubah Daftar Gelombang']);
+
+    }
+
+    public function daftarGelombangDestroy ($id) {
+        $daftargelombang= daftarGelombang::findOrFail($id);
+                $daftargelombang->delete();
+            return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus Daftar Gelombang']);
+    }
 }
