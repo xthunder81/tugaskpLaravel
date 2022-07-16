@@ -24,8 +24,8 @@ class SiswaController extends Controller
 {
 
     public function predaftar(){
-        $nisn = \Auth::guard('siswa')->user()->nisn;
-        $siswa = Siswa::where('nisn', $nisn)->first();
+        $email = \Auth::guard('siswa')->user()->email;
+        $siswa = Siswa::where('email', $email)->first();
         return view('siswa.profile.predaftar', compact('siswa'));
     }
 
@@ -75,7 +75,7 @@ class SiswaController extends Controller
             ]);
             $file = $req->file('foto');
             $tujuan = 'file/siswa/' . $siswa->id_siswa . '/';
-            $nama_files = $siswa->nisn . '_' . 'foto'  . '.' . $file->getClientOriginalExtension();
+            $nama_files = $siswa->email . '_' . 'foto'  . '.' . $file->getClientOriginalExtension();
             $file->move($tujuan, $nama_files);
 
             Siswa::where('id_siswa',$siswa->id_siswa)
@@ -89,6 +89,7 @@ class SiswaController extends Controller
             ->update([
 				'kartu_keluarga' => $req->kartu_keluarga,
 				'nik' => $req->nik,
+                'nisn' => $req->nisn,
                 'nama' => $req->nama,
                 'email' => $req->email,
                 'alamat_ktp' => $req->alamat_ktp,
@@ -132,11 +133,16 @@ class SiswaController extends Controller
 
         foreach($siswa->toArray() as $key => $value)
         {
-            if($value == null){
+            if($value->nisn == null){
                 return redirect()->route('siswa.predaftar')->with(['jenis' => 'danger','pesan' => 'Anda harus melengkapi data diri terlebih']);
                 die();
             }
         }
+
+        // if($siswa->nisn == null ){
+        //     return redirect()->route('siswa.predaftar')->with(['jenis' => 'danger','pesan' => 'Anda harus melengkapi data diri terlebih']);
+        //     die();
+        // }
 
         $dokumen = Dokumen::where('status', '1')
                             ->get();

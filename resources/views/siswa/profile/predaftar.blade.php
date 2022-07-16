@@ -47,6 +47,11 @@ Data Diri
                                     value="{{ $siswa->nik }}" required>
                             </div>
                             <div class="form-group">
+                                <label for="nisn">NISN</label>
+                                <input type="number" class="form-control" id="nisn" placeholder="Masukkan NISN" name="nisn"
+                                    value="{{ $siswa->nisn }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="kartu_keluargak">No Kartu Keluarga</label>
                                 <input type="number" class="form-control" id="kartu_keluargak"
                                     placeholder="Masukkan No KK" name="kartu_keluarga"

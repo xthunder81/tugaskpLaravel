@@ -43,6 +43,7 @@ class SiswaAuthController extends Controller
     public function postLogin(Request $request)
     {
         $this->validate($request, [
+            // 'nisn' => $request->nisn,
             'email' => 'required',
             'password' => 'required|min:6'
         ]);
