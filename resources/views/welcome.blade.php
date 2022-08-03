@@ -58,7 +58,7 @@
             <a href="{{ route('siswa.predaftar') }}" class="btn-get-started scrollto">Buka Dashboard PPDB</a>
         @else
             <a href="{{ route('siswa.register') }}" class="btn-get-started">Daftar Sekarang</a> atau
-            <a href="{{ route('siswa.login') }}" class="btn-get-started">Sign In</a>
+            <a href="{{ route('siswa.login') }}" class="btn-get-started">Masuk</a>
         @endif
 
 
