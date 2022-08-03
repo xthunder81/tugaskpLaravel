@@ -70,7 +70,7 @@ class SiswaAdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nisn' => 'required|max:10|min:10',
+            'nisn' => 'required|max:10',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'nama' => 'required',

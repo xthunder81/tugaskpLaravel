@@ -35,10 +35,10 @@
                         <form action="{{ route('siswa.prosesLogin') }}" method="post" class="my-login-validation" novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="email">NISN</label>
-                                <input id="nisn" pattern="[0-9]{10}" type="text" class="form-control" name="nisn" placeholder="NISN Siswa" required autofocus>
+                                <label for="email">Email</label>
+                                <input id="email"  type="email" class="form-control" name="email" placeholder="Email Siswa" required autofocus>
                                 <div class="invalid-feedback">
-                                    NISN tidak boleh kosong
+                                    Email tidak boleh kosong
                                 </div>
                             </div>
 
