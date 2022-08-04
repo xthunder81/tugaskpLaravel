@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titlePage')
-    Edit Dokumen
+    Edit Daftar Gelombang
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <!-- form start -->
-                <form method="post" action="{{ route('admin.dokumen.update',$Dokumen->id_dokumen) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.daftargelombang.update',$dgelombang->id_daftar_gelombang) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -19,9 +19,9 @@
                             @method('PATCH')
                             <div class="row">
                                 <div class="col-sm-12 mb-2">
-                                    <label for="name">Nama Dokumen:</label>
-                                    <input type="text" class="form-control @error('Dokumen') is-invalid @enderror" name="Dokumen" value="{{ $Dokumen->nama_dokumen }}" placeholder="Nama Dokumen"/>
-                                    @error('Dokumen')
+                                    <label for="name">Nama Daftar Gelombang:</label>
+                                    <input type="text" class="form-control @error('nama_daftar_gelombang') is-invalid @enderror" name="nama_daftar_gelombang" value="{{ $dgelombang->nama_daftar_gelombang }}" placeholder="Nama Daftar Gelombang"/>
+                                    @error('daftargelombang')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

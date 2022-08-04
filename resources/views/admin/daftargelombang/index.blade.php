@@ -28,7 +28,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($daftargelombang as $data)
+                            @foreach($dgelombang as $data)
                                 <tr>
                                     <td>{{$data->nama_daftar_gelombang}}</td>
                                     <td>

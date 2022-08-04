@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titlePage')
-    Tambah Dokumen
+    Tambah Daftar Gelombang
 @endsection
 
 @section('content')
@@ -11,29 +11,20 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <!-- form start -->
-                <form method="post" action="{{ route('admin.dokumen.store') }}" enctype="multipart/form-data">
+                <form action="{{ route('admin.daftargelombang.store') }}" method="post" role="form" id="quickForm">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            @csrf
-
-                            <div class="row">
-                                <div class="col-sm-12 mb-2">
-                                    <label for="name">Nama Dokumen:</label>
-                                    <input type="text" class="form-control @error('Dokumen') is-invalid @enderror" name="Dokumen" value="{{ old('Dokumen') }}" placeholder="Nama Dokumen"/>
-                                    @error('Dokumen')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
+                            <label for="nama_daftar_gelombang">Nama Daftar Gelombang</label>
+                            <input type="text" name="nama_daftar_gelombang" class="form-control" id="nama_daftar_gelombang" placeholder="Masukkan Nama Daftar Gelombang">
+                            <div class="invalid-feedback">
+                                Nama Daftar Gelombang tidak boleh kosong
                             </div>
-
                         </div>
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
-                        <button type="submit" name="simpan" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </div>
                 </form>
             </div>

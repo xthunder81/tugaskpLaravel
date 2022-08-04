@@ -151,8 +151,8 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangIndex (){
-        $daftargelombang = daftarGelombang::all();
-        return view ('admin.daftargelombang.index', compact('daftargelombang'));
+        $dgelombang = daftarGelombang::get();
+        return view ('admin.daftargelombang.index', compact('dgelombang'));
     }
 
     public function daftarGelombangCreate () {
@@ -175,8 +175,8 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangEdit ($id) {
-        $daftargelombang = daftarGelombang::findOrFail($id);
-        return view ('admin.daftargelombang.edit', compact('daftargelombang'));
+        $dgelombang = daftarGelombang::findOrFail($id);
+        return view ('admin.daftargelombang.edit', compact('dgelombang'));
     }
 
     public function daftarGelombangUpdate (Request $request, $id) {
@@ -184,7 +184,7 @@ class GelombangController extends Controller
             'nama_daftar_gelombang' => 'required',
         ]);
 
-        Jurusan::find($id)->update([
+        daftarGelombang::find($id)->update([
             'nama_daftar_gelombang' => $request->nama_daftar_gelombang,
 
         ]);
@@ -193,8 +193,8 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangDestroy ($id) {
-        $daftargelombang= daftarGelombang::findOrFail($id);
-                $daftargelombang->delete();
+        $dgelombang= daftarGelombang::findOrFail($id);
+                $dgelombang->delete();
             return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus Daftar Gelombang']);
     }
 }
