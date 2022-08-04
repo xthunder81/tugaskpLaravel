@@ -163,12 +163,12 @@ class GelombangController extends Controller
 
         $request->validate([
             'nama_daftar_gelombang' => 'required',
-            'status_daftar_gelombang' => 'required',
+            // 'status_daftar_gelombang' => 'required',
         ]);
 
         daftarGelombang::create([
             'nama_daftar_gelombang' => $request->nama_daftar_gelombang,
-            'status_daftar_gelombang' => 1,
+            // 'status_daftar_gelombang' => 1,
         ]);
 
         return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Daftar Gelombang']);
