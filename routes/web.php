@@ -105,6 +105,13 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::patch('jurusan/update/{id}', 'JurusanController@update')->name('admin.jurusan.update');
     Route::delete('jurusan/destroy/{id}', 'JurusanController@destroy')->name('admin.jurusan.destroy');
 
+    Route::get('daftargelombang', 'GelombangController@daftarGelombangIndex')->name('admin.daftargelombang');
+    Route::get('daftargelombang/create', 'GelombangController@daftarGelombangCreate')->name('admin.daftargelombang.create');
+    Route::post('daftargelombang/store', 'GelombangController@daftarGelombangStore')->name('admin.daftargelombang.store');
+    Route::get('daftargelombang/edit/{id}', 'GelombangController@daftarGelombangEdit')->name('admin.daftargelombang.edit');
+    Route::patch('daftargelombang/{id}/update', 'GelombangController@daftarGelombangUpdate')->name('admin.daftargelombang.update');
+    Route::delete('daftargelombang/destroy/{id}', 'GelombangController@daftarGelombangDestroy')->name('admin.daftargelombang.destroy');
+
     Route::get('gelombang', 'GelombangController@index')->name('admin.gelombang');
     Route::get('gelombang/create', 'GelombangController@create')->name('admin.gelombang.create');
     Route::get('gelombang/edit/{id}', 'GelombangController@edit')->name('admin.gelombang.edit');
@@ -136,13 +143,13 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::patch('dokumen/{id}/update', 'DokumenController@update')->name('admin.dokumen.update');
     Route::delete('dokumen/destroy/{id}', 'DokumenController@destroy')->name('admin.dokumen.destroy');
 
-    Route::get('dokumen', 'DokumenController@index')->name('admin.dokumen');
-    Route::get('dokumen/create', 'DokumenController@create')->name('admin.dokumen.create');
-    Route::get('dokumen/aktif/{id}', 'DokumenController@aktif')->name('admin.dokumen.aktif');
-    Route::post('dokumen/store', 'DokumenController@store')->name('admin.dokumen.store');
-    Route::get('dokumen/{id}/edit', 'DokumenController@edit')->name('admin.dokumen.edit');
-    Route::patch('dokumen/{id}/update', 'DokumenController@update')->name('admin.dokumen.update');
-    Route::delete('dokumen/destroy/{id}', 'DokumenController@destroy')->name('admin.dokumen.destroy');
+    // Route::get('dokumen', 'DokumenController@index')->name('admin.dokumen');
+    // Route::get('dokumen/create', 'DokumenController@create')->name('admin.dokumen.create');
+    // Route::get('dokumen/aktif/{id}', 'DokumenController@aktif')->name('admin.dokumen.aktif');
+    // Route::post('dokumen/store', 'DokumenController@store')->name('admin.dokumen.store');
+    // Route::get('dokumen/{id}/edit', 'DokumenController@edit')->name('admin.dokumen.edit');
+    // Route::patch('dokumen/{id}/update', 'DokumenController@update')->name('admin.dokumen.update');
+    // Route::delete('dokumen/destroy/{id}', 'DokumenController@destroy')->name('admin.dokumen.destroy');
 
     Route::get('nilai', 'NilaiController@index')->name('admin.nilai');
     Route::get('nilai/create', 'NilaiController@create')->name('admin.nilai.create');

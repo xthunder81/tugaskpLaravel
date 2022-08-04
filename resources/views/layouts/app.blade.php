@@ -154,6 +154,15 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('admin.daftargelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.daftargelombang' ? 'active active-sub' : '' }}">
+                            <i class="nav-icon fas fa-chart-bar"></i>
+                            <p>
+                            Daftar Gelombang
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('admin.gelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.gelombang' ? 'active active-sub' : '' }}">
                             <i class="nav-icon fas fa-chart-bar"></i>
                             <p>

@@ -151,7 +151,7 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangIndex (){
-        $daftargelombang = daftarGelombang::get();
+        $daftargelombang = daftarGelombang::all();
         return view ('admin.daftargelombang.index', compact('daftargelombang'));
     }
 
@@ -175,8 +175,8 @@ class GelombangController extends Controller
     }
 
     public function daftarGelombangEdit ($id) {
-        $dfGelombang = daftarGelombang::findOrFail($id);
-        return view ('admin.daftargelombang.edit', compact('dfGelombang'));
+        $daftargelombang = daftarGelombang::findOrFail($id);
+        return view ('admin.daftargelombang.edit', compact('daftargelombang'));
     }
 
     public function daftarGelombangUpdate (Request $request, $id) {
