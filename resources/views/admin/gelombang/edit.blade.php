@@ -16,12 +16,23 @@
                     @method('PATCH')
                     <div class="card-body">
                         <div class="form-group">
+                            <label>Daftar Gelombang</label>
+                            <select class="form-control @error('dgelombang') is-invalid @enderror" name="dgelombang">
+                                @foreach($dgelombang as $d)
+                                    <option value="{{ $d->id_daftar_gelombang }}">{{ $d->nama_daftar_gelombang }}</option>
+                                @endforeach
+                            </select>
+                            @error('tahunajaran')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" name="nama_gelombang" class="form-control @error('nama_gelombang') is-invalid @enderror" id="nama_gelombang" value="{{ $gelombang->nama_gelombang }}" placeholder="Masukkan nama gelombang">
                             @error('nama_gelombang')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="mulai">Mulai</label>
                             <input type="date" name="mulai" class="form-control @error('mulai') is-invalid @enderror" id="mulai" value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $gelombang->mulai)->format('Y-m-d') }}" placeholder="Mulai">
