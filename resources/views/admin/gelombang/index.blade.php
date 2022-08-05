@@ -24,7 +24,9 @@
                             <thead>
                             <tr>
                                 <th>Nomor</th>
-                                <th>Nama Gelombang</th>
+                                <th>Daftar Gelombang</th>
+                                {{-- <th>Nama Gelombang</th> --}}
+                                <th>Tahun Ajaran</th>
                                 <th>Mulai</th>
                                 <th>Selesai</th>
                                 <th>Kuota</th>
@@ -36,7 +38,9 @@
                             @foreach($gelombang as $data)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$data->nama_gelombang}}</td>
+                                    <td>{{$data->nama_daftar_gelombang}}</td>
+                                    {{-- <td>{{$data->nama_gelombang}}</td> --}}
+                                    <td>{{$data->nama_tahun_ajaran}}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->mulai)->format('d M Y') }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->selesai)->format('d M Y') }}</td>
                                     <td>{{$data->kuota}} / {{$data->kuota_max}} </td>

@@ -9,6 +9,7 @@ use \App\TahunAjaran;
 use \App\Siswa;
 use \App\Pembayaran;
 use \App\StatusPendaftaran;
+use \App\daftarGelombang;
 use Illuminate\Support\Facades\DB;
 use App\Exports\PresensiSiswa;
 use Maatwebsite\Excel\Facades\Excel;

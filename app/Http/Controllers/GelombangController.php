@@ -6,6 +6,7 @@ use App\Gelombang;
 use App\TahunAjaran;
 use App\daftarGelombang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class GelombangController extends Controller
@@ -17,12 +18,22 @@ class GelombangController extends Controller
      */
     public function index()
     {
-        $tahunajaran = TahunAjaran::where('status', '1')->first();
+        // $tahunajaran = TahunAjaran::where('status', '1')->first();
+        // $dgelombang = daftarGelombang::get();
 
-        $gelombang = [];
-        if($tahunajaran){
-            $gelombang = Gelombang::where('tahun_ajaran_id', $tahunajaran->id_tahun_ajaran)->get();
-        }
+        // $gelombang = [];
+        // if($tahunajaran){
+        //     $gelombang = Gelombang::where('tahun_ajaran_id', $tahunajaran->id_tahun_ajaran)->get();
+        // }
+        // return view('admin.gelombang.index', compact('gelombang'));
+
+        $gelombang = DB::table('gelombang')
+                        ->select('gelombang.*', 'daftar_gelombang.*', 'tahun_ajaran.*')
+                        ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang', '=', 'gelombang.daftar_gelombang_id')
+                        ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran', '=', 'gelombang.tahun_ajaran_id')
+                        ->where('tahun_ajaran.status', 1)
+                        ->get();
+
         return view('admin.gelombang.index', compact('gelombang'));
     }
 
@@ -34,7 +45,8 @@ class GelombangController extends Controller
     public function create()
     {
         $tahunajaran = TahunAjaran::where('status','1')->get();
-        return view('admin.gelombang.create', compact('tahunajaran'));
+        $dgelombang = daftarGelombang::get();
+        return view('admin.gelombang.create', compact('tahunajaran','dgelombang'));
     }
 
     /**
@@ -45,23 +57,35 @@ class GelombangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_gelombang' => 'required',
-            'mulai' => 'required',
-            'selesai' => 'required',
-            'kuota' => 'required',
-            'tahunajaran' => 'required',
-        ]);
+        // $request->validate([
+        //     'daftar_gelombang_id' => 'required',
+        //     'nama_gelombang' => 'required',
+        //     'mulai' => 'required',
+        //     'selesai' => 'required',
+        //     'kuota' => 'required',
+        //     'tahunajaran' => 'required',
+        // ]);
 
-        Gelombang::create([
-            'nama_gelombang' => $request->nama_gelombang,
-            'mulai' => $request->mulai,
-            'selesai' => $request->selesai,
-            'kuota' => $request->kuota,
-            'kuota_max' => $request->kuota,
-            'status' => '1',
-            'tahun_ajaran_id' => $request->tahunajaran,
-        ]);
+        // Gelombang::create([
+        //     'daftar_gelombang_id' => $request->dgelombang,
+        //     'nama_gelombang' => $request->nama_gelombang,
+        //     'mulai' => $request->mulai,
+        //     'selesai' => $request->selesai,
+        //     'kuota' => $request->kuota,
+        //     'kuota_max' => $request->kuota,
+        //     'status' => '1',
+        //     'tahun_ajaran_id' => $request->tahunajaran,
+        // ]);
+
+        $gelombang = new Gelombang();
+        $gelombang->daftar_gelombang_id = $request->dgelombang;
+        $gelombang->mulai = $request->mulai;
+        $gelombang->selesai = $request->selesai;
+        $gelombang->kuota = $request->kuota;
+        $gelombang->kuota_max = $request->kuota;
+        $gelombang->status = 1;
+        $gelombang->tahun_ajaran_id = $request->tahunajaran;
+        $gelombang->save();
 
         return redirect(route('admin.gelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Gelombang']);
     }
@@ -87,7 +111,8 @@ class GelombangController extends Controller
     {
         $tahunajaran = TahunAjaran::get();
         $gelombang = Gelombang::findOrFail($id);
-        return view('admin.gelombang.edit', compact('gelombang', 'tahunajaran'));
+        $dgelombang= daftarGelombang::get();
+        return view('admin.gelombang.edit', compact('gelombang', 'tahunajaran', 'dgelombang'));
     }
 
     /**
@@ -101,6 +126,7 @@ class GelombangController extends Controller
     {
         $gelombang = Gelombang::findOrFail($id);
         $request->validate([
+            // 'daftar_gelombang_id' => 'required',
             'nama_gelombang' => 'required',
             'mulai' => 'required',
             'selesai' => 'required',
@@ -109,6 +135,7 @@ class GelombangController extends Controller
         ]);
 
         Gelombang::find($id)->update([
+            // 'daftar_gelombang_id' => $request->dgelombang,
             'nama_gelombang' => $request->nama_gelombang,
             'mulai' => $request->mulai,
             'selesai' => $request->selesai,
@@ -168,7 +195,7 @@ class GelombangController extends Controller
 
         daftarGelombang::create([
             'nama_daftar_gelombang' => $request->nama_daftar_gelombang,
-            // 'status_daftar_gelombang' => 1,
+            'status_daftar_gelombang' => '1',
         ]);
 
         return redirect(route('admin.daftargelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Daftar Gelombang']);
