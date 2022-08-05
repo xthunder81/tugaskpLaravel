@@ -36,7 +36,7 @@ class AdminController extends Controller
         $dataDiriLengkap = count($siswa) - $dataDiriLengkap;
 
         $riwayat = DB::table('pendaftaran')
-                ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.nama_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.daftar_gelombang_id','tahun_ajaran.nama_tahun_ajaran')
                 ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
                 ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                 ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
