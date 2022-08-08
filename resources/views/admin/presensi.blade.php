@@ -80,7 +80,7 @@
         <td colspan="1" style=" font-size:16px">{{ $d->pendidikan_ibu }}</td>
         <td colspan="1" style=" font-size:16px">{{ $d->pekerjaan_ibu }}</td>
         <td colspan="1" style=" font-size:16px">{{ $d->gaji_ibu }}</td>
-        <td colspan="1" style=" font-size:16px">{{ $d->nama_gelombang }}</td>
+        <td colspan="1" style=" font-size:16px">{{ $d->nama_daftar_gelombang }}</td>
       </tr>
     @endforeach
 
