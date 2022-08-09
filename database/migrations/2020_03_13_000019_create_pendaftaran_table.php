@@ -31,13 +31,13 @@ class CreatePendaftaranTable extends Migration
 
             $table->index("admin_id");
 
-            $table->index(["biaya_gelombang_id"], 'fk_pendaftaran_biaya_gelombang1_idx');
+            // $table->index(["biaya_gelombang_id"], 'fk_pendaftaran_biaya_gelombang1_idx');
 
 
-            $table->foreign('biaya_gelombang_id', 'fk_pendaftaran_biaya_gelombang1_idx')
-                ->references('id_biaya_gelombang')->on('biaya_gelombang')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            // $table->foreign('biaya_gelombang_id', 'fk_pendaftaran_biaya_gelombang1_idx')
+            //     ->references('id_biaya_gelombang')->on('biaya_gelombang')
+            //     ->onDelete('no action')
+            //     ->onUpdate('no action');
 
             $table->foreign('siswa_id')
                 ->references('id_siswa')->on('siswa')

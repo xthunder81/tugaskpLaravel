@@ -6,7 +6,7 @@ use App\BiayaGelombang;
 use App\Gelombang;
 use App\Jurusan;
 use App\TahunAjaran;
-use App\BiayaGelombang;
+use App\List_Biaya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -126,5 +126,38 @@ class BiayaGelombangController extends Controller
         $biayagelombang->delete();
 
         return redirect(route('admin.biayagelombang'))->with(['jenis' => 'success','pesan' => 'Biaya Gelombang Berhasil dihapus']);
+    }
+
+    public function listBiayaIndex() {
+        $listBiaya = DB::table('list_biaya')->select('list_biaya.*')->get();
+        return view('admin.listbiaya.index', compact('listBiaya'));
+    }
+
+    public function listBiayaCreate () {
+        return view('admin.listbiaya.create');
+    }
+
+    public function listBiayaStore(Request $request) {
+        $request->validate([
+            'nama_biaya' => 'required',
+            'tipe_biaya' => 'required',
+        ]);
+
+
+    }
+
+    public function listBiayaEdit ($id) {
+
+    }
+
+    public function listBiayaUpdate (Request $request, $id) {
+
+    }
+
+    public function listBiayaDestroy ($id) {
+        $listBiaya = List_Biaya::findOrFail($id);
+        $listBiaya->delete();
+
+        redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus List Biaya']);
     }
 }
