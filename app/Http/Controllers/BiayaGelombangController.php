@@ -9,6 +9,7 @@ use App\TahunAjaran;
 use App\List_Biaya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\List_;
 
 class BiayaGelombangController extends Controller
 {
@@ -129,7 +130,7 @@ class BiayaGelombangController extends Controller
     }
 
     public function listBiayaIndex() {
-        $listBiaya = DB::table('list_biaya')->select('list_biaya.*')->get();
+        $listBiaya = DB::table('list_pembayaran')->select('list_pembayaran.*')->get();
         return view('admin.listbiaya.index', compact('listBiaya'));
     }
 
@@ -139,19 +140,40 @@ class BiayaGelombangController extends Controller
 
     public function listBiayaStore(Request $request) {
         $request->validate([
-            'nama_biaya' => 'required',
-            'tipe_biaya' => 'required',
+            'nama_list_pembayaran' => 'required',
+            'tipe_pembayaran' => 'required',
         ]);
 
-
+        List_Biaya::create([
+            'nama_list_pembayaran' => $request->nama_biaya,
+            'rincian_list_pembayaran' => $request->rincian_biaya,
+            'tipe_pembayaran' => $request->tipe_biaya,
+            'biaya' => $request->biaya,
+            'status_list_pembayaran' => 1,
+        ]);
+        return redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah List Biaya']);
     }
 
     public function listBiayaEdit ($id) {
-
+        $listBiaya = List_Biaya::findOrFail($id);
+        return view('admin.listbiaya.edit', compact('listbiaya'));
     }
 
     public function listBiayaUpdate (Request $request, $id) {
+        $request->validate([
+            'nama_list_pembayaran' => 'required',
+            'tipe_pembayaran' => 'required',
+        ]);
 
+        List_Biaya::find($id)->update([
+            'nama_list_pembayaran' => $request->nama_biaya,
+            'rincian_list_pembayaran' => $request->rincian_biaya,
+            'tipe_pembayaran' => $request->tipe_biaya,
+            'biaya' => $request->biaya,
+            'status_list_pembayaran' => 1,
+        ]);
+
+        return redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Merubah List Biaya']);
     }
 
     public function listBiayaDestroy ($id) {

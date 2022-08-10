@@ -36,10 +36,12 @@ class AdminController extends Controller
         $dataDiriLengkap = count($siswa) - $dataDiriLengkap;
 
         $riwayat = DB::table('pendaftaran')
-                ->select('pendaftaran.id_pendaftaran','biaya_gelombang.id_biaya_gelombang','biaya_gelombang.biaya', 'gelombang.daftar_gelombang_id','tahun_ajaran.nama_tahun_ajaran')
-                ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-                ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+                ->select('pendaftaran.id_pendaftaran', 'pendaftaran.nomor_ujian','gelombang.daftar_gelombang_id','daftar_gelombang.nama_daftar_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                // ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+                ->join('gelombang', 'gelombang.id_gelombang', '=', 'pendaftaran.gelombang_id')
+                ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
                 ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
+                ->where('daftar_gelombang.status_daftar_gelombang', 1)
                 ->where('tahun_ajaran.status', 1)
                 ->get();
 
@@ -167,8 +169,8 @@ class AdminController extends Controller
 
     public function unduhpresensiView(){
         $daftarulang = DB::table('pendaftaran')
-        ->select('pendaftaran.*', 'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
-        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+        ->select('pendaftaran.*', 'daftar_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
