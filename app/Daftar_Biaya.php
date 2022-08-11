@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class List_Biaya extends Model
+class Daftar_Biaya extends Model
 {
     //
     public $timestamps = false;
