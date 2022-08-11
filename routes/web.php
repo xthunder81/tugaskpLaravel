@@ -120,12 +120,20 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::patch('gelombang/{id}/update', 'GelombangController@update')->name('admin.gelombang.update');
     Route::get('gelombang/aktif/{id}', 'GelombangController@gelombangAktif')->name('admin.gelombang.aktif');
 
-    Route::get('biayagelombang', 'BiayaGelombangController@index')->name('admin.biayagelombang');
-    Route::get('biayagelombang/create', 'BiayaGelombangController@create')->name('admin.biayagelombang.create');
-    Route::get('biayagelombang/edit/{id}', 'BiayaGelombangController@edit')->name('admin.biayagelombang.edit');
-    Route::delete('biayagelombang/destroy/{id}', 'BiayaGelombangController@destroy')->name('admin.biayagelombang.destroy');
-    Route::post('biayagelombang/store', 'BiayaGelombangController@store')->name('admin.biayagelombang.store');
-    Route::patch('biayagelombang/{id}/update', 'BiayaGelombangController@update')->name('admin.biayagelombang.update');
+    Route::get('listbiaya', 'BiayaGelombangController@listBiayaIndex')->name('admin.listbiaya');
+    Route::get('listbiaya/create', 'BiayaGelombangController@listBiayaCreate')->name('admin.listbiaya.create');
+    Route::get('listbiaya/edit/{id}', 'BiayaGelombangController@listBiayaEdit')->name('admin.listbiaya.edit');
+    Route::delete('listbiaya/destroy/{id}', 'BiayaGelombangController@listBiayaDestroy')->name('admin.listbiaya.destroy');
+    Route::post('listbiaya/store', 'BiayaGelombangController@listBiayaStore')->name('admin.listbiaya.store');
+    Route::patch('listbiaya/{id}/update', 'BiayaGelombangController@listBiayaUpdate')->name('admin.listbiaya.update');
+    Route::get('listbiaya/aktif/{id}', 'BiayaGelombangController@listBiayaAktif')->name('admin.listbiaya.aktif');
+
+    Route::get('biayaformulir', 'BiayaGelombangController@index')->name('admin.biayaformulir');
+    Route::get('biayaformulir/create', 'BiayaGelombangController@create')->name('admin.biayaformulir.create');
+    Route::get('biayaformulir/edit/{id}', 'BiayaGelombangController@edit')->name('admin.biayaformulir.edit');
+    Route::delete('biayaformulir/destroy/{id}', 'BiayaGelombangController@destroy')->name('admin.biayaformulir.destroy');
+    Route::post('biayaformulir/store', 'BiayaGelombangController@store')->name('admin.biayaformulir.store');
+    Route::patch('biayaformulir/{id}/update', 'BiayaGelombangController@update')->name('admin.biayaformulir.update');
 
     Route::get('siswa', 'SiswaAdminController@index')->name('admin.siswa');
     Route::get('siswa/create', 'SiswaAdminController@create')->name('admin.siswa.create');
@@ -142,14 +150,6 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('dokumen/{id}/edit', 'DokumenController@edit')->name('admin.dokumen.edit');
     Route::patch('dokumen/{id}/update', 'DokumenController@update')->name('admin.dokumen.update');
     Route::delete('dokumen/destroy/{id}', 'DokumenController@destroy')->name('admin.dokumen.destroy');
-
-    // Route::get('dokumen', 'DokumenController@index')->name('admin.dokumen');
-    // Route::get('dokumen/create', 'DokumenController@create')->name('admin.dokumen.create');
-    // Route::get('dokumen/aktif/{id}', 'DokumenController@aktif')->name('admin.dokumen.aktif');
-    // Route::post('dokumen/store', 'DokumenController@store')->name('admin.dokumen.store');
-    // Route::get('dokumen/{id}/edit', 'DokumenController@edit')->name('admin.dokumen.edit');
-    // Route::patch('dokumen/{id}/update', 'DokumenController@update')->name('admin.dokumen.update');
-    // Route::delete('dokumen/destroy/{id}', 'DokumenController@destroy')->name('admin.dokumen.destroy');
 
     Route::get('nilai', 'NilaiController@index')->name('admin.nilai');
     Route::get('nilai/create', 'NilaiController@create')->name('admin.nilai.create');

@@ -6,9 +6,10 @@ use App\BiayaGelombang;
 use App\Gelombang;
 use App\Jurusan;
 use App\TahunAjaran;
-use App\List_Biaya;
+use App\Daftar_Biaya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\List_;
 
 class BiayaGelombangController extends Controller
 {
@@ -129,7 +130,7 @@ class BiayaGelombangController extends Controller
     }
 
     public function listBiayaIndex() {
-        $listBiaya = DB::table('list_biaya')->select('list_biaya.*')->get();
+        $listBiaya = Daftar_Biaya::get()->where('tipe_pembayaran', 1);
         return view('admin.listbiaya.index', compact('listBiaya'));
     }
 
@@ -139,25 +140,55 @@ class BiayaGelombangController extends Controller
 
     public function listBiayaStore(Request $request) {
         $request->validate([
-            'nama_biaya' => 'required',
-            'tipe_biaya' => 'required',
+            'nama_list_pembayaran' => 'required',
         ]);
 
-
+        Daftar_Biaya::create([
+            'nama_list_pembayaran' => $request->nama_list_pembayaran,
+            'rincian_list_pembayaran' => $request->rincian_list_pembayaran,
+            'tipe_pembayaran' => 1,
+            'biaya' => $request->Biaya,
+            'status_list_pembayaran' => 1,
+        ]);
+        return redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah List Biaya']);
     }
 
     public function listBiayaEdit ($id) {
-
+        $listBiaya = Daftar_Biaya::findOrFail($id);
+        return view('admin.listbiaya.edit', compact('listBiaya'));
     }
 
     public function listBiayaUpdate (Request $request, $id) {
+        $request->validate([
+            'nama_list_pembayaran' => 'required',
+        ]);
 
+        Daftar_Biaya::find($id)->update([
+            'nama_list_pembayaran' => $request->nama_list_pembayaran,
+            'rincian_list_pembayaran' => $request->rincian_list_pembayaran,
+            'biaya' => $request->biaya,
+        ]);
+
+        return redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Merubah List Biaya']);
     }
 
     public function listBiayaDestroy ($id) {
-        $listBiaya = List_Biaya::findOrFail($id);
+        $listBiaya = Daftar_Biaya::findOrFail($id);
         $listBiaya->delete();
 
-        redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus List Biaya']);
+        return redirect(route('admin.listbiaya'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus List Biaya']);
+    }
+    public function listBiayaAktif($id){
+        $listBiaya = Daftar_Biaya::findOrFail($id);
+
+        if($listBiaya->status_list_pembayaran  == 1){
+            $listBiaya->status_list_pembayaran  = 0;
+        }else{
+            $listBiaya->status_list_pembayaran  = 1;
+        }
+
+        $listBiaya->save();
+
+        return redirect()->back()->with('success','Berhasil Diaktifkan');
     }
 }

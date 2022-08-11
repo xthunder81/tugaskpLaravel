@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class List_Biaya extends Model
+class Daftar_Biaya extends Model
 {
     //
     public $timestamps = false;
-    protected $table = 'jenis_biaya';
-    protected $primaryKey = 'id_jenis_biaya';
+    protected $table = 'list_pembayaran';
+    protected $primaryKey = 'id_list_pembayaran';
     protected $guarded = [];
 }

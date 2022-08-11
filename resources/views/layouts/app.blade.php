@@ -185,7 +185,7 @@
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.listbiaya') }}" class="nav-link {{ Route::current()->getName() == 'admin.listbiaya' ? 'active' : '' }}">
                             <i class=""></i>
                             <p>
                             Biaya Formulir
@@ -194,34 +194,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('admin.listbiaya') }}" class="nav-link {{ Route::current()->getName() == 'admin.listbiaya' ? 'active' : '' }}">
                             <i class=""></i>
                             <p>
                             Biaya Daftar Ulang
                             </p>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('admin.biayagelombang') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayagelombang' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-money-bill"></i>
-                            <p>
-                            Biaya Gelombang
-                            </p>
-                        </a>
-                    </li>
                 </ul>
 
             </li>
-
-            <!-- <li class="nav-item">
-                <a href="{{ route('admin.jurusan') }}" class="nav-link {{ Route::current()->getName() == 'admin.jurusan' ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-list"></i>
-                    <p>
-                    Jurusan
-                    </p>
-                </a>
-            </li> -->
 
             <li class="nav-item">
                 <a href="{{ route('admin.dokumen') }}" class="nav-link {{ Route::current()->getName() == 'admin.dokumen' ? 'active' : '' }}">
