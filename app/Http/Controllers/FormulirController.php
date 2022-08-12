@@ -21,13 +21,14 @@ class FormulirController extends Controller
 {
     public function index(){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' , 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' , 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'list_pembayaran.*')
         ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
         ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
-        ->where('pembayaran.jenis_pembayaran', 0)
+        ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran', '=', 'pembayaran.list_pembayaran_id')
+        ->where('list_pembayaran.tipe_pembayaran', 0)
         ->where('tahun_ajaran.status', 1)
         ->get();
 
@@ -55,7 +56,7 @@ class FormulirController extends Controller
         $siswa->save();
 
         $formulir = new Formulir();
-        $formulir->nomor_formulir = "ininomornyaberapa";
+        $formulir->nomor_formulir = " ";
         $formulir->status = "1";
         $formulir->admin_id = $petugas;
         $formulir->siswa_id = $siswa->id;
