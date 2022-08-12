@@ -21,9 +21,9 @@ class FormulirController extends Controller
 {
     public function index(){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
-        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        ->select('pendaftaran.*' , 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
+        ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')

@@ -98,12 +98,12 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('tahunajaran/aktif/{id}', 'AdminController@tahunajaranAktif')->name('admin.tahunajaran.aktif');
     Route::get('tahunajaran/destroy/{id}', 'AdminController@tahunajaranDestroy')->name('admin.tahunajaran.destroy');
 
-    Route::get('jurusan', 'JurusanController@index')->name('admin.jurusan');
-    Route::get('jurusan/create', 'JurusanController@create')->name('admin.jurusan.create');
-    Route::post('jurusan/store', 'JurusanController@store')->name('admin.jurusan.store');
-    Route::get('jurusan/edit/{id}', 'JurusanController@edit')->name('admin.jurusan.edit');
-    Route::patch('jurusan/update/{id}', 'JurusanController@update')->name('admin.jurusan.update');
-    Route::delete('jurusan/destroy/{id}', 'JurusanController@destroy')->name('admin.jurusan.destroy');
+    // Route::get('jurusan', 'JurusanController@index')->name('admin.jurusan');
+    // Route::get('jurusan/create', 'JurusanController@create')->name('admin.jurusan.create');
+    // Route::post('jurusan/store', 'JurusanController@store')->name('admin.jurusan.store');
+    // Route::get('jurusan/edit/{id}', 'JurusanController@edit')->name('admin.jurusan.edit');
+    // Route::patch('jurusan/update/{id}', 'JurusanController@update')->name('admin.jurusan.update');
+    // Route::delete('jurusan/destroy/{id}', 'JurusanController@destroy')->name('admin.jurusan.destroy');
 
     Route::get('daftargelombang', 'GelombangController@daftarGelombangIndex')->name('admin.daftargelombang');
     Route::get('daftargelombang/create', 'GelombangController@daftarGelombangCreate')->name('admin.daftargelombang.create');
