@@ -44,7 +44,13 @@
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->mulai)->format('d M Y') }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data->selesai)->format('d M Y') }}</td>
                                     <td>{{$data->kuota}} / {{$data->kuota_max}} </td>
-                                    <td>{{ $data->status == 1 ? "Aktif" : "Tidak Aktif"}}</td>
+                                    <td>@if ($data->status == 1)
+                                            Aktif
+                                        @endif
+                                        @if ($data->status == 0)
+                                            Tidak Aktif
+                                        @endif
+                                    </td>
                                     <td>
                                         <a class="btn {{ $data->status == 0 ? "btn-success" : "btn-warning" }} btn-xs" href="{{ route('admin.gelombang.aktif', $data->id_gelombang) }}" @if($data->status == 0) onclick="return confirm('Yakin ingin MENGAKTIFKAN Gelombang ini?')" @else onclick="return confirm('Yakin ingin MENONAKTIFKAN Gelombang ini?')" @endif>@if($data->status == 0)<i class="nav-icon fas fa-check"></i> Aktifkan @else <i class="nav-icon fas fa-times"></i> Nonaktifkan @endif</a>
                                         <a href="{{ route('admin.gelombang.edit', $data->id_gelombang)}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Gelombang">

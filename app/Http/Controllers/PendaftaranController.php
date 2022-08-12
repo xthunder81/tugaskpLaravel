@@ -74,7 +74,7 @@ class PendaftaranController extends Controller
         ->join('formulirs', 'formulirs.id_formulir','=','pendaftarans.formulir_id')
         ->join('users', 'users.id','=','pendaftarans.user_id')
         ->join('siswas', 'siswas.id_siswa','=','formulirs.siswa_id')
-        ->join('gelombangs', 'gelombangs.id_jurusan','=','formulirs.gelombang_id')
+        ->join('gelombangs', 'gelombangs.id_gelombang','=','formulirs.gelombang_id')
         ->where('id_pendaftaran', $id)
         ->first();
 

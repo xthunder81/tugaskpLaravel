@@ -98,12 +98,12 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('tahunajaran/aktif/{id}', 'AdminController@tahunajaranAktif')->name('admin.tahunajaran.aktif');
     Route::get('tahunajaran/destroy/{id}', 'AdminController@tahunajaranDestroy')->name('admin.tahunajaran.destroy');
 
-    Route::get('jurusan', 'JurusanController@index')->name('admin.jurusan');
-    Route::get('jurusan/create', 'JurusanController@create')->name('admin.jurusan.create');
-    Route::post('jurusan/store', 'JurusanController@store')->name('admin.jurusan.store');
-    Route::get('jurusan/edit/{id}', 'JurusanController@edit')->name('admin.jurusan.edit');
-    Route::patch('jurusan/update/{id}', 'JurusanController@update')->name('admin.jurusan.update');
-    Route::delete('jurusan/destroy/{id}', 'JurusanController@destroy')->name('admin.jurusan.destroy');
+    // Route::get('jurusan', 'JurusanController@index')->name('admin.jurusan');
+    // Route::get('jurusan/create', 'JurusanController@create')->name('admin.jurusan.create');
+    // Route::post('jurusan/store', 'JurusanController@store')->name('admin.jurusan.store');
+    // Route::get('jurusan/edit/{id}', 'JurusanController@edit')->name('admin.jurusan.edit');
+    // Route::patch('jurusan/update/{id}', 'JurusanController@update')->name('admin.jurusan.update');
+    // Route::delete('jurusan/destroy/{id}', 'JurusanController@destroy')->name('admin.jurusan.destroy');
 
     Route::get('daftargelombang', 'GelombangController@daftarGelombangIndex')->name('admin.daftargelombang');
     Route::get('daftargelombang/create', 'GelombangController@daftarGelombangCreate')->name('admin.daftargelombang.create');
@@ -134,6 +134,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::delete('biayaformulir/destroy/{id}', 'BiayaGelombangController@destroy')->name('admin.biayaformulir.destroy');
     Route::post('biayaformulir/store', 'BiayaGelombangController@store')->name('admin.biayaformulir.store');
     Route::patch('biayaformulir/{id}/update', 'BiayaGelombangController@update')->name('admin.biayaformulir.update');
+    Route::get('biayaformulir/show/{id}', 'BiayaGelombangController@show')->name('admin.biayaformulir.aktif');
 
     Route::get('siswa', 'SiswaAdminController@index')->name('admin.siswa');
     Route::get('siswa/create', 'SiswaAdminController@create')->name('admin.siswa.create');

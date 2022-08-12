@@ -37,7 +37,6 @@ class AdminController extends Controller
 
         $riwayat = DB::table('pendaftaran')
                 ->select('pendaftaran.id_pendaftaran', 'pendaftaran.nomor_ujian','gelombang.daftar_gelombang_id','daftar_gelombang.nama_daftar_gelombang','tahun_ajaran.nama_tahun_ajaran')
-                // ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
                 ->join('gelombang', 'gelombang.id_gelombang', '=', 'pendaftaran.gelombang_id')
                 ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
                 ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
