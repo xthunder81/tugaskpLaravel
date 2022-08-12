@@ -185,7 +185,7 @@
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('admin.listbiaya') }}" class="nav-link {{ Route::current()->getName() == 'admin.listbiaya' ? 'active' : '' }}">
+                        <a href="{{ route('admin.biayaformulir') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayaformulir' ? 'active' : '' }}">
                             <i class=""></i>
                             <p>
                             Biaya Formulir

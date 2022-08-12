@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titlePage')
-    Tambah Biaya Gelombang
+    Tambah Biaya Daftar Ulang
 @endsection
 
 @section('content')
@@ -11,45 +11,31 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <!-- form start -->
-                <form action="{{ route('admin.biayagelombang.store') }}" method="post" role="form" id="quickForm">
+                <form action="{{ route('admin.listbiaya.store') }}" method="post" role="form" id="quickForm">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="nama">Total Biaya</label>
-                            <input type="text" name="biaya" class="form-control @error('biaya') is-invalid @enderror" id="biaya" value="{{ old('biaya') }}" placeholder="Total Biaya">
-                            @error('Biaya')
+                            <label for="nama_list_pembayaran">Nama Biaya</label>
+                            <input type="text" name="nama_list_pembayaran" class="form-control @error('nama_list_pembayaran') is-invalid @enderror" id="nama_list_pembayaran" value="{{ old('nama_list_pembayaran') }}" placeholder="Nama Biaya">
+                            @error('nama_list_pembayaran')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-sm-13 mb-2">
-                            <label for="name">Rincian Biaya Daftar Ulang</label>
-                            <textarea class="form-control @error('rincian_biaya_daftar_ulang') is-invalid @enderror" id="exampleFormControlTextarea1" name="rincian_biaya_daftar_ulang" rows="3" placeholder="Rincian Biaya Daftar Ulang">{{ old('rincian_biaya_daftar_ulang') }}</textarea>
-                            @error('rincian_biaya_daftar_ulang')
+                            <label for="rincian_list_pembayaran">Rincian Biaya Daftar Ulang</label>
+                            <textarea class="form-control @error('rincian_list_pembayaran') is-invalid @enderror" id="exampleFormControlTextarea1" name="rincian_list_pembayaran" rows="3" placeholder="Rincian Biaya Daftar Ulang">{{ old('rincian_list_pembayaran') }}</textarea>
+                            @error('rincian_list_pembayaran')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
-                            <label>Jurusan</label>
-                            <select class="form-control @error('jurusan_id_jurusan') is-invalid @enderror" name="jurusan_id_jurusan">
-                                @foreach($jurusan as $j)
-                                    <option value="{{ $j->id_jurusan }}">{{ $j->nama_jurusan }}</option>
-                                @endforeach
-                            </select>
-                            @error('jurusan_id_jurusan')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
                         <div class="form-group">
-                            <label>Gelombang</label>
-                            <select class="form-control @error('gelombang_id_gelombang') is-invalid @enderror" name="gelombang_id_gelombang">
-                                @foreach($gelombang as $j)
-                                    <option value="{{ $j->id_gelombang }}">{{ $j->nama_gelombang }}</option>
-                                @endforeach
-                            </select>
-                            @error('gelombang_id_gelombang')
+                            <label for = "Biaya">Total Biaya</label>
+                            <input type="text" name="Biaya" class="form-control @error('Biaya') is-invalid @enderror" id="Biaya" value="{{ old('Biaya') }}" placeholder="Total Biaya">
+                            @error('Biaya')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

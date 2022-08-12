@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titlePage')
-    Tambah Biaya Daftar Ulang
+    Tambah Biaya Formulir
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <!-- form start -->
-                <form action="{{ route('admin.listbiaya.store') }}" method="post" role="form" id="quickForm">
+                <form action="{{ route('admin.biayaformulir.store') }}" method="post" role="form" id="quickForm">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -22,7 +22,7 @@
                             @enderror
                         </div>
                         <div class="col-sm-13 mb-2">
-                            <label for="rincian_list_pembayaran">Rincian Biaya Daftar Ulang</label>
+                            <label for="rincian_list_pembayaran">Rincian Biaya Formulir</label>
                             <textarea class="form-control @error('rincian_list_pembayaran') is-invalid @enderror" id="exampleFormControlTextarea1" name="rincian_list_pembayaran" rows="3" placeholder="Rincian Biaya Daftar Ulang">{{ old('rincian_list_pembayaran') }}</textarea>
                             @error('rincian_list_pembayaran')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -20,14 +20,9 @@ class BiayaGelombangController extends Controller
      */
     public function index()
     {
-        $biayagelombang = DB::table('biaya_gelombang')
-        ->select('biaya_gelombang.*', 'gelombang.nama_gelombang')
-        ->join('gelombang','gelombang.id_gelombang', 'biaya_gelombang.gelombang_id')
-        ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
-        ->where('tahun_ajaran.status', 1)
-        ->get();
+        $biayaformulir = Daftar_Biaya::get()->where('tipe_pembayaran', 0);
+        return view('admin.biayaformulir.index', compact('biayaformulir'));
 
-        return view('admin.biayagelombang.index', compact('biayagelombang'));
     }
 
     /**
@@ -37,12 +32,7 @@ class BiayaGelombangController extends Controller
      */
     public function create()
     {
-        $gelombang = DB::table('gelombang')
-        ->select('gelombang.*')
-        ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','gelombang.tahun_ajaran_id')
-        ->where('tahun_ajaran.status',1)
-        ->get();
-        return view('admin.biayagelombang.create', compact('gelombang'));
+        return view('admin.biayaformulir.create');
     }
 
     /**
@@ -54,17 +44,17 @@ class BiayaGelombangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'biaya' => 'required',
-            'rincian_biaya_daftar_ulang' => 'required',
-            'gelombang_id_gelombang' => 'required',
+            'nama_list_pembayaran' => 'required',
         ]);
 
-        BiayaGelombang::create([
-            'biaya' => $request->biaya,
-            'rincian_biaya_daftar_ulang' => $request->rincian_biaya_daftar_ulang,
-            'gelombang_id' => $request->gelombang_id_gelombang,
+        Daftar_Biaya::create([
+            'nama_list_pembayaran' => $request->nama_list_pembayaran,
+            'rincian_list_pembayaran' => $request->rincian_list_pembayaran,
+            'tipe_pembayaran' => 0,
+            'biaya' => $request->Biaya,
+            'status_list_pembayaran' => 1,
         ]);
-        return redirect(route('admin.biayagelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Biaya Gelombang']);
+        return redirect(route('admin.biayaformulir'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Biaya Formulir']);
     }
 
     /**
@@ -76,6 +66,17 @@ class BiayaGelombangController extends Controller
     public function show($id)
     {
         //
+        $listBiaya = Daftar_Biaya::findOrFail($id);
+
+        if($biayaformulir->status_list_pembayaran  == 1){
+            $biayaformulir->status_list_pembayaran  = 0;
+        }else{
+            $biayaformulir->status_list_pembayaran  = 1;
+        }
+
+        $biayaformulir->save();
+
+        return redirect()->back()->with('success','Berhasil Diaktifkan');
     }
 
     /**
@@ -86,9 +87,8 @@ class BiayaGelombangController extends Controller
      */
     public function edit($id)
     {
-        $gelombang = Gelombang::get();
-        $biayagelombang = BiayaGelombang::findOrFail($id);
-        return view('admin.biayagelombang.edit', compact('gelombang','biayagelombang'));
+        $biayaformulir = Daftar_Biaya::findOrFail($id);
+        return view('admin.biayaformulir.edit', compact('biayaformulir'));
     }
 
     /**
@@ -101,18 +101,16 @@ class BiayaGelombangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'biaya' => 'required',
-            'rincian_biaya_daftar_ulang' => 'required',
-            'gelombang_id_gelombang' => 'required',
+            'nama_list_pembayaran' => 'required',
         ]);
 
-        DB::table('biaya_gelombang')->where('id_biaya_gelombang', $id)->update([
+        Daftar_Biaya::find($id)->update([
+            'nama_list_pembayaran' => $request->nama_list_pembayaran,
+            'rincian_list_pembayaran' => $request->rincian_list_pembayaran,
             'biaya' => $request->biaya,
-            'rincian_biaya_daftar_ulang' => $request->rincian_biaya_daftar_ulang,
-            'gelombang_id' => $request->gelombang_id_gelombang,
         ]);
 
-        return redirect(route('admin.biayagelombang'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Biaya Gelombang']);
+        return redirect(route('admin.biayaformulir'))->with(['jenis' => 'success','pesan' => 'Berhasil Merubah Biaya Formulir']);
     }
 
     /**
@@ -123,10 +121,10 @@ class BiayaGelombangController extends Controller
      */
     public function destroy($id)
     {
-        $biayagelombang = BiayaGelombang::findOrFail($id);
-        $biayagelombang->delete();
+        $biayaformulir = Daftar_Biaya::findOrFail($id);
+        $biayaformulir->delete();
 
-        return redirect(route('admin.biayagelombang'))->with(['jenis' => 'success','pesan' => 'Biaya Gelombang Berhasil dihapus']);
+        return redirect(route('admin.biayaformulir'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus List Biaya']);
     }
 
     public function listBiayaIndex() {

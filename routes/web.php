@@ -134,6 +134,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::delete('biayaformulir/destroy/{id}', 'BiayaGelombangController@destroy')->name('admin.biayaformulir.destroy');
     Route::post('biayaformulir/store', 'BiayaGelombangController@store')->name('admin.biayaformulir.store');
     Route::patch('biayaformulir/{id}/update', 'BiayaGelombangController@update')->name('admin.biayaformulir.update');
+    Route::get('biayaformulir/show/{id}', 'BiayaGelombangController@show')->name('admin.biayaformulir.aktif');
 
     Route::get('siswa', 'SiswaAdminController@index')->name('admin.siswa');
     Route::get('siswa/create', 'SiswaAdminController@create')->name('admin.siswa.create');
