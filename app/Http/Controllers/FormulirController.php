@@ -181,7 +181,7 @@ class FormulirController extends Controller
             'pendaftaran_id' => $id,
             'bukti_pembayaran' => null,
             'jumlah' => null,
-            'jenis_pembayaran' => '1',
+            'jenis_pembayaran' => 1,
             'metode_pembayaran' => null,
             'status_pembayaran' => null,
             'admin_id' => \Auth::guard('admin')->user()->id_admin,
