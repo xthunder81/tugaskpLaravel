@@ -24,7 +24,7 @@ class CreatePendaftaranTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id_pendaftaran');
             $table->string('nomor_ujian')->nullable();
-            $table->unsignedInteger('biaya_gelombang_id');
+            $table->unsignedInteger('gelombang_id');
             $table->unsignedInteger('siswa_id');
             $table->unsignedInteger('admin_id')->nullable();
             $table->index("siswa_id");
