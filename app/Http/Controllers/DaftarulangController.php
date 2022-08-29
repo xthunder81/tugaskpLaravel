@@ -19,13 +19,13 @@ class DaftarulangController extends Controller
 {
     public function index(){
         $daftarulang = DB::table('pembayaran')
-        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('pendaftaran', 'pendaftaran.id_pendaftaran','=','pembayaran.pendaftaran_id')
-        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran','=','pembayaran.list_pembayaran_id')
+        ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
-        ->where('pembayaran.jenis_pembayaran', 1)
+        ->where('list_pembayaran.tipe_pembayaran', 1)
         ->where('tahun_ajaran.status', 1)
         ->get();
 
@@ -34,7 +34,7 @@ class DaftarulangController extends Controller
 
     public function show($id){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'biaya_gelombang.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
         ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
