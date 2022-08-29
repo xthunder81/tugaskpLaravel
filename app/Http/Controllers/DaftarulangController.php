@@ -19,8 +19,9 @@ class DaftarulangController extends Controller
 {
     public function index(){
         $daftarulang = DB::table('pembayaran')
-        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
+        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'daftar_gelombang.*')
         ->join('pendaftaran', 'pendaftaran.id_pendaftaran','=','pembayaran.pendaftaran_id')
+        ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang', '=', 'gelombang.daftar_gelombang_id')
         ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran','=','pembayaran.list_pembayaran_id')
         ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
@@ -34,13 +35,14 @@ class DaftarulangController extends Controller
 
     public function show($id){
         $formulir = DB::table('pendaftaran')
-        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*')
-        ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
-        ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        ->select('pendaftaran.*' ,'list_pembayaran.*', 'gelombang.*','tahun_ajaran.*','siswa.*','pembayaran.*', 'daftar_gelombang.*')
+        ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang', '=', 'gelombang.daftar_gelombang_id')
+        ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
+        ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran','=', 'pembayaran.list_pembayaran_id')
         ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
         ->join('siswa', 'siswa.id_siswa','=','pendaftaran.siswa_id')
         ->join('pembayaran', 'pembayaran.pendaftaran_id','=','pendaftaran.id_pendaftaran')
-        ->where('pembayaran.jenis_pembayaran', 1)
+        ->where('list_pembayaran.tipe_pembayaran', 1)
         ->where('pendaftaran.id_pendaftaran', $id)
         ->first();
 
@@ -80,7 +82,14 @@ class DaftarulangController extends Controller
     }
 
     public function verifikasi($id){
-        $pembayaran = Pembayaran::where('pendaftaran_id', $id)->where('jenis_pembayaran', 1)->first();
+        // $pembayaran = Pembayaran::where('pendaftaran_id', $id)->where('jenis_pembayaran', 1)->first();
+
+        $pembayaran = DB::table('pembayaran')
+                        ->select('pembayaran.*', 'list_pembayaran.*')
+                        ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran', '=', 'pembayaran.list_pembayaran_id')
+                        ->where('pendaftaran_id', $id)
+                        ->where('list_pembayaran.tipe_pembayaran', 1)
+                        ->first();
 
         if($pembayaran->metode_pembayaran == null){
             $pembayaran->metode_pembayaran = 0;

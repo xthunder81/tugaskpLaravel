@@ -54,36 +54,57 @@ class AdminController extends Controller
         $hasilDariDaftarUlang = 0;
         foreach($riwayat as $r){
 
-            $cekBayarFormulir = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '0')->first();
+            // $cekBayarFormulir = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '0')->first();
+            $cekBayarFormulir = DB::table('pembayaran')
+                                ->select('pembayaran.*', 'pendaftaran.*', 'list_pembayaran.*')
+                                ->join('pendaftaran', 'pendaftaran.id_pendaftaran', '=', 'pembayaran.pendaftaran_id')
+                                ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran', '=', 'pembayaran.list_pembayaran_id')
+                                ->where('pendaftaran_id', $r->id_pendaftaran)
+                                ->where('list_pembayaran.tipe_pembayaran', 0)
+                                ->first();
             $cekDiterima = StatusPendaftaran::where('pendaftaran_id', $r->id_pendaftaran)->first();
 
             if($cekDiterima !=null){
-                $cekBayarDaftarulang = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '1')->first();
+                // $cekBayarDaftarulang = Pembayaran::where('pendaftaran_id', $r->id_pendaftaran)->where('jenis_pembayaran', '1')->first();
+                $cekBayarDaftarulang = DB::table('pembayaran')
+                                        ->select('pembayaran.*', 'pendaftaran.*','list_pembayaran.*')
+                                        ->join('pendaftaran', 'pendaftaran.id_pendaftaran', '=', 'pembayaran.pendaftaran_id')
+                                        ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran', '=', 'pembayaran.list_pembayaran_id')
+                                        ->where('pendaftaran_id', $r->id_pendaftaran)
+                                        ->where('list_pembayaran.tipe_pembayaran', 1)
+                                        ->first();
                 if(!$cekBayarDaftarulang && $cekDiterima->status_id == 2){
                     //Siswa tidak diterima
                     $tidakDiterima++;
-                }else if($cekBayarDaftarulang->status_pembayaran == 1){
+                }
+                else if($cekBayarDaftarulang->status_pembayaran == 1){
                 //Pembayaran Sudah Diverifikasi
-                    $hasilDariDaftarUlang = $hasilDariDaftarUlang + $r->biaya;
-                    $sudahDiterimadiSekolah++;
+                $hasilDariDaftarUlang = $hasilDariDaftarUlang + $r->biaya;
+                $sudahDiterimadiSekolah++;
 
 
-                }else if($cekDiterima->status_pembayaran == null && $cekBayarDaftarulang->bukti_pembayaran != null){
+                }
+                else if($cekDiterima->status_pembayaran == null && $cekBayarDaftarulang->bukti_pembayaran != null){
                     //sudah bayar formulilr nunggu verifikasi admin
                     $menungguVerifikasiPembayaranDaftarUlang++;
-                }else if($cekDiterima->status_id == 1){
+                }
+                else if($cekDiterima->status_id == 1){
                     //diterima belum bayar
                     $diterima++;
                 }
-            }else if($cekBayarFormulir->status_pembayaran == null && $cekBayarFormulir->bukti_pembayaran != null){
+            }
+            else if($cekBayarFormulir->status_pembayaran == null && $cekBayarFormulir->bukti_pembayaran != null){
                 $menungguVerifikasiPembayaranFormulir++;
-            }else if($cekBayarFormulir->status_pembayaran == 1){
+            }
+            else if($cekBayarFormulir->status_pembayaran == 1){
                 //pembayaran formulir approved
                 $menungguDiterima++;
-            }else if($cekBayarFormulir->status_pembayaran == 2 && $cekBayarFormulir->bukti_pembayaran != null){
+            }
+            else if($cekBayarFormulir->status_pembayaran == 2 && $cekBayarFormulir->bukti_pembayaran != null){
                 //Pembayaran not reject
                 // $s=4;
-            }else{
+            }
+            else{
                 $registrasi++;
             }
 
