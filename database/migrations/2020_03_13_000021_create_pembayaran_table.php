@@ -26,9 +26,9 @@ class CreatePembayaranTable extends Migration
             $table->unsignedInteger('pendaftaran_id');
             $table->string('bukti_pembayaran')->nullable();
             $table->unsignedInteger('jumlah')->nullable();
-            $table->tinyInteger('jenis_pembayaran')->comment('0 - Pendaftaran | 1 - Daftar Ulang');
+            $table->unsignedInteger('list_pembayaran_id')->comment('0 - Formulir | 1 - Daftar Ulang');
             $table->tinyInteger('metode_pembayaran')->nullable()->comment('null - Belum Ditentukan | 0 - Cash | 1 - Transfer');
-            $table->tinyInteger('status_pembayaran')->nullable()->comment('null - Moderated | 0 - Declined | 1 - Approved');
+            $table->tinyInteger('status_pembayaran')->nullable()->comment('null - Moderated |1 - DiTerima |2- Tidak Diterima ');
             $table->unsignedInteger('admin_id')->nullable();
             $table->timestamps();
 
