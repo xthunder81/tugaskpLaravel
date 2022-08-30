@@ -11,7 +11,7 @@
             <!-- jquery validation -->
             <div class="card card-primary">
                 <!-- form start -->
-                <form action="{{ route('admin.biayaformulir.store') }}" method="post" role="form" id="quickForm">
+                <form action="{{ route('admin.listbiaya.store') }}" method="post" role="form" id="quickForm">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
