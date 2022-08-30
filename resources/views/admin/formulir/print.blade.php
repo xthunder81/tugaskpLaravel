@@ -89,12 +89,12 @@
             <tr>
                 <td>Untuk pembayaran</td>
                 <td>:</td>
-                <td>{{$formulir->rincian_biaya_daftar_ulang}}</td>
+                <td>{{$formulir->rincian_list_pembayaran}}</td>
             </tr>
             <tr>
                 <td>Gelombang Terdaftar</td>
                 <td>:</td>
-                <td>{{ $formulir->nama_gelombang }}</td>
+                <td>{{ $formulir->nama_daftar_gelombang }}</td>
             </tr>
         </table>
 
