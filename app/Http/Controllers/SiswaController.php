@@ -133,7 +133,7 @@ class SiswaController extends Controller
 
         foreach($siswa->toArray() as $key => $value)
         {
-            if($value->nisn == null){
+            if($value == null){
                 return redirect()->route('siswa.predaftar')->with(['jenis' => 'danger','pesan' => 'Anda harus melengkapi data diri terlebih']);
                 die();
             }
@@ -177,7 +177,7 @@ class SiswaController extends Controller
         if(!$cekDokumen){
             $file = $req->file('file');
             $tujuan = 'file/siswa/' . $siswa->id_siswa . '/';
-            $nama_files = $siswa->nisn . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
+            $nama_files = $siswa->nama . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
             $file->move($tujuan, $nama_files);
 
             KomponenDokumen::create([
