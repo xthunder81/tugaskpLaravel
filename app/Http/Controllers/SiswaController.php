@@ -113,6 +113,8 @@ class SiswaController extends Controller
                 'nama_ibu' => $req->nama_ibu,
                 'nik_ayah' => $req->nik_ayah,
                 'nik_ibu' => $req->nik_ibu,
+                'email_ayah' => $req->email_ayah,
+                'email_ibu' => $req->email_ibu,
                 'nomor_hp_ayah' => $req->nomor_hp_ayah,
                 'nomor_hp_ibu' => $req->nomor_hp_ibu,
                 'alamat_ayah' => $req->alamat_ayah,

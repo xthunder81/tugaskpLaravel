@@ -302,6 +302,19 @@ Data Diri
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label for="alamat_ayah">Email Ayah</label>
+                            <input type="text" class="form-control" id="email_ayah" placeholder="Masukkan Email Ayah"
+                                name="email_ayah" value="{{ $siswa->email_ayah }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="alamat_ibu">Email Ibu</label>
+                            <input type="text" class="form-control" id="email_ibu" placeholder="Masukkan Email Ibu"
+                                name="email_ibu" value="{{ $siswa->email_ibu }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
                             <label for="nomor_hp_ayah">No HP Ayah</label>
                             <input type="text" class="form-control" id="nomor_hp_ayah"
                                 placeholder="Masukkan Nomor HP Ayah" name="nomor_hp_ayah"
