@@ -278,10 +278,15 @@ class SiswaController extends Controller
 
         $id = \Auth()->guard('siswa')->user()->id_siswa;
         $riwayat = DB::table('pendaftaran')
-                    ->select('biaya_gelombang.id_biaya_gelombang')
-                    ->join('biaya_gelombang', 'biaya_gelombang.id_biaya_gelombang','=','pendaftaran.biaya_gelombang_id')
+                    ->select('gelombang.id_gelombang', 'daftar_gelombang.nama_daftar_gelombang', 'pembayaran.id_pembayaran', 'list_pembayaran.*')
+                    ->join('pendaftaran', 'pendaftaran.id_pendaftaran', '=', 'pembayaran.pendaftaran_id')
+                    ->join('list_pembayaran', 'list_pembayaran.id_list_pembayaran', '=', 'pembayaran.list_pembayaran_id')
+                    ->join('gelombang', 'gelombang.id_gelombang','=','pendaftaran.gelombang_id')
                     ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
+                    ->where('tahun_ajaran.status' , '1')
+                    ->where('gelombang.status' , '1')
+                    ->where('list_pembayaran.status_list_pembayaran', '1')
                     ->where('siswa_id', $id)
                     ->get();
 
