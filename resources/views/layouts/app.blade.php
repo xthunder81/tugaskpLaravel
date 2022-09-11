@@ -130,7 +130,7 @@
             </li>
             @endif
 
-            <li @if(\Request::route()->getName() == 'admin.tahunajaran'||\Request::route()->getName() == 'admin.gelombang')
+            <li @if(\Request::route()->getName() == 'admin.tahunajaran'||\Request::route()->getName() == 'admin.gelombang'||\Request::route()->getName() == 'admin.daftargelombang')
                 class="nav-item menu-open"
                 @else class="nav-item"
                 @endif
@@ -174,7 +174,9 @@
 
             </li>
 
-            <li class="nav-item">
+            <li @if (\Request::route()->getName() == 'admin.biayaformulir'||\Request::route()->getName() == 'admin.listbiaya')
+                class="nav-item menu-open"
+                @endif class="nav-item">
                 <a href="#" class="nav-link">
                     {{-- <i class="nav-icon fas fa-calendar"></i> --}}
                     <p>
@@ -185,7 +187,7 @@
 
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('admin.biayaformulir') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayaformulir' ? 'active' : '' }}">
+                        <a href="{{ route('admin.biayaformulir') }}" class="nav-link {{ Route::current()->getName() == 'admin.biayaformulir' ? 'active active-sub' : '' }}">
                             <i class=""></i>
                             <p>
                             Biaya Formulir
@@ -194,7 +196,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.listbiaya') }}" class="nav-link {{ Route::current()->getName() == 'admin.listbiaya' ? 'active' : '' }}">
+                        <a href="{{ route('admin.listbiaya') }}" class="nav-link {{ Route::current()->getName() == 'admin.listbiaya' ? 'active active-sub' : '' }}">
                             <i class=""></i>
                             <p>
                             Biaya Daftar Ulang

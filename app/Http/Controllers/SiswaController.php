@@ -179,7 +179,7 @@ class SiswaController extends Controller
         if(!$cekDokumen){
             $file = $req->file('file');
             $tujuan = 'file/siswa/' . $siswa->id_siswa . '/';
-            $nama_files = $siswa->nama . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
+            $nama_files = $siswa->id_siswa . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
             $file->move($tujuan, $nama_files);
 
             KomponenDokumen::create([
@@ -193,7 +193,7 @@ class SiswaController extends Controller
         }else{
             $file = $req->file('file');
             $tujuan = 'file/siswa/' . $siswa->id_siswa . '/';
-            $nama_files = $siswa->nisn . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
+            $nama_files = $siswa->id_siswa . '_' . str_replace(str_split("/\\:*?\"<>|"),'',strtoupper($req->nama_dokumen))  . '.' . $file->getClientOriginalExtension();
 
             $fileLama = $cekDokumen->file_dokumen;
             File::delete($tujuan . $fileLama);
@@ -268,9 +268,9 @@ class SiswaController extends Controller
             }
         }
 
-        $gelombang = DB::table('biaya_gelombang')
-                    ->select('biaya_gelombang.id_biaya_gelombang', 'gelombang.*','tahun_ajaran.nama_tahun_ajaran')
-                    ->join('gelombang', 'gelombang.id_gelombang','=','biaya_gelombang.gelombang_id')
+        $gelombang = DB::table('gelombang')
+                    ->select('gelombang.id_gelombang', 'daftar_gelombang.nama_daftar_gelombang','tahun_ajaran.nama_tahun_ajaran')
+                    ->join('daftar_gelombang', 'daftar_gelombang.id_daftar_gelombang','=','gelombang.daftar_gelombang_id')
                     ->join('tahun_ajaran', 'tahun_ajaran.id_tahun_ajaran','=','gelombang.tahun_ajaran_id')
                     ->where('tahun_ajaran.status' , '1')
                     ->where('gelombang.status' , '1')

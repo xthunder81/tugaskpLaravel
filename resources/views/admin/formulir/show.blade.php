@@ -439,7 +439,7 @@
                 <tr>
                     <td>Mendaftar  </td>
                     <td>:</td>
-                    <td>{{ $formulir->nama_gelombang }}</td>
+                    <td>{{ $formulir->nama_daftar_gelombang }}</td>
                 </tr>
                 <tr>
                     <td>Dokumen  </td>
